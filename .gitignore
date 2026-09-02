@@ -1,0 +1,5 @@
+# fichiers hors publication
+*.mp4
+_*
+desktop.ini
+Thumbs.db
