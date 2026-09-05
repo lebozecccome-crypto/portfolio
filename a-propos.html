@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>à propos — côme le bozec.</title>
+<meta name="description" content="à propos — côme le bozec, portfolio d'architecture.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>
+(function(){
+  var d = document.documentElement; d.classList.add('js', 'entered', 'direct', 'libre');
+  try { sessionStorage.setItem('entre', '1'); if (sessionStorage.getItem('tactile') === '1') d.classList.add('tactile'); } catch (e) {}
+  function tactile(e){ if (e.pointerType === 'touch') { d.classList.add('tactile'); try { sessionStorage.setItem('tactile', '1'); } catch (err) {} removeEventListener('pointerdown', tactile, true); } }
+  addEventListener('pointerdown', tactile, { capture:true, passive:true });
+})();
+</script>
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body class="page-normale page-apropos">
+
+<div id="page" tabindex="-1">
+  <header class="entete">
+    <div class="entete-inner">
+      <nav aria-label="Navigation">
+        <div class="rangee3">
+          <a class="lien gris actif" href="a-propos.html" aria-current="page">à propos</a>
+          <div class="espace">&nbsp;</div>
+          <a class="lien gris" href="projets.html">liste des projets</a>
+        </div>
+        <div class="rangee3">
+          <div class="espace">&nbsp;</div>
+          <a class="lien blanc" href="./">côme le bozec.</a>
+          <div class="espace">&nbsp;</div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <h1 class="sr">à propos</h1>
+  <!-- contenu FICTIF : seules comptent les zones, leur volume et leurs proportions -->
+  <section class="page">
+    <div class="page-rangee">
+      <div class="page-titre blanc titre-cache-petit">l'atelier</div>
+      <div class="page-espace titre-cache-petit">&nbsp;</div>
+      <div class="page-titre blanc titre-cache-petit">côme le bozec</div>
+    </div>
+    <div class="page-rangee">
+      <div class="page-espace titre-cache-petit">&nbsp;</div>
+      <div class="page-titre blanc titre-cache-petit" id="contact">contact</div>
+      <div class="page-espace titre-cache-petit">&nbsp;</div>
+    </div>
+    <div class="page-rangee">
+      <div class="blanc">
+        <div class="page-titre-petit-espace"></div>
+        <div class="page-titre-petit">l'atelier</div>
+        <div class="page-titre-petit-espace"></div>
+        <div class="page-contenu avec-img">
+          <img src="projets/images/fictif/photo-05_1280x1600.jpg" width="1280" height="1600" alt="" loading="eager">
+          <p>L'atelier est une pratique d'architecture installée à Bruxelles, dont les projets vont de la maison individuelle à l'équipement public, en passant par le paysage et la donnée territoriale. Le nom dit l'essentiel : un lieu où l'on fabrique ensemble, où le dessin, la maquette et le chantier avancent de front, et où l'autorité du projet est partagée entre ceux qui le font.</p>
+          <p>Le travail s'attache autant à la manière de construire qu'à ce qui est construit. Chaque projet est d'abord une lecture du sol, du climat et des usages en place ; il devient ensuite un système de matériaux et d'assemblages que l'on peut entretenir, réparer et transformer. Les intérieurs, les objets et les cartes participent de la même recherche.</p>
+          <p>Les projets sont développés par cycles courts, avec les habitants, les artisans et les ingénieurs, en passant du relevé au prototype puis au chantier. Cette méthode laisse le bâtiment répondre à ce qui change, tout en gardant une identité matérielle claire et volontaire.</p>
+          <p>L'atelier enseigne, écrit et expose sur la construction, le territoire et la culture matérielle.</p>
+          <h2>@comelebozec</h2>
+        </div>
+      </div>
+      <div class="page-espace titre-cache-petit">&nbsp;</div>
+      <div class="blanc">
+        <div class="page-titre-petit-espace"></div>
+        <div class="page-titre-petit">côme le bozec</div>
+        <div class="page-titre-petit-espace"></div>
+        <div class="page-contenu avec-img">
+          <img src="projets/images/fictif/photo-09_1280x1706.jpg" width="1280" height="1706" alt="" loading="lazy">
+          <p>Côme Le Bozec est étudiant en architecture à l'UCLouvain LOCI, à Bruxelles. Son travail explore la manière dont l'analyse cartographique et la donnée spatiale peuvent informer le projet, du détail constructif à l'échelle du paysage.</p>
+          <p>Il a travaillé sur des projets d'habitat collectif, d'équipements et d'analyse territoriale, et développe des outils de dessin et de calcul pour la conception paramétrique et la représentation du territoire.</p>
+        </div>
+      </div>
+    </div>
+    <div class="page-rangee">
+      <div class="page-espace titre-cache-petit">&nbsp;</div>
+      <div class="blanc">
+        <div class="page-titre-petit-espace"></div>
+        <div class="page-titre-petit">contact</div>
+        <div class="page-titre-petit-espace"></div>
+        <div class="page-contenu">
+          <p>bruxelles — rennes</p>
+          <p>sur rendez-vous</p>
+          <p>© 2026 côme le bozec.</p>
+        </div>
+      </div>
+      <div class="page-espace titre-cache-petit">&nbsp;</div>
+    </div>
+  </section>
+</div>
+
+<script src="assets/js/site.js"></script>
+</body>
+</html>

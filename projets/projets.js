@@ -1,102 +1,114 @@
-/* Source unique des projets — chargée par l'index et par chaque page projet.
-   Règle : une valeur inconnue vaut null, jamais une valeur plausible.
-   w / h / ar / plafond_encre sont recopiés depuis outils/manifest.json (produit par outils/derive.py).
-   Les champs `z / col / span / y` décrivent la place du document dans le champ de l'index (index: true). */
+/* Contenu FICTIF — seuls comptent l'emplacement, le volume et les rapports d'échelle des zones de texte et d'image.
+   Chaque projet : titre (h1 de la colonne vide, 96 px), description (légende sous l'image, 40 à 70 mots),
+   couverture (image de la grille, rapport natif conservé), diapos (planches de la lightbox), fiche (panneau Information). */
 window.PROJETS = [
   {
-    slug: 'habiter-produire-partager', code: 'hpp', ordre: 1, etat: 'publie',
-    numero: '02.1', axe: 'habiter',
-    titre: 'habiter, produire, partager',
-    programme: 'habitat collectif autosuffisant',
-    cadre: 'atelier II · LOCI UCLouvain', annee: '2025-2026',
-    equipe: ['hamza el arja'],
-    lieu: { nom: 'bruxelles', coord: null },
-    structure: 'bois, rez en béton et parement de brique',
-    surface: null,
-    aConfirmer: ['lieu', 'surface'],
-    page: 'projets/habiter-produire-partager.html',
-    documents: [
-      { id: 'hpp-coupe-50', nature: 'coupe transversale 1:50', type: 'dessin', w: 2787, h: 2070, ar: 1.3464, plafond_encre: 148,
-        alt: "coupe transversale — la serre de culture occupe la toiture, les logements s'organisent dessous",
-        legende: 'la serre coiffe les logements — cultures suspendues sous le faîte, potagers sur les terrasses',
-        largeur: 'pleine', index: true, cle: true, z: 0, col: 0, span: 7, y: 0 },
-      { id: 'hpp-elevation', nature: 'élévation sur rue', type: 'dessin', w: 2906, h: 650, ar: 4.4708, plafond_encre: 66,
-        alt: 'élévation sur rue — le projet inséré dans le front bâti',
-        legende: 'sur la rue, le projet reprend les hauteurs de ses voisins',
-        largeur: 'pleine', index: true, z: 2, col: 1, span: 11, y: 6.4 },
-      { id: 'hpp-coupe-urbaine', nature: 'coupe urbaine', type: 'dessin', w: 2906, h: 871, ar: 3.3364, plafond_encre: 228,
-        alt: "coupe urbaine à travers l'îlot",
-        legende: "la traversée de l'îlot — le projet s'abaisse pour laisser entrer le jardin",
-        largeur: 'pleine', index: true, z: 0, col: 0, span: 7, y: 15.9 },
-      { id: 'hpp-implantation', nature: "plan d'implantation", type: 'dessin', w: 2908, h: 2245, ar: 1.2953, plafond_encre: 53,
-        alt: "plan d'implantation — les deux maisons et le jardin productif dans l'îlot",
-        legende: 'deux maisons tenues par le jardin productif, dans la profondeur de la parcelle',
-        largeur: 'pleine', index: false },
-      { id: 'hpp-plan-rdc-100', nature: 'plan du rez-de-chaussée 1:100', type: 'dessin', w: 1466, h: 1251, ar: 1.1719, plafond_encre: 235,
-        alt: 'plan du rez-de-chaussée',
-        legende: 'au rez, les espaces communs s\'ouvrent de plain-pied sur le jardin',
-        largeur: 'demie', paire: 'niveaux-1', index: false },
-      { id: 'hpp-plan-r1-100', nature: 'plan du premier étage 1:100', type: 'dessin', w: 1462, h: 1252, ar: 1.1677, plafond_encre: 237,
-        alt: 'plan du premier étage',
-        legende: "à l'étage, les chambres et la terrasse commune",
-        largeur: 'demie', paire: 'niveaux-1', index: false },
-      { id: 'hpp-plan-r2-100', nature: 'plan du deuxième étage 1:100', type: 'dessin', w: 1464, h: 1246, ar: 1.175, plafond_encre: 238,
-        alt: 'plan du deuxième étage',
-        legende: 'au deuxième, les logements sous la serre',
-        largeur: 'demie', paire: 'niveaux-2', index: false },
-      { id: 'hpp-plan-r3-100', nature: 'plan du troisième étage 1:100', type: 'dessin', w: 1464, h: 1249, ar: 1.1721, plafond_encre: 231,
-        alt: 'plan du troisième étage — la serre de production',
-        legende: 'au dernier niveau, la serre de production et ses tables de culture',
-        largeur: 'demie', paire: 'niveaux-2', index: false },
-      { id: 'hpp-plan-r1', nature: 'plan du premier étage 1:50', type: 'dessin', w: 2787, h: 1646, ar: 1.6932, plafond_encre: 84,
-        alt: 'plan détaillé du premier étage au 1:50',
-        legende: 'le premier étage en détail, de la rue au jardin',
-        largeur: 'pleine', index: false },
-      { id: 'hpp-axonometrie', nature: 'axonométrie éclatée', type: 'dessin', w: 906, h: 1152, ar: 0.7865, plafond_encre: 126,
-        alt: 'axonométrie éclatée structurelle — structure ponctuelle en bois, rez en béton et parement de brique',
-        legende: 'trois régimes constructifs — béton et brique au rez, poteaux-poutres en bois, serre légère au faîte',
-        largeur: 'tiers', index: true, z: 1, col: 7, span: 4, y: 2.6 },
-      { id: 'hpp-croquis', nature: 'croquis de recherche', type: 'dessin', w: 800, h: 1357, ar: 0.5895, plafond_encre: 95,
-        alt: 'croquis de recherche — espaces partagés, marché ouvert au quartier, jardin collectif',
-        legende: 'premières intentions — les seuils du commun, le marché ouvert au quartier',
-        largeur: 'tiers', index: false },
-      { id: 'hpp-cycle', nature: 'diagramme du cycle', type: 'dessin', w: 2476, h: 1388, ar: 1.7839, plafond_encre: 104,
-        alt: 'diagramme du cycle de fonctionnement, de la gouvernance associative au marché mensuel',
-        legende: 'le fonctionnement en boucle — produire, transformer, partager, réinvestir',
-        largeur: 'pleine', index: true, z: 2, col: 3, span: 6, y: 11.3 },
-      { id: 'hpp-analyse-verts', nature: "carte d'analyse — espaces verts", type: 'dessin', w: 1388, h: 1261, ar: 1.1007, plafond_encre: 183,
-        alt: "carte d'analyse — espaces verts et jardinage accessibles au quartier",
-        legende: 'ce que le quartier offre déjà — parcs, potagers collectifs et aires de jeux à 400 m du site',
-        largeur: 'pleine', index: true, z: 1, col: 7, span: 5, y: 9.6 },
-      { id: 'hpp-analyse-alimentation', nature: "carte d'analyse — alimentation", type: 'dessin', w: 950, h: 976, ar: 0.9734, plafond_encre: 155,
-        alt: "carte d'analyse — accès à une alimentation de qualité",
-        legende: 'où l\'on se nourrit — circuits courts et commerces autour du site',
-        largeur: 'demie', paire: 'analyses', index: false },
-      { id: 'hpp-analyse-bati', nature: "carte d'analyse — hauteur du bâti", type: 'dessin', w: 1056, h: 1095, ar: 0.9644, plafond_encre: 136,
-        alt: "carte d'analyse — hauteur du bâti",
-        legende: 'les gabarits du tissu, du rez aux quinze mètres',
-        largeur: 'demie', paire: 'analyses', index: false },
-      { id: 'hpp-narration', nature: 'narration graphique', type: 'dessin', w: 760, h: 927, ar: 0.8199, plafond_encre: 201,
-        alt: 'narration graphique — collage du territoire cultivé',
-        legende: 'la commune cultivée — le territoire raconté par ses jardins',
-        largeur: 'tiers', index: false },
-      { id: 'hpp-herbier', nature: 'herbier', type: 'dessin', w: 712, h: 937, ar: 0.7599, plafond_encre: 245,
-        alt: 'herbier des espèces spontanées de la commune',
-        legende: "six espèces spontanées relevées sur place, de l'origan sauvage à la digitale pourpre",
-        largeur: 'tiers', index: false },
-      { id: 'hpp-ref-molenbeek', nature: 'référence', type: 'photo', w: 407, h: 560, ar: 0.7268, plafond_encre: null,
-        alt: 'référence — rénovation avec extension de toiture par Hé Architecture, Molenbeek 2024',
-        legende: 'hé architecture, molenbeek 2024 — la maison étendue par son toit',
-        largeur: 'tiers', index: false },
-      { id: 'hpp-ref-melbourne', nature: 'référence', type: 'photo', w: 457, h: 560, ar: 0.8161, plafond_encre: null,
-        alt: 'référence — logements ParkLife par Austin Maynard Architects, Melbourne 2022',
-        legende: 'austin maynard architects, melbourne 2022 — la coursive comme lieu de vie',
-        largeur: 'tiers', index: false }
-    ]
+    slug: 'maison-du-marais', titre: 'Maison du Marais',
+    description: "Posée sur pilotis au bord d'une roselière, la maison réunit trois volumes de bois brûlé autour d'une coursive ouverte. Les baies cadrent l'eau à hauteur d'assise, la toiture collecte la pluie vers une citerne, et la façade nord se referme presque entièrement pour tenir le vent d'hiver.",
+    couverture: { src: 'projets/images/fictif/photo-01_1280x720.jpg', w: 1280, h: 720 },
+    diapos: [
+      { src: 'projets/images/fictif/photo-01_1280x720.jpg', w: 1280, h: 720 },
+      { src: 'projets/images/fictif/photo-06_1280x960.jpg', w: 1280, h: 960 },
+      { src: 'projets/images/hpp-coupe-50_1400.webp', w: 1400, h: 1040 },
+      { src: 'projets/images/fictif/photo-09_1280x1706.jpg', w: 1280, h: 1706 },
+      { src: 'projets/images/hpp-plan-rdc-100_1400.webp', w: 1400, h: 1195 }
+    ],
+    fiche: { lieu: 'Marais de Lessines, Hainaut', annee: '2024', programme: 'maison individuelle', surface: '168 m²', statut: 'livré', equipe: 'avec Atelier Pluie' },
+    photographie: 'photographies : Anne Dupré'
   },
-  /* Projets du portfolio imprimé, en préparation : titre, cadre et année non confirmés → null. */
-  { slug: null, ordre: 2, etat: 'brouillon', numero: null, axe: null, titre: null, annee: null, lieu: null, documents: [] },
-  { slug: null, ordre: 3, etat: 'brouillon', numero: null, axe: null, titre: null, annee: null, lieu: null, documents: [] },
-  { slug: null, ordre: 4, etat: 'brouillon', numero: null, axe: null, titre: null, annee: null, lieu: null, documents: [] },
-  { slug: null, ordre: 5, etat: 'brouillon', numero: null, axe: null, titre: null, annee: null, lieu: null, documents: [] }
+  {
+    slug: 'halle-des-tanneurs', titre: 'Halle des Tanneurs',
+    description: "La Halle des Tanneurs transforme un entrepôt de 1910 en marché couvert et ateliers partagés. La charpente métallique est conservée et peinte en blanc, un plancher intermédiaire s'insère entre les fermes, et une nouvelle verrière redonne au sol de brique la lumière que les extensions successives lui avaient prise.",
+    couverture: { src: 'projets/images/fictif/photo-02_1280x692.jpg', w: 1280, h: 692 },
+    diapos: [
+      { src: 'projets/images/fictif/photo-02_1280x692.jpg', w: 1280, h: 692 },
+      { src: 'projets/images/fictif/photo-04_1280x853.jpg', w: 1280, h: 853 },
+      { src: 'projets/images/hpp-elevation_1400.webp', w: 1400, h: 313 },
+      { src: 'projets/images/fictif/photo-14_1280x853.jpg', w: 1280, h: 853 }
+    ],
+    fiche: { lieu: 'Braine-le-Comte', annee: '2023', programme: 'marché couvert et ateliers', surface: '2 400 m²', statut: 'concours, lauréat', equipe: 'avec Bureau Solstice, ingénieur Vantorre' },
+    photographie: 'photographies : Studio Lemaire'
+  },
+  {
+    slug: 'tour-du-canal', titre: 'Tour du Canal',
+    description: "Vingt-quatre logements traversants empilés sur huit niveaux, au bord du canal. Chaque appartement possède une loggia profonde qui sert de pièce d'été ; la façade en briques claires se creuse au sud et se lisse au nord, et le rez-de-chaussée accueille un atelier de réparation de vélos ouvert sur le quai.",
+    couverture: { src: 'projets/images/fictif/photo-03_1280x1918.jpg', w: 1280, h: 1918 },
+    diapos: [
+      { src: 'projets/images/fictif/photo-03_1280x1918.jpg', w: 1280, h: 1918 },
+      { src: 'projets/images/fictif/photo-05_1280x1600.jpg', w: 1280, h: 1600 },
+      { src: 'projets/images/hpp-axonometrie_906.webp', w: 906, h: 1152 },
+      { src: 'projets/images/fictif/photo-13_1280x1918.jpg', w: 1280, h: 1918 },
+      { src: 'projets/images/hpp-plan-r1-100_1400.webp', w: 1400, h: 1199 },
+      { src: 'projets/images/fictif/photo-10_1280x800.jpg', w: 1280, h: 800 }
+    ],
+    fiche: { lieu: 'Bruxelles, Molenbeek', annee: '2022-2025', programme: '24 logements et un atelier', surface: '3 150 m²', statut: 'en chantier', equipe: 'avec Ney &amp; Partners' },
+    photographie: 'photographies : Anne Dupré'
+  },
+  {
+    slug: 'serre-urbaine', titre: 'Serre urbaine',
+    description: "Sur le toit d'un parking, une serre de production maraîchère de soixante mètres de long distribue trois salles communes chauffées par l'air des cultures. La structure en bois lamellé porte des châssis de verre simple récupérés ; le sol de la serre est un plancher de tables, démontable, réglé sur la hauteur des cultures.",
+    couverture: { src: 'projets/images/fictif/photo-04_1280x853.jpg', w: 1280, h: 853 },
+    diapos: [
+      { src: 'projets/images/fictif/photo-04_1280x853.jpg', w: 1280, h: 853 },
+      { src: 'projets/images/hpp-coupe-urbaine_1400.webp', w: 1400, h: 420 },
+      { src: 'projets/images/fictif/photo-16_1280x960.jpg', w: 1280, h: 960 },
+      { src: 'projets/images/hpp-cycle_1400.webp', w: 1400, h: 785 }
+    ],
+    fiche: { lieu: 'Anderlecht', annee: '2025', programme: 'serre productive et espaces communs', surface: '1 100 m²', statut: 'étude', equipe: 'avec la coopérative Racines' },
+    photographie: 'images : atelier'
+  },
+  {
+    slug: 'sainte-agathe', titre: 'Sainte-Agathe, logements',
+    description: "Six maisons en bande sur une parcelle en pente, chacune décalée d'un demi-niveau par rapport à sa voisine. Les toits en pente inverse dessinent une seule ligne brisée sur la rue ; à l'arrière, les jardins sont reliés par un chemin commun qui descend jusqu'au verger conservé.",
+    couverture: { src: 'projets/images/fictif/photo-05_1280x1600.jpg', w: 1280, h: 1600 },
+    diapos: [
+      { src: 'projets/images/fictif/photo-05_1280x1600.jpg', w: 1280, h: 1600 },
+      { src: 'projets/images/fictif/photo-11_1280x1024.jpg', w: 1280, h: 1024 },
+      { src: 'projets/images/hpp-plan-r2-100_1400.webp', w: 1400, h: 1192 },
+      { src: 'projets/images/fictif/photo-15_1280x640.jpg', w: 1280, h: 640 }
+    ],
+    fiche: { lieu: 'Berchem-Sainte-Agathe', annee: '2024', programme: 'six maisons en bande', surface: '890 m²', statut: 'permis obtenu', equipe: 'avec Bureau Solstice' },
+    photographie: 'photographies : Studio Lemaire'
+  },
+  {
+    slug: 'atelier-senne', titre: 'Atelier Senne',
+    description: "Un atelier de menuiserie et son logement de gardien, glissés dans la profondeur d'un îlot bruxellois. Le volume de l'atelier est un hangar de bois à sheds orientés au nord ; la maison, en brique, s'appuie contre le mur mitoyen et regarde la cour de travail par une seule grande fenêtre.",
+    couverture: { src: 'projets/images/fictif/photo-06_1280x960.jpg', w: 1280, h: 960 },
+    diapos: [
+      { src: 'projets/images/fictif/photo-06_1280x960.jpg', w: 1280, h: 960 },
+      { src: 'projets/images/hpp-croquis_800.webp', w: 800, h: 1357 },
+      { src: 'projets/images/fictif/photo-12_1280x720.jpg', w: 1280, h: 720 },
+      { src: 'projets/images/hpp-plan-r1_1400.webp', w: 1400, h: 827 }
+    ],
+    fiche: { lieu: 'Bruxelles, Cureghem', annee: '2021', programme: 'atelier et logement', surface: '620 m²', statut: 'livré', equipe: 'avec Menuiserie Dewitte' },
+    photographie: 'photographies : Anne Dupré'
+  },
+  {
+    slug: 'belvedere-de-la-dyle', titre: 'Belvédère de la Dyle',
+    description: "Une plateforme de bois de douze mètres carrés, portée par quatre pieux, au-dessus de la prairie inondable. On y accède par une passerelle qui devient escalier ; un banc court sur trois côtés et le quatrième reste ouvert sur la rivière. La structure est conçue pour être submergée deux semaines par an.",
+    couverture: { src: 'projets/images/fictif/photo-07_1280x1280.jpg', w: 1280, h: 1280 },
+    diapos: [
+      { src: 'projets/images/fictif/photo-07_1280x1280.jpg', w: 1280, h: 1280 },
+      { src: 'projets/images/hpp-analyse-verts_1388.webp', w: 1388, h: 1261 },
+      { src: 'projets/images/fictif/photo-08_1280x549.jpg', w: 1280, h: 549 }
+    ],
+    fiche: { lieu: 'Vallée de la Dyle, Brabant wallon', annee: '2023', programme: 'belvédère paysager', surface: '12 m²', statut: 'livré', equipe: 'avec le Contrat de rivière Dyle' },
+    photographie: 'photographies : Studio Lemaire'
+  },
+  {
+    slug: 'cabane-des-dunes', titre: 'Cabane des Dunes',
+    description: "Refuge de plage démontable en panneaux de contreplaqué marine, assemblé en deux jours par une équipe de quatre personnes. Le plan est un carré de quatre mètres ; la toiture se soulève d'un côté pour laisser entrer le vent d'ouest, et se ferme entièrement à la fin de la saison.",
+    couverture: { src: 'projets/images/fictif/photo-08_1280x549.jpg', w: 1280, h: 549 },
+    diapos: [
+      { src: 'projets/images/fictif/photo-08_1280x549.jpg', w: 1280, h: 549 },
+      { src: 'projets/images/fictif/photo-09_1280x1706.jpg', w: 1280, h: 1706 },
+      { src: 'projets/images/hpp-herbier_712.webp', w: 712, h: 937 },
+      { src: 'projets/images/fictif/photo-01_1280x720.jpg', w: 1280, h: 720 }
+    ],
+    fiche: { lieu: 'De Panne, littoral', annee: '2022', programme: 'refuge saisonnier', surface: '16 m²', statut: 'prototype', equipe: 'auto-construction' },
+    photographie: 'photographies : atelier'
+  }
 ];
+
+/* Libellés des champs de la fiche, dans l'ordre d'affichage */
+window.PROJETS_CHAMPS = [['lieu', 'Lieu'], ['annee', 'Année'], ['programme', 'Programme'], ['surface', 'Surface'], ['statut', 'Statut'], ['equipe', 'Équipe']];

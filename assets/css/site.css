@@ -1,0 +1,241 @@
+/* comelebozec.com — architecture visuelle reprise du site de référence, cotes exactes :
+   corps 20/22 px, cellule 2px 4px (rangée de 26 px), en-tête 130 px (5 rangées) sur l'accueil et 52 px ailleurs,
+   grille d'accueil en deux colonnes 50/50 (image | titre 96/83 px révélé au survol), flou 30 px au repos,
+   lightbox en trois cellules (titre | information | nom), liste en trois colonnes, page à trois colonnes.
+   Points de rupture : 970 px et 680 px. Palette : fond #e6e7e8, cellule #fff, cellule grise #dcdcdc, actif #000. */
+
+html{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#000;-webkit-text-size-adjust:100%;box-sizing:border-box}
+*,*::before,*::after{box-sizing:inherit;margin:0;padding:0}
+body{background:#e6e7e8;font-size:20px;line-height:22px;font-weight:400;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,p{font-size:20px;line-height:22px;font-weight:400}
+a{color:#000;text-decoration:none}
+img{display:block;max-width:100%;height:auto}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+ul{list-style:none}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid #000;outline-offset:-2px}
+
+/* ---- cellules ---- */
+.cellule,.espace{display:block;width:100%;padding:2px 4px;min-height:26px}
+.blanc{background:#fff}
+.gris{background:#dcdcdc}
+.lien{display:block;width:100%;padding:2px 4px;transition:background 250ms ease-in-out,color 250ms ease-in-out}
+.lien:hover,.lien.actif{color:#fff;background:#000}
+
+/* ==================================================================
+   SEUIL — page de garde galaxie (identité conservée)
+   ================================================================== */
+html.js:not(.libre) body{overflow:hidden}
+#galaxie{position:fixed;inset:0;z-index:0;width:100%;height:100%;display:block;background:#050505}
+html.direct #galaxie,html:not(.js) #galaxie{display:none}
+#seuil{position:fixed;inset:0;z-index:3000;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:1.1rem;cursor:pointer;text-align:center;padding:0 1.5rem;color:#ECE9E2;background:transparent;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif}
+#seuil .nom-seuil{font-size:clamp(2rem,5vw,3.4rem);letter-spacing:.04em;line-height:1.1;text-transform:lowercase}
+#seuil .sous{font-size:13px;line-height:24px;letter-spacing:.42em;color:#8f8d86;text-transform:lowercase}
+#seuil .entrer{margin-top:2.2rem;font-size:13px;line-height:24px;letter-spacing:.28em;color:#8f8d86;text-transform:lowercase;
+  padding:.5em .8em;animation:pulse 2.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.35}50%{opacity:.95}}
+html.entered #seuil{pointer-events:none;opacity:0;transition:opacity 420ms ease-in-out}
+html.direct #seuil,html:not(.js) #seuil,#seuil[hidden]{display:none}
+html.entered #galaxie{opacity:0;transition:opacity 1200ms ease}
+
+/* la page n'existe pas avant l'entrée ; elle apparaît en fondu, à 300 ms, en 600 ms */
+#page{display:none;position:relative;z-index:1}
+html.entered #page,html:not(.js) #page{display:block}
+@keyframes apparait{from{opacity:0}to{opacity:1}}
+html.entered:not(.direct) #page{animation:apparait 600ms ease-in-out 300ms both}
+
+/* ==================================================================
+   EN-TÊTE — 130 px (5 rangées de 26 px) sur l'accueil, 52 px (2 rangées) sur les autres pages
+   ================================================================== */
+.entete{position:relative;z-index:2000;height:130px}
+.page-normale .entete{height:52px}
+.entete-inner{position:fixed;top:0;left:0;right:0;z-index:2000;height:130px;overflow:hidden;transition:top .5s ease-in-out;will-change:top}
+.page-normale .entete-inner{height:52px}
+.home .entete.ferme .entete-inner{top:-80px}
+.rangee{display:grid;grid-template-columns:1fr 1fr}
+.rangee3{display:grid;grid-template-columns:1fr 1fr 1fr}
+.rangee > *,.rangee3 > *{min-width:0;overflow-x:hidden}
+.identite{display:none}
+.home .identite{display:block}
+/* sur la liste, les cellules grises de l'en-tête passent au blanc ; sur la page À propos, à #cfcfcf */
+.page-liste .entete .gris{background:#fff}
+.page-apropos .entete .gris{background:#cfcfcf}
+.entete .lien.actif,.page-liste .entete .lien.actif,.page-apropos .entete .lien.actif{color:#fff;background:#000}
+
+/* ==================================================================
+   GRILLE D'ACCUEIL — une ligne = image (50 %) + titre (50 %), en quinconce
+   ================================================================== */
+.grille{position:relative}
+.ligne{display:grid;grid-template-columns:1fr 1fr;cursor:pointer}
+.ligne.droite .cellule-img{order:2}
+.ligne.droite .cellule-titre{order:1}
+.cellule-img{position:relative;min-width:0;overflow:hidden}
+.cellule-img figure{position:relative}
+.img-cadre{position:relative;width:100%;overflow:hidden;aspect-ratio:var(--ar,16/9);background:transparent}
+.img-cadre img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 500ms ease-in-out}
+.img-cadre img.ok{opacity:1}
+.indicateur{position:absolute;top:50%;left:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border:1px solid #000;border-radius:50%;
+  border-right-color:transparent;animation:tourne 1s linear infinite;opacity:.4}
+.img-cadre img.ok ~ .indicateur,.img-cadre img.ok + .indicateur{display:none}
+@keyframes tourne{to{transform:rotate(360deg)}}
+figcaption{position:relative;z-index:1;background:#fff}
+.legende{padding:2px 4px}
+.cellule-titre{display:flex;align-items:center;justify-content:center;min-width:0;padding:0 4px;text-align:center}
+.titre-grand{width:100%;opacity:0;transition:opacity 250ms ease-in-out;will-change:opacity}
+.titre-grand h1{font-size:96px;line-height:83px}
+.titre-petit{position:absolute;top:50%;left:0;z-index:1;display:none;width:100%;padding:0 4px;text-align:center;transform:translateY(-50%)}
+.titre-petit h1{font-size:42px;line-height:32px}
+
+/* le flou est strictement un effet de pointeur fin : au repos l'image est floue à 30 px et agrandie à 110 % ;
+   au survol de la LIGNE entière (image et colonne vide), elle se pose et le titre se matérialise dans la colonne vide */
+@media (hover:hover) and (pointer:fine){
+  html:not(.tactile) .grille .img-cadre img{top:-5%;left:-5%;width:110%;height:110%;filter:blur(30px);
+    transition:filter 250ms ease-in-out,opacity 500ms ease-in-out;transform:translateZ(0);will-change:filter;backface-visibility:hidden}
+  html:not(.tactile) .ligne:hover .img-cadre img{top:0;left:0;width:100%;height:100%;filter:blur(0)}
+  html:not(.tactile) .ligne:hover .titre-grand,html:not(.tactile) .ligne:focus-within .titre-grand{opacity:1}
+  html:not(.tactile) .ligne:focus-within .img-cadre img{top:0;left:0;width:100%;height:100%;filter:blur(0)}
+}
+.ligne:focus-visible{outline:2px solid #000;outline-offset:-2px}
+
+/* ==================================================================
+   LIGHTBOX — plan superposé : barre de cellules (titre | information | nom = sortie), diaporama, panneau d'information
+   ================================================================== */
+.lightbox{position:fixed;top:0;left:0;z-index:10000;display:none;width:100%;height:100%;overflow:hidden;background:#e6e7e8;
+  opacity:0;transition:opacity 350ms ease-in-out;will-change:opacity}
+.lightbox.active{display:block}
+.lightbox.visible{opacity:1}
+html.lightbox-ouverte{overflow:hidden}
+html.lightbox-ouverte body{overflow:hidden}
+.lightbox-inner{position:relative;width:100%;height:100%}
+.lb-barre{position:absolute;top:0;left:0;right:0;z-index:35;display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:26px 26px;min-height:52px;pointer-events:none}
+.lb-titre{grid-column:1;grid-row:1;background:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:2px 4px;pointer-events:auto}
+.lb-espace{grid-column:1;grid-row:2;pointer-events:none}
+.lb-info{grid-column:2;grid-row:2;background:#dcdcdc;pointer-events:auto}
+.lb-fermer{grid-column:3;grid-row:1;background:#fff;pointer-events:auto}
+.lb-info button,.lb-fermer button{display:block;width:100%;padding:2px 4px;text-align:left;transition:background 250ms ease-in-out,color 250ms ease-in-out}
+.lb-info button:hover,.lb-fermer button:hover{color:#fff;background:#000}
+.lb-info.cache{display:none}
+
+.diapo{position:absolute;top:26px;left:0;right:0;z-index:1;height:calc(100% - 26px);display:flex;overflow:hidden;scroll-snap-type:x mandatory;
+  scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.diapo::-webkit-scrollbar{display:none}
+.vue{flex:0 0 100%;height:100%;scroll-snap-align:center;display:flex;align-items:center;justify-content:center;position:relative}
+.vue img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block}
+.prec,.suiv{position:absolute;top:26px;z-index:10;width:50%;height:calc(100% - 26px);background:transparent}
+.lightbox.info-ouverte .prec,.lightbox.info-ouverte .suiv{height:calc(30% - 26px)}
+.prec{left:0;cursor:w-resize}
+.suiv{right:0;cursor:e-resize}
+@media (hover:none){
+  .diapo{overflow-x:auto}
+  .prec,.suiv{display:none}
+}
+html.tactile .diapo{overflow-x:auto}
+html.tactile .prec,html.tactile .suiv{display:none}
+
+.lb-panneau{position:absolute;right:0;bottom:0;left:0;z-index:30;display:flex;flex-direction:column;width:100%;max-height:70vh;overflow:hidden;background:#e6e7e8;
+  visibility:hidden;transform:translateY(100%);transition:transform 350ms ease-in-out,visibility 0s 350ms}
+.lightbox.info-ouverte .lb-panneau{visibility:visible;transform:none;transition:transform 350ms ease-in-out,visibility 0s 0s}
+.lb-panneau-fermer-mobile{display:none}
+.lb-panneau-inner{display:flex;flex:1 1 auto;flex-direction:column;min-height:0;max-height:70vh;padding:0 0 24px}
+.lb-panneau-tete{position:sticky;top:0;z-index:2;flex-shrink:0;display:grid;grid-template-columns:1fr 2fr;width:100%}
+.lb-panneau-tete > *{padding:2px 4px;line-height:22px}
+.lb-panneau-libelle{background:#dcdcdc}
+.lb-panneau-actions{text-align:right;background:#dcdcdc;cursor:pointer;transition:background 250ms ease-in-out,color 250ms ease-in-out}
+.lb-panneau-actions:hover{color:#fff;background:#000}
+.lb-panneau-corps{display:flex;flex-direction:row;min-height:0}
+.lb-meta{width:33.3333%;flex-shrink:0;align-self:flex-start}
+.lb-meta dt,.lb-meta dd{display:block;padding:2px 4px;line-height:22px}
+.lb-meta dt{background:#fff}
+.lb-contenu{flex:1 1 0;width:66.6667%;min-width:0;min-height:0;overflow-x:hidden;overflow-y:auto;background:#e6e7e8}
+.lb-description{padding:2px 4px;line-height:22px}
+.lb-description p{margin:0 0 12px}
+.lb-description p:last-child{margin-bottom:0}
+.lb-photographie{padding:2px 4px;line-height:22px;opacity:.7}
+
+/* ==================================================================
+   LISTE DES PROJETS — trois colonnes de 33,33 %, titres en cellules grises, dépliants
+   ================================================================== */
+.liste{position:relative}
+.liste-rangee{display:grid;grid-template-columns:1fr 1fr 1fr}
+.liste-rangee > *{min-width:0;overflow:hidden}
+.liste-titre{display:block;width:100%;padding:2px 4px;text-align:left;background:#dcdcdc;cursor:pointer;user-select:none;
+  transition:background 250ms ease-in-out,color 250ms ease-in-out}
+.liste-titre:hover,.liste-titre[aria-expanded="true"]{color:#fff;background:#000}
+.depliant{display:grid;grid-template-rows:0fr;transition:grid-template-rows 250ms ease-in-out}
+.depliant[hidden]{display:grid}
+.depliant.ouvert{grid-template-rows:1fr}
+.depliant > div{overflow:hidden;min-height:0}
+.depliant .img-cadre{cursor:pointer}
+.depliant-desc{padding:2px 4px}
+.depliant-desc p + p{margin-top:22px}
+
+/* ==================================================================
+   PAGE (À propos) — table de trois colonnes : titres en cellules blanches en quinconce, contenus dessous
+   ================================================================== */
+.page-rangee{display:grid;grid-template-columns:1fr 1fr 1fr}
+.page-rangee > *{min-width:0}
+.page-titre,.page-contenu,.page-espace{display:block;width:100%;padding:2px 4px}
+.page-titre-petit{display:none;padding:2px 4px}
+.page-titre-petit-espace{display:none;width:100%;height:26px;background:#e6e7e8}
+.page-contenu p + p,.page-contenu img + p{margin-top:22px}
+.page-contenu img{width:100%;margin-top:-22px}
+.page-contenu.avec-img{padding-bottom:0}
+.page-contenu h2{margin-top:22px}
+
+/* ==================================================================
+   POINTS DE RUPTURE — 970 px puis 680 px, comme la référence
+   ================================================================== */
+@media (max-width:970px){
+  .titre-grand h1{font-size:56px;line-height:44px}
+  .page-normale .entete,.page-normale .entete-inner{height:156px}
+  .rangee3{grid-template-columns:1fr}
+  .liste-rangee{grid-template-columns:1fr}
+  .liste-rangee .liste-espace{display:none}
+  .page-rangee{grid-template-columns:1fr}
+  .page-rangee .page-espace,.page-rangee .titre-cache-petit{display:none}
+  .page-titre-petit,.page-titre-petit-espace{display:block}
+  .page{position:relative;top:-26px}
+  /* lightbox : titre sur toute la largeur, information | espace | nom sur la deuxième rangée */
+  .lb-titre{grid-column:1/4;grid-row:1}
+  .lb-info{grid-column:1;grid-row:2}
+  .lb-espace{grid-column:2;grid-row:2;background:#dcdcdc}
+  .lb-fermer{grid-column:3;grid-row:2;background:#dcdcdc}
+  .lb-fermer button{text-align:right}
+  .diapo{top:52px;height:calc(100% - 52px)}
+  .prec,.suiv{top:52px;height:calc(100% - 52px)}
+  .lb-panneau{max-height:calc(100% - 52px)}
+  .lb-panneau-inner{max-height:none;padding-top:0}
+  .lb-panneau-fermer-mobile{display:block;position:sticky;top:0;z-index:1;padding:2px 4px;line-height:22px;text-align:right;color:#fff;background:#000;cursor:pointer;width:100%}
+  .lb-panneau-tete{grid-template-columns:1fr}
+  .lb-panneau-actions{display:none}
+  .lb-panneau-corps{flex-direction:column}
+  .lb-meta{width:100%;order:1}
+  .lb-contenu{width:100%;order:2;overflow:visible}
+  .lb-description{padding-top:24px}
+  .lb-panneau{overflow-y:auto}
+}
+@media (max-width:680px){
+  .titre-grand h1{font-size:42px;line-height:32px}
+  .home .entete,.home .entete-inner{height:260px}
+  .home .entete.ferme .entete-inner{top:-160px}
+  .rangee{grid-template-columns:1fr}
+  .rangee .cache-petit{display:none}
+  .rangee .visible-petit{display:block}
+  .ligne{grid-template-columns:1fr}
+  .cellule-titre{display:none}
+  .titre-petit{display:block}
+}
+@media (min-width:681px){
+  .rangee .visible-petit{display:none}
+}
+
+/* ---- mouvement réduit : les fondus restent, le flou disparaît au repos ---- */
+@media (prefers-reduced-motion:reduce){
+  .entete-inner,.lb-panneau,.depliant{transition:none}
+  html:not(.tactile) .grille .img-cadre img{filter:none;top:0;left:0;width:100%;height:100%}
+  #seuil .entrer{animation:none;opacity:.8}
+}
+@media (forced-colors:active){
+  .lien:hover,.lien.actif,.liste-titre:hover{forced-color-adjust:none}
+}
