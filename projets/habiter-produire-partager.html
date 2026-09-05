@@ -1,247 +1,174 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="nuit">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="habiter, produire, partager — habitat collectif autosuffisant, projet d'atelier II, LOCI UCLouvain, 2025-2026. côme le bozec.">
 <title>habiter, produire, partager — côme le bozec.</title>
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-<style>
-  :root{
-    --bg:#050505; --ink:#ECE9E2; --muted:#8f8d86;
-    --paper:#FFFFFF; --paper-ink:#141414; --line:#E5E5E5;
-    --sans:'Helvetica Neue',Helvetica,Arial,sans-serif;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--ink);font-family:var(--sans)}
-
-  header{position:fixed;top:0;left:0;right:0;z-index:5;display:flex;
-    justify-content:space-between;align-items:center;padding:1.4rem 2.2rem;
-    mix-blend-mode:difference}
-  header .nom{font-size:.82rem;letter-spacing:.08em;text-transform:lowercase}
-  header a{color:inherit;text-decoration:none;opacity:.85;transition:opacity .3s}
-  header a:hover,header a:focus-visible{opacity:1}
-  header .retour{font-size:.72rem;letter-spacing:.14em;text-transform:lowercase}
-  a:focus-visible{outline:1px solid var(--ink);outline-offset:4px}
-
-  /* ---- Titre plein écran ---- */
-  .titre-plein{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;
-    align-items:flex-start;justify-content:center;padding:0 2.2rem;position:relative}
-  .titre-plein .eyebrow{font-size:.68rem;letter-spacing:.3em;text-transform:lowercase;
-    color:var(--muted);margin-bottom:1.4rem}
-  .titre-plein h1{font-weight:300;font-size:clamp(3rem,13vw,12rem);line-height:.98;
-    letter-spacing:.01em;text-transform:lowercase;max-width:12ch}
-  .titre-plein .sous{margin-top:1.6rem;font-size:.85rem;letter-spacing:.14em;
-    text-transform:lowercase;color:var(--muted)}
-  .souris{position:absolute;bottom:2.4rem;left:50%;transform:translateX(-50%);
-    width:22px;height:36px;border:1px solid var(--muted);border-radius:12px;
-    display:flex;justify-content:center}
-  .souris::after{content:'';width:2px;height:6px;background:var(--muted);
-    border-radius:2px;margin-top:6px;animation:roule 1.8s ease-in-out infinite}
-  @keyframes roule{0%{transform:translateY(0);opacity:1}70%{transform:translateY(12px);opacity:0}100%{opacity:0}}
-
-  /* ---- Contenu ---- */
-  .contenu{background:var(--paper);color:var(--paper-ink)}
-  .cadre{max-width:1180px;margin:0 auto;padding:0 2.2rem}
-
-  figure.pleine{padding:5.5rem 0 0}
-  figure.pleine img{width:100%;display:block}
-  figure.suite{padding:2.4rem 0 0}
-  figure.suite img{width:100%;display:block}
-  figcaption{font-size:.72rem;letter-spacing:.08em;color:#8b877c;
-    padding:.7rem 0 0;text-transform:lowercase}
-
-  .texte{max-width:62ch;padding:4.5rem 0 1rem}
-  .texte p{line-height:1.6;font-size:1.02rem}
-  .texte p + p{margin-top:1.2rem}
-  .a-completer{color:#8b877c;font-style:italic}
-
-  .duo{display:grid;grid-template-columns:1fr 1fr;gap:2.4rem;padding:3.5rem 0 0}
-  .duo img{width:100%;display:block}
-
-  /* ---- Fiche technique ---- */
-  .fiche{border-top:1px solid var(--line);margin-top:5rem;padding:2.6rem 0 4rem}
-  .fiche dl{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem 2.4rem;max-width:900px}
-  .fiche dt{font-size:.68rem;letter-spacing:.3em;text-transform:lowercase;color:#8b877c}
-  .fiche dd{margin-top:.35rem;font-size:.92rem}
-
-  footer{background:var(--paper);color:#8b877c;border-top:1px solid var(--line);
-    padding:2rem 2.2rem;font-size:.72rem;letter-spacing:.14em;text-transform:lowercase;
-    display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-  footer a{color:inherit}
-
-  /* révélation au scroll */
-  .apparait{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
-  .apparait.visible{opacity:1;transform:none}
-
-  @media(max-width:860px){
-    header{padding:1rem 1.3rem;flex-direction:column;align-items:flex-start;gap:.55rem}
-    header .nom{white-space:nowrap}
-    .titre-plein{padding:0 1.3rem}
-    .cadre{padding:0 1.3rem}
-    .duo{grid-template-columns:1fr;gap:2rem}
-    .fiche dl{grid-template-columns:1fr 1fr}
-  }
-  @media(prefers-reduced-motion:reduce){
-    *{animation:none!important;transition:none!important}
-    .apparait{opacity:1;transform:none}
-  }
-</style>
+<meta property="og:type" content="article">
+<meta property="og:title" content="habiter, produire, partager — côme le bozec.">
+<meta property="og:description" content="habitat collectif autosuffisant — atelier II, LOCI UCLouvain, 2025-2026.">
+<meta property="og:url" content="https://comelebozec.com/projets/habiter-produire-partager.html">
+<meta property="og:image" content="https://comelebozec.com/projets/images/hpp-coupe-50_1400.webp">
+<meta property="og:locale" content="fr_BE">
+<script>
+(function(){
+  var d = document.documentElement; d.classList.add('js');
+  function tactile(e){ if (e.pointerType === 'touch' || e.pointerType === 'pen') { d.classList.add('tactile'); removeEventListener('pointerdown', tactile, true); } }
+  addEventListener('pointerdown', tactile, { capture:true, passive:true });
+})();
+</script>
+<link rel="preload" as="image" href="images/hpp-coupe-50_1400.webp" imagesrcset="images/hpp-coupe-50_773.webp 773w, images/hpp-coupe-50_1159.webp 1159w, images/hpp-coupe-50_1400.webp 1400w, images/hpp-coupe-50_2400.webp 2400w" imagesizes="(max-width:859px) 100vw, min(92vw, 1456px)">
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/projet.css">
 </head>
-<body>
+<body class="grain" data-projet="hpp">
 
-<header>
+<a class="saut ui" href="#table">aller aux documents</a>
+
+<header class="tete ui" id="tete">
   <a class="nom" href="../index.html">côme le bozec.</a>
-  <a class="retour" href="../index.html#habiter">&larr; index</a>
+  <nav class="axes" aria-label="Axes">
+    <a href="../index.html#territoires"><span class="numero">01 · </span>territoires</a>
+    <a href="../index.html#habiter" class="actif" aria-current="location"><span class="numero">02 · </span>habiter</a>
+    <a href="../index.html#flux"><span class="numero">03 · </span>flux</a>
+    <a href="../index.html#apropos">à propos</a>
+  </nav>
 </header>
 
-<!-- ---- Titre plein écran ---- -->
-<section class="titre-plein">
-  <div class="eyebrow">02 · habiter &amp; construire — atelier II · LOCI UCLouvain · 2025-2026</div>
-  <h1>habiter, produire, partager</h1>
-  <div class="sous">habitat collectif autosuffisant</div>
-  <div class="souris" aria-hidden="true"></div>
-</section>
+<main>
+  <!-- 1. titre plein écran -->
+  <section class="hero">
+    <p class="eyebrow ui">02 · habiter &amp; construire — atelier II · LOCI UCLouvain · 2025-2026</p>
+    <h1 class="titre-projet">habiter, produire, partager</h1>
+    <p class="sous ui">habitat collectif autosuffisant</p>
+  </section>
 
-<!-- ---- Découverte au scroll ---- -->
-<div class="contenu">
-  <div class="cadre">
+  <!-- 2. la table : trois largeurs par nature de document, paires par rapport -->
+  <section class="table" id="table">
+    <div class="cadre">
 
-    <figure class="pleine apparait">
-      <img src="images/hpp-coupe-50.jpg?v=2" alt="coupe transversale — la serre de culture occupe la toiture, les logements s'organisent dessous">
-      <figcaption>la serre coiffe les logements — cultures suspendues sous le faîte, potagers sur les terrasses</figcaption>
-    </figure>
-
-    <div class="texte">
-      <p class="apparait">une parcelle traversante en cœur d'îlot bruxellois <span class="a-completer">[lieu à confirmer]</span>. deux maisons collectives s'installent de part et d'autre d'un jardin nourricier commun : potagers en pleine terre, serres de culture, et une serre coiffant chaque toiture — la production prend l'étage le plus ensoleillé, les logements s'organisent dessous.</p>
-      <p class="apparait">le projet réunit un collectif d'habitants constitué en association, qui gère la production alimentaire, les espaces partagés et les événements ouverts à la commune. chaque foyer y contribue selon ses disponibilités, en participant à l'entretien des cultures, à la maintenance des espaces communs et à l'organisation des temps forts de la saison. la gouvernance repose sur une assemblée régulière, où les décisions se prennent collectivement.</p>
-    </div>
-
-    <figure class="suite apparait">
-      <img src="images/hpp-elevation.jpg?v=2" alt="élévation sur rue — le projet inséré dans le front bâti" loading="lazy">
-      <figcaption>sur la rue, le projet reprend les hauteurs de ses voisins</figcaption>
-    </figure>
-
-    <figure class="suite apparait">
-      <img src="images/hpp-coupe-urbaine.jpg?v=2" alt="coupe urbaine à travers l'îlot" loading="lazy">
-      <figcaption>la traversée de l'îlot — le projet s'abaisse pour laisser entrer le jardin</figcaption>
-    </figure>
-
-    <figure class="suite apparait">
-      <img src="images/hpp-implantation.jpg?v=3" alt="plan d'implantation — les deux maisons et le jardin productif dans l'îlot" loading="lazy">
-      <figcaption>deux maisons tenues par le jardin productif, dans la profondeur de la parcelle</figcaption>
-    </figure>
-
-    <div class="duo">
-      <figure class="apparait">
-        <img src="images/hpp-plan-rdc-100.jpg?v=2" alt="plan du rez-de-chaussée" loading="lazy">
-        <figcaption>au rez, les espaces communs s'ouvrent de plain-pied sur le jardin</figcaption>
+      <figure data-img="hpp-coupe-50" class="pleine"><a class="ouvrir" href="images/hpp-coupe-50_2400.webp"><span class="cadre-img" style="--ar:2787/2070;background-image:url(data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAAAwAwCdASogABgAPu1sr1CppiQiqAqpMB2JaQAAPnnsaZgAAP7wvrnC7TZirNKnFu2Cl35rYjeCIq6fxFtnIoAA);view-transition-name:doc-hpp"><img src="images/hpp-coupe-50_1400.webp" srcset="images/hpp-coupe-50_773.webp 773w, images/hpp-coupe-50_1159.webp 1159w, images/hpp-coupe-50_1400.webp 1400w, images/hpp-coupe-50_2400.webp 2400w" sizes="(max-width:859px) 100vw, min(92vw, 1456px)" data-grand="images/hpp-coupe-50_2400.webp" width="2787" height="2070" alt="coupe transversale — la serre de culture occupe la toiture, les logements s'organisent dessous" loading="eager" fetchpriority="high" decoding="async"></span><span class="sr">, ouvrir la planche</span></a>
+        <figcaption class="ui">la serre coiffe les logements — cultures suspendues sous le faîte, potagers sur les terrasses</figcaption>
       </figure>
-      <figure class="apparait">
-        <img src="images/hpp-plan-r1-100.jpg?v=2" alt="plan du premier étage" loading="lazy">
-        <figcaption>à l'étage, les chambres et la terrasse commune</figcaption>
-      </figure>
-    </div>
 
-    <div class="duo">
-      <figure class="apparait">
-        <img src="images/hpp-plan-r2-100.jpg?v=2" alt="plan du deuxième étage" loading="lazy">
-        <figcaption>au deuxième, les logements sous la serre</figcaption>
-      </figure>
-      <figure class="apparait">
-        <img src="images/hpp-plan-r3-100.jpg?v=2" alt="plan du troisième étage — la serre de production" loading="lazy">
-        <figcaption>au dernier niveau, la serre de production et ses tables de culture</figcaption>
-      </figure>
-    </div>
+      <div class="texte corps">
+        <p>une parcelle traversante en cœur d'îlot bruxellois. deux maisons collectives s'installent de part et d'autre d'un jardin nourricier commun : potagers en pleine terre, serres de culture, et une serre coiffant chaque toiture — la production prend l'étage le plus ensoleillé, les logements s'organisent dessous.</p>
+        <p>le projet réunit un collectif d'habitants constitué en association, qui gère la production alimentaire, les espaces partagés et les événements ouverts à la commune. chaque foyer y contribue selon ses disponibilités, en participant à l'entretien des cultures, à la maintenance des espaces communs et à l'organisation des temps forts de la saison. la gouvernance repose sur une assemblée régulière, où les décisions se prennent collectivement.</p>
+      </div>
 
-    <figure class="suite apparait">
-      <img src="images/hpp-plan-r1.jpg?v=2" alt="plan détaillé du premier étage au 1:50" loading="lazy">
-      <figcaption>le premier étage en détail, de la rue au jardin</figcaption>
-    </figure>
+      <figure data-img="hpp-elevation" class="pleine"><a class="ouvrir" href="images/hpp-elevation_2400.webp"><span class="cadre-img" style="--ar:2906/650;background-image:url(data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAAAQAwCdASogAAcAPu1iqU2ppaQiMAgBMB2JaQAAetDxQAAA/vDQNdpxKCqESAAA)"><img src="images/hpp-elevation_1400.webp" srcset="images/hpp-elevation_800.webp 800w, images/hpp-elevation_1214.webp 1214w, images/hpp-elevation_1400.webp 1400w, images/hpp-elevation_1822.webp 1822w, images/hpp-elevation_2400.webp 2400w" sizes="(max-width:859px) 100vw, min(92vw, 1456px)" data-grand="images/hpp-elevation_2400.webp" width="2906" height="650" alt="élévation sur rue — le projet inséré dans le front bâti" loading="lazy" decoding="async"></span><span class="sr">, ouvrir la planche</span></a>
+        <figcaption class="ui">sur la rue, le projet reprend les hauteurs de ses voisins</figcaption>
+      </figure>
 
-    <div class="duo">
-      <figure class="apparait">
-        <img src="images/hpp-axonometrie.jpg?v=3" alt="axonométrie éclatée structurelle — structure ponctuelle en bois, rez en béton et parement de brique" loading="lazy">
-        <figcaption>trois régimes constructifs — béton et brique au rez, poteaux-poutres en bois, serre légère au faîte</figcaption>
+      <figure data-img="hpp-coupe-urbaine" class="pleine"><a class="ouvrir" href="images/hpp-coupe-urbaine_2400.webp"><span class="cadre-img" style="--ar:2906/871;background-image:url(data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAABQAwCdASogAAoAPu1iqk2ppaQiMAgBMB2JaQAAetHlMTpoAAD+8NCHOdMmUZmAAAA=)"><img src="images/hpp-coupe-urbaine_1400.webp" srcset="images/hpp-coupe-urbaine_773.webp 773w, images/hpp-coupe-urbaine_1159.webp 1159w, images/hpp-coupe-urbaine_1400.webp 1400w, images/hpp-coupe-urbaine_2400.webp 2400w" sizes="(max-width:859px) 100vw, min(92vw, 1456px)" data-grand="images/hpp-coupe-urbaine_2400.webp" width="2906" height="871" alt="coupe urbaine à travers l'îlot" loading="lazy" decoding="async"></span><span class="sr">, ouvrir la planche</span></a>
+        <figcaption class="ui">la traversée de l'îlot — le projet s'abaisse pour laisser entrer le jardin</figcaption>
       </figure>
-      <figure class="apparait">
-        <img src="images/hpp-croquis.jpg?v=2" alt="croquis de recherche — espaces partagés, marché ouvert au quartier, jardin collectif" loading="lazy">
-        <figcaption>premières intentions — les seuils du commun, le marché ouvert au quartier</figcaption>
-      </figure>
-    </div>
 
-    <figure class="suite apparait">
-      <img src="images/hpp-cycle.jpg?v=3" alt="diagramme du cycle de fonctionnement, de la gouvernance associative au marché mensuel" loading="lazy">
-      <figcaption>le fonctionnement en boucle — produire, transformer, partager, réinvestir</figcaption>
-    </figure>
+      <figure data-img="hpp-implantation" class="pleine"><a class="ouvrir" href="images/hpp-implantation_2400.webp"><span class="cadre-img" style="--ar:2908/2245;background-image:url(data:image/webp;base64,UklGRqQAAABXRUJQVlA4IJgAAACwBQCdASogABkAPu1oqk8ppiOiMBgIATAdiWkAAI90Cbhls2BtHH5gsVr90jyktyET6ObPMAAA/vBn0B4auup6wY4KgWE6AURDgy6FFckWFYjd6nJi7F+TU7LVSmdVDEeCF98PuMFQgxrXIZODscIOTl6GRPeVfv/iIlP4i18ZzKAtETtzDVXdH8qgmt6SJQqzPBEXYqAAAA==)"><img src="images/hpp-implantation_1400.webp" srcset="images/hpp-implantation_800.webp 800w, images/hpp-implantation_1400.webp 1400w, images/hpp-implantation_2400.webp 2400w" sizes="(max-width:859px) 100vw, min(92vw, 1456px)" data-grand="images/hpp-implantation_2400.webp" width="2908" height="2245" alt="plan d'implantation — les deux maisons et le jardin productif dans l'îlot" loading="lazy" decoding="async"></span><span class="sr">, ouvrir la planche</span></a>
+        <figcaption class="ui">deux maisons tenues par le jardin productif, dans la profondeur de la parcelle</figcaption>
+      </figure>
 
-    <figure class="suite apparait">
-      <img src="images/hpp-analyse-verts.jpg?v=2" alt="carte d'analyse — espaces verts et jardinage accessibles au quartier" loading="lazy">
-      <figcaption>ce que le quartier offre déjà — parcs, potagers collectifs et aires de jeux à 400 m du site</figcaption>
-    </figure>
+      <div class="paire">
+        <figure data-img="hpp-plan-rdc-100" class="demie"><a class="ouvrir" href="images/hpp-plan-rdc-100_1400.webp"><span class="cadre-img" style="--ar:1466/1251;background-image:url(data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAADQBACdASogABsAPu1kq06ppaQiKA1RMB2JaQAALnZXkV6S61oT6gnw8dgjY4MqAAD+83zXsLwCTuzskfKaA471fEDWSh/k/m5YdmRMyxT33tJplBFKrvua+wcIJwAAAAA=)"><img src="images/hpp-plan-rdc-100_1400.webp" srcset="images/hpp-plan-rdc-100_800.webp 800w, images/hpp-plan-rdc-100_1400.webp 1400w" sizes="(max-width:859px) 86vw, min(45vw, 716px)" data-grand="images/hpp-plan-rdc-100_1400.webp" width="1466" height="1251" alt="plan du rez-de-chaussée" loading="lazy" decoding="async"></span><span class="sr">, ouvrir la planche</span></a>
+          <figcaption class="ui">au rez, les espaces communs s'ouvrent de plain-pied sur le jardin</figcaption>
+        </figure>
+        <figure data-img="hpp-plan-r1-100" class="demie"><a class="ouvrir" href="images/hpp-plan-r1-100_1400.webp"><span class="cadre-img" style="--ar:1462/1252;background-image:url(data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAACQBACdASogABsAPu1qrFEppaQiqAqpMB2JaQAALnZcNa/12FVEs2rJZOb8+QAA/vN0f6wRaKSMUTNk98dXfLHGTl6mPo8qobiCbfrc5nh85A45hMzyTvAAAAA=)"><img src="images/hpp-plan-r1-100_1400.webp" srcset="images/hpp-plan-r1-100_800.webp 800w, images/hpp-plan-r1-100_1400.webp 1400w" sizes="(max-width:859px) 86vw, min(45vw, 716px)" data-grand="images/hpp-plan-r1-100_1400.webp" width="1462" height="1252" alt="plan du premier étage" loading="lazy" decoding="async"></span><span class="sr">, ouvrir la planche</span></a>
+          <figcaption class="ui">à l'étage, les chambres et la terrasse commune</figcaption>
+        </figure>
+      </div>
 
-    <div class="duo">
-      <figure class="apparait">
-        <img src="images/hpp-analyse-alimentation.jpg?v=2" alt="carte d'analyse — accès à une alimentation de qualité" loading="lazy">
-        <figcaption>où l'on se nourrit — circuits courts et commerces autour du site</figcaption>
-      </figure>
-      <figure class="apparait">
-        <img src="images/hpp-analyse-bati.jpg?v=2" alt="carte d'analyse — hauteur du bâti" loading="lazy">
-        <figcaption>les gabarits du tissu, du rez aux quinze mètres</figcaption>
-      </figure>
-    </div>
+      <div class="paire">
+        <figure data-img="hpp-plan-r2-100" class="demie"><a class="ouvrir" href="images/hpp-plan-r2-100_1400.webp"><span class="cadre-img" style="--ar:1464/1246;background-image:url(data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAABwBACdASogABsAPu1mq08ppaQiKA1RMB2JaQAAPw8YkYtiOCcKzYPZ7J/zsAD+8KrE6BhzvcOUUC8bGm50OshMf2Ku3mOqxac+5qTcgKPUppcx/gAAAA==)"><img src="images/hpp-plan-r2-100_1400.webp" srcset="images/hpp-plan-r2-100_800.webp 800w, images/hpp-plan-r2-100_1400.webp 1400w" sizes="(max-width:859px) 86vw, min(45vw, 716px)" data-grand="images/hpp-plan-r2-100_1400.webp" width="1464" height="1246" alt="plan du deuxième étage" loading="lazy" decoding="async"></span><span class="sr">, ouvrir la planche</span></a>
+          <figcaption class="ui">au deuxième, les logements sous la serre</figcaption>
+        </figure>
+        <figure data-img="hpp-plan-r3-100" class="demie"><a class="ouvrir" href="images/hpp-plan-r3-100_1400.webp"><span class="cadre-img" style="--ar:1464/1249;background-image:url(data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAABwAwCdASogABsAPu1urlIppiQiqAgBMB2JaQAAPPSCu1GEu4AA/vC8rOowdr/alQsM3x4W16SCAtSXZDg8YTwEdwdJ7NcdAAA=)"><img src="images/hpp-plan-r3-100_1400.webp" srcset="images/hpp-plan-r3-100_800.webp 800w, images/hpp-plan-r3-100_1400.webp 1400w" sizes="(max-width:859px) 86vw, min(45vw, 716px)" data-grand="images/hpp-plan-r3-100_1400.webp" width="1464" height="1249" alt="plan du troisième étage — la serre de production" loading="lazy" decoding="async"></span><span class="sr">, ouvrir la planche</span></a>
+          <figcaption class="ui">au dernier niveau, la serre de production et ses tables de culture</figcaption>
+        </figure>
+      </div>
 
-    <div class="duo">
-      <figure class="apparait">
-        <img src="images/hpp-narration.jpg?v=2" alt="narration graphique — collage du territoire cultivé" loading="lazy">
-        <figcaption>la commune cultivée — le territoire raconté par ses jardins</figcaption>
+      <figure data-img="hpp-plan-r1" class="pleine"><a class="ouvrir" href="images/hpp-plan-r1_2400.webp"><span class="cadre-img" style="--ar:2787/1646;background-image:url(data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAADwAgCdASogABMAPu1srVCppiQiqAqpMB2JaQAAOsg2AAD+8ICbNGjHO56jFLrpQ/Yy7bup1BAAAA==)"><img src="images/hpp-plan-r1_1400.webp" srcset="images/hpp-plan-r1_800.webp 800w, images/hpp-plan-r1_1400.webp 1400w, images/hpp-plan-r1_2400.webp 2400w" sizes="(max-width:859px) 100vw, min(92vw, 1456px)" data-grand="images/hpp-plan-r1_2400.webp" width="2787" height="1646" alt="plan détaillé du premier étage au 1:50" loading="lazy" decoding="async"></span><span class="sr">, ouvrir la planche</span></a>
+        <figcaption class="ui">le premier étage en détail, de la rue au jardin</figcaption>
       </figure>
-      <figure class="apparait">
-        <img src="images/hpp-herbier.jpg?v=2" alt="herbier des espèces spontanées de la commune" loading="lazy">
-        <figcaption>six espèces spontanées relevées sur place, de l'origan sauvage à la digitale pourpre</figcaption>
-      </figure>
-    </div>
 
-    <div class="duo">
-      <figure class="apparait">
-        <img src="images/hpp-ref-molenbeek.jpg" alt="référence — rénovation avec extension de toiture par Hé Architecture, Molenbeek 2024" loading="lazy">
-        <figcaption>hé architecture, molenbeek 2024 — la maison étendue par son toit</figcaption>
+      <figure data-img="hpp-axonometrie" class="tiers a-gauche"><a class="ouvrir" href="images/hpp-axonometrie_906.webp"><span class="cadre-img" style="--ar:906/1152;background-image:url(data:image/webp;base64,UklGRogAAABXRUJQVlA4IHwAAACQBQCdASogACkAPu1oqlGppaOiqrgKATAdiWkAAB9IeeaLCFDj8q5SfG2cz18J60+Io/owAAD+83T/9i16crNaOkvF9lGYtwo4PbVB8Rw5TTPUQ0XEhytxZPqr9rnATJ+oGHeTs11sBKGRNDmPR3UU8DU/vgaVBuGsAAAA)"><img src="images/hpp-axonometrie_906.webp" srcset="images/hpp-axonometrie_442.webp 442w, images/hpp-axonometrie_662.webp 662w, images/hpp-axonometrie_800.webp 800w, images/hpp-axonometrie_906.webp 906w" sizes="(max-width:859px) 67vw, min(30vw, 470px)" data-grand="images/hpp-axonometrie_906.webp" width="906" height="1152" alt="axonométrie éclatée structurelle — structure ponctuelle en bois, rez en béton et parement de brique" loading="lazy" decoding="async"></span><span class="sr">, ouvrir la planche</span></a>
+        <figcaption class="ui">trois régimes constructifs — béton et brique au rez, poteaux-poutres en bois, serre légère au faîte</figcaption>
       </figure>
-      <figure class="apparait">
-        <img src="images/hpp-ref-melbourne.jpg" alt="référence — logements ParkLife par Austin Maynard Architects, Melbourne 2022" loading="lazy">
-        <figcaption>austin maynard architects, melbourne 2022 — la coursive comme lieu de vie</figcaption>
-      </figure>
-    </div>
 
-    <div class="fiche apparait">
-      <dl>
+      <figure data-img="hpp-croquis" class="tiers a-droite"><a class="ouvrir" href="images/hpp-croquis_800.webp"><span class="cadre-img" style="--ar:800/1357;background-image:url(data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAABwBgCdASogADYAPu1iqE2ppaOiMBgMATAdiWkAAC52TAzcqTT6YbHGn8jVka4dJlWsqNt+QoTHL8VLyAAA/vN+WNKVPWzXvumUNpYJ6qUUz83hNhMk/vmhJ0w0r8MpCTbfCRa2ECUycFyTsKNILrocJOKdE9hYng6K3UxUTK8OSspLns3WRCtfef9VnSx2H0ZvSby9DCHhgyLLkhfUAAAA)"><img src="images/hpp-croquis_800.webp" srcset="images/hpp-croquis_800.webp 800w" sizes="(max-width:859px) 67vw, min(30vw, 470px)" data-grand="images/hpp-croquis_800.webp" width="800" height="1357" alt="croquis de recherche — espaces partagés, marché ouvert au quartier, jardin collectif" loading="lazy" decoding="async"></span><span class="sr">, ouvrir la planche</span></a>
+        <figcaption class="ui">premières intentions — les seuils du commun, le marché ouvert au quartier</figcaption>
+      </figure>
+
+      <figure data-img="hpp-cycle" class="pleine"><a class="ouvrir" href="images/hpp-cycle_2400.webp"><span class="cadre-img" style="--ar:2476/1388;background-image:url(data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAAAQAwCdASogABIAPu1ur1KppiQiqAgBMB2JaWtPABu44AAA/vC+fTCPgKQsDw18oMmESgXojorL6D+Oem8vMN5TDayAAA==)"><img src="images/hpp-cycle_1400.webp" srcset="images/hpp-cycle_662.webp 662w, images/hpp-cycle_800.webp 800w, images/hpp-cycle_994.webp 994w, images/hpp-cycle_1400.webp 1400w, images/hpp-cycle_2400.webp 2400w" sizes="(max-width:859px) 100vw, min(92vw, 1456px)" data-grand="images/hpp-cycle_2400.webp" width="2476" height="1388" alt="diagramme du cycle de fonctionnement, de la gouvernance associative au marché mensuel" loading="lazy" decoding="async"></span><span class="sr">, ouvrir la planche</span></a>
+        <figcaption class="ui">le fonctionnement en boucle — produire, transformer, partager, réinvestir</figcaption>
+      </figure>
+
+      <figure data-img="hpp-analyse-verts" class="pleine"><a class="ouvrir" href="images/hpp-analyse-verts_1388.webp"><span class="cadre-img" style="--ar:1388/1261;background-image:url(data:image/webp;base64,UklGRpAAAABXRUJQVlA4IIQAAACQBACdASogAB0APu1mqk2ppaQiMAgBMB2JaQAD5XIN7XAlmami4UBAymgNhAAA/vN7uh7oVie5YSzs4Sg5tshWpqtkmntpKLSbHzBpy7mkdSRXv5qTXaqiYE1MQw8Onb5O2c3cpsVnynJBufQcVd/oTkUDADxNUCU7A4aFyo24rmoEAAA=)"><img src="images/hpp-analyse-verts_1388.webp" srcset="images/hpp-analyse-verts_552.webp 552w, images/hpp-analyse-verts_800.webp 800w, images/hpp-analyse-verts_1388.webp 1388w" sizes="(max-width:859px) 100vw, min(92vw, 1456px)" data-grand="images/hpp-analyse-verts_1388.webp" width="1388" height="1261" alt="carte d'analyse — espaces verts et jardinage accessibles au quartier" loading="lazy" decoding="async"></span><span class="sr">, ouvrir la planche</span></a>
+        <figcaption class="ui">ce que le quartier offre déjà — parcs, potagers collectifs et aires de jeux à 400 m du site</figcaption>
+      </figure>
+
+      <div class="paire">
+        <figure data-img="hpp-analyse-alimentation" class="demie"><a class="ouvrir" href="images/hpp-analyse-alimentation_950.webp"><span class="cadre-img" style="--ar:950/976;background-image:url(data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAACwAwCdASogACEAPuFipU2opiOiNVv4ARAcCWkAAHGgi6VkaasoQAD+8OXhPv8rfEC/TuUDxi/VXkSShy4E5KeLjG6+ZoRpOxRekAqNxK/IwTRhFoWsW9j9Art0ZRgAAAA=)"><img src="images/hpp-analyse-alimentation_950.webp" srcset="images/hpp-analyse-alimentation_800.webp 800w, images/hpp-analyse-alimentation_950.webp 950w" sizes="(max-width:859px) 86vw, min(45vw, 716px)" data-grand="images/hpp-analyse-alimentation_950.webp" width="950" height="976" alt="carte d'analyse — accès à une alimentation de qualité" loading="lazy" decoding="async"></span><span class="sr">, ouvrir la planche</span></a>
+          <figcaption class="ui">où l'on se nourrit — circuits courts et commerces autour du site</figcaption>
+        </figure>
+        <figure data-img="hpp-analyse-bati" class="demie"><a class="ouvrir" href="images/hpp-analyse-bati_1056.webp"><span class="cadre-img" style="--ar:1056/1095;background-image:url(data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAADwBACdASogACEAPu1kqE2ppaOiNVQIATAdiWkA0YA5XwSUpoTO+T7TJ5dNPcyvkQAA/vYJ+TOVHq7bFH8FWM9sVppfx2Lr4Dh3BXPOZAu3MWNUjUteVQSvQRywe2xsAaF55aC+HDmvgSFNaCjBSbtsJ6OczXAAAAA=)"><img src="images/hpp-analyse-bati_1056.webp" srcset="images/hpp-analyse-bati_800.webp 800w, images/hpp-analyse-bati_1056.webp 1056w" sizes="(max-width:859px) 86vw, min(45vw, 716px)" data-grand="images/hpp-analyse-bati_1056.webp" width="1056" height="1095" alt="carte d'analyse — hauteur du bâti" loading="lazy" decoding="async"></span><span class="sr">, ouvrir la planche</span></a>
+          <figcaption class="ui">les gabarits du tissu, du rez aux quinze mètres</figcaption>
+        </figure>
+      </div>
+
+      <figure data-img="hpp-narration" class="tiers a-gauche"><a class="ouvrir" href="images/hpp-narration_760.webp"><span class="cadre-img" style="--ar:760/927;background-image:url(data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAACwBQCdASogACcAPuViqE2pJaQiNVgIASAciWkAAD6QQM2Kgl7+w5Mh/9gOh0OIYwQbP+ANgAAA/vNrA1gahiy9P4S/WUHIsT5H4U5JMeIR0aeBQ8I2dSESWejBq3nbNoktgkrxMIIRtrkD8BsMkk/QDdYDeeOfa0/se+Xl0KNpdfybKRNK9pvGClQmgP8KsIibdw4US4tru9Bz5KUAAAAA)"><img src="images/hpp-narration_760.webp" srcset="images/hpp-narration_760.webp 760w" sizes="(max-width:859px) 67vw, min(30vw, 470px)" data-grand="images/hpp-narration_760.webp" width="760" height="927" alt="narration graphique — collage du territoire cultivé" loading="lazy" decoding="async"></span><span class="sr">, ouvrir la planche</span></a>
+        <figcaption class="ui">la commune cultivée — le territoire raconté par ses jardins</figcaption>
+      </figure>
+
+      <figure data-img="hpp-herbier" class="tiers a-droite"><a class="ouvrir" href="images/hpp-herbier_712.webp"><span class="cadre-img" style="--ar:712/937;background-image:url(data:image/webp;base64,UklGRt4AAABXRUJQVlA4INIAAACQBgCdASogACoAPu1urVIppiQiqrgIATAdiWkACBXYnFQskR1peOSR64S3MzC2j1uB+5lQ9iZchI4zY8oAAP77pSiUOQw2fdEHzun5qMexxEZEizsw1F9Qr3HPQXUXOQ9Rix4IfJWPQ1hIC6iqszEMY9mYmwz5ptw8J785m2hQflTsTvdTxho8hiSUcTg3kfvJ/tW9H3JMZbdNns5npRaE5C0wwFknQUbp+dfccIqGYlF2V/TXTsBKyM6Vft30dx/hWP1owMH6W4VzJ7EkyiDogAA=)"><img src="images/hpp-herbier_712.webp" srcset="images/hpp-herbier_712.webp 712w" sizes="(max-width:859px) 67vw, min(30vw, 470px)" data-grand="images/hpp-herbier_712.webp" width="712" height="937" alt="herbier des espèces spontanées de la commune" loading="lazy" decoding="async"></span><span class="sr">, ouvrir la planche</span></a>
+        <figcaption class="ui">six espèces spontanées relevées sur place, de l'origan sauvage à la digitale pourpre</figcaption>
+      </figure>
+
+      <figure data-img="hpp-ref-molenbeek" class="tiers a-gauche" style="max-width:407px"><a class="ouvrir" href="images/hpp-ref-molenbeek_407.webp"><span class="cadre-img" style="--ar:407/560;background-image:url(data:image/webp;base64,UklGRt4AAABXRUJQVlA4INIAAABwBgCdASogACwAPu1wqVAppyOiqrgMATAdiWkAAUET0DGH5WTm2xC/zWB8uWUBpxJVFh8BFDqQINCcAAAA/vzXbfT/yb+Z6NIL+ZEnj/XRxA2On1mRlAI+jiG106+94gCrGqGhYFb2xxaiH0iNyFEpUn1LTRkCUypU6tuEpew/mlOyeWAxA9dKNHDSZZaq69/XBK2p6/TzyZdgLkpvGm8R83LCHieZ/bGG+nZhCKP+o/gRa2oqU3e2b+cOGNAl6h3iImr6YE5ABDbIgIdgemtAAAA=)"><img src="images/hpp-ref-molenbeek_407.webp" srcset="images/hpp-ref-molenbeek_407.webp 407w" sizes="(max-width:859px) 67vw, min(30vw, 470px)" data-grand="images/hpp-ref-molenbeek_407.webp" width="407" height="560" alt="référence — rénovation avec extension de toiture par Hé Architecture, Molenbeek 2024" loading="lazy" decoding="async"></span><span class="sr">, ouvrir la planche</span></a>
+        <figcaption class="ui">hé architecture, molenbeek 2024 — la maison étendue par son toit</figcaption>
+      </figure>
+
+      <figure data-img="hpp-ref-melbourne" class="tiers a-droite" style="max-width:457px"><a class="ouvrir" href="images/hpp-ref-melbourne_457.webp"><span class="cadre-img" style="--ar:457/560;background-image:url(data:image/webp;base64,UklGRtYAAABXRUJQVlA4IMoAAABQBgCdASogACcAPu1uslKppiSipWmZMB2JaQAIFRjLlC6ihYJxvNdSBQ854pdBsj3cSO/pKfs9yJ++AAD++y/npLpl158XtFdiRwS7Z3C1HEZWDg7VgNunXqfspgDMczofjQqTagucJ87vXUDmi4SQcN2KiU5EZ4f6OOjnbTS2XBZeyPGmRVZZk3GMnmTmcdB/nc0CbJrXfZ97Xw4BRcmclU7rBa90bRiwp8lgnSZWXTk6Oq7fso8C5ZnAhKMGEtqePIxxnkMAAAAA)"><img src="images/hpp-ref-melbourne_457.webp" srcset="images/hpp-ref-melbourne_457.webp 457w" sizes="(max-width:859px) 67vw, min(30vw, 470px)" data-grand="images/hpp-ref-melbourne_457.webp" width="457" height="560" alt="référence — logements ParkLife par Austin Maynard Architects, Melbourne 2022" loading="lazy" decoding="async"></span><span class="sr">, ouvrir la planche</span></a>
+        <figcaption class="ui">austin maynard architects, melbourne 2022 — la coursive comme lieu de vie</figcaption>
+      </figure>
+
+      <!-- 3. fiche technique : les champs inconnus (surface) sont omis -->
+      <dl class="fiche ui">
         <div><dt>programme</dt><dd>habitat collectif autosuffisant</dd></div>
-        <div><dt>lieu</dt><dd>bruxelles <span class="a-completer">[à confirmer]</span></dd></div>
+        <div><dt>lieu</dt><dd>bruxelles</dd></div>
         <div><dt>statut</dt><dd>projet d'atelier II — LOCI UCLouvain</dd></div>
         <div><dt>année</dt><dd>2025-2026</dd></div>
         <div><dt>équipe</dt><dd>avec hamza el arja</dd></div>
         <div><dt>structure</dt><dd>bois, rez en béton et parement de brique</dd></div>
-        <div><dt>surface</dt><dd class="a-completer">[à confirmer]</dd></div>
       </dl>
+
+      <nav class="suite ui" id="suite" aria-label="Projets voisins">
+        <a href="../index.html">← index</a>
+      </nav>
     </div>
+  </section>
+</main>
 
-  </div>
-</div>
-
-<footer>
-  <a href="../index.html#habiter">&larr; retour à l'index</a>
-  <span>&copy; 2026 côme le bozec.</span>
+<footer class="pied ui">
+  <span>© 2026 côme le bozec.</span>
+  <a href="../index.html">retour à l'index</a>
 </footer>
 
-<script>
-/* Révélation au scroll — même mécanique que l'index */
-const obs = new IntersectionObserver(entries => {
-  entries.forEach((e,i) => {
-    if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('visible'), i*100); obs.unobserve(e.target); }
-  });
-}, { threshold:.12 });
-document.querySelectorAll('.apparait').forEach(el => obs.observe(el));
-</script>
+<nav class="barre-basse ui" id="barre-basse" aria-label="Navigation"><a href="../index.html">← index</a></nav>
+
+<!-- 4. mode planche : le document seul, entier, sur un voile -->
+<dialog id="planche" class="planche" aria-label="planche — habiter, produire, partager">
+  <div class="piste"></div>
+  <div class="pied-planche">
+    <p class="compteur ui" aria-hidden="true"></p>
+    <p class="legende ui"></p>
+    <button class="fermer ui" type="button">fermer</button>
+  </div>
+  <p class="sr annonce" aria-live="polite"></p>
+</dialog>
+
+<script src="projets.js"></script>
+<script type="module" src="../assets/js/planche.js"></script>
 </body>
 </html>

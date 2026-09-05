@@ -1,722 +1,218 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="nuit">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>côme le bozec. — portfolio</title>
 <meta name="description" content="côme le bozec — portfolio d'architecture : territoires et données, habiter et construire, flux et usages. étudiant à l'UCLouvain LOCI, Bruxelles.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<!-- Open Graph — URLs absolues à mettre à jour si le domaine change -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="côme le bozec. — portfolio">
 <meta property="og:description" content="architecture · territoires · données — portfolio de côme le bozec.">
 <meta property="og:url" content="https://comelebozec.com/">
 <meta property="og:image" content="https://comelebozec.com/partage.png">
 <meta property="og:locale" content="fr_BE">
-<style>
-  :root{
-    --bg:#050505; --ink:#ECE9E2; --muted:#8f8d86;
-    --paper:#F5F3EE; --paper-ink:#141414; --line:#DDD9CF;
-    --serif:'Helvetica Neue',Helvetica,Arial,sans-serif;
-    --sans:'Helvetica Neue',Helvetica,Arial,sans-serif;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--ink);font-family:var(--sans);overflow:hidden}
-  body.entered{overflow:auto}
-
-  /* ---- Galaxie : plein écran, derrière le seuil ---- */
-  #galaxie{position:fixed;inset:0;z-index:0;width:100%;height:100%;
-    display:block;transition:opacity 1.6s ease}
-  body.entered #galaxie{opacity:0;visibility:hidden;
-    transition:opacity 1.2s ease, visibility 0s 1.2s}
-
-  /* ---- Seuil ---- */
-  #seuil{position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;
-    align-items:center;justify-content:center;gap:1.1rem;cursor:pointer;
-    transition:opacity 1.4s ease;text-align:center;padding:0 1.5rem}
-  body.entered #seuil{opacity:0;pointer-events:none}
-  #seuil h1{font-weight:300;font-size:clamp(2rem,5vw,3.4rem);letter-spacing:.04em}
-  #seuil .sous{font-size:.72rem;letter-spacing:.42em;text-transform:lowercase;color:var(--muted)}
-  #seuil .entrer{margin-top:2.2rem;font-size:.8rem;letter-spacing:.28em;
-    text-transform:lowercase;color:var(--muted);animation:pulse 2.6s ease-in-out infinite}
-  @keyframes pulse{0%,100%{opacity:.35}50%{opacity:.95}}
-
-  /* ---- Portfolio ---- */
-  #portfolio{position:relative;z-index:1;visibility:hidden;opacity:0;transition:opacity 1.2s ease .5s}
-  body.entered #portfolio{visibility:visible;opacity:1}
-
-  header{position:fixed;top:0;left:0;right:0;z-index:5;display:flex;
-    justify-content:space-between;align-items:center;padding:1.4rem 2.2rem;
-    mix-blend-mode:difference}
-  header .nom{font-size:.82rem;letter-spacing:.08em;text-transform:lowercase}
-  nav{display:flex;gap:1.6rem;flex-wrap:wrap}
-  nav a{color:inherit;text-decoration:none;font-size:.72rem;letter-spacing:.14em;
-    text-transform:lowercase;opacity:.75;transition:opacity .3s}
-  nav a:hover,nav a:focus-visible{opacity:1}
-  a:focus-visible{outline:1px solid var(--ink);outline-offset:4px}
-
-  /* ---- Bandes animées des sous-parties ---- */
-  .bande{position:relative;height:72vh;min-height:420px;overflow:hidden;background:var(--bg)}
-  .bande canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-  .bande-txt{position:absolute;left:0;right:0;bottom:0;padding:2.4rem 2.2rem;
-    background:linear-gradient(transparent, rgba(5,5,5,.72));pointer-events:none}
-  .bande-txt .cadre{max-width:1180px;margin:0 auto}
-  .bande-txt h2{font-weight:300;font-size:clamp(1.5rem,3vw,2.3rem);letter-spacing:.02em}
-  .bande-txt .ligne{font-family:var(--serif);font-style:italic;color:var(--muted);
-    margin-top:.5rem;font-size:.95rem;max-width:56ch}
-
-  .eyebrow{font-size:.68rem;letter-spacing:.3em;text-transform:lowercase;color:var(--muted);margin-bottom:.8rem}
-  section.claire .eyebrow{color:#8b877c}
-
-  /* ---- Sections claires (cartes de projets) ---- */
-  section.claire{background:var(--paper);color:var(--paper-ink);padding:5.5rem 2.2rem}
-  .cadre{max-width:1180px;margin:0 auto}
-  .grille{display:grid;grid-template-columns:repeat(3,1fr);gap:3.6rem;
-    max-width:1020px;margin:0 auto}
-  .carte{text-decoration:none;color:inherit;display:block;
-    opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
-  .carte.visible{opacity:1;transform:none}
-  .vignette{aspect-ratio:1/1;overflow:hidden;background:#0a0a0a}
-  .vignette svg{width:100%;height:100%;display:block;transition:transform .8s ease}
-  .carte:hover .vignette svg{transform:scale(1.04)}
-  /* photos réelles : mono au repos, couleur au survol */
-  .vignette img{width:100%;height:100%;object-fit:cover;display:block;
-    filter:grayscale(1);transition:filter .5s ease,transform .8s ease}
-  .carte:hover .vignette img,.carte:focus-visible .vignette img{
-    filter:grayscale(0);transform:scale(1.04)}
-  .carte .coord{font-size:.64rem;letter-spacing:.24em;color:#8b877c;margin:1rem 0 .3rem}
-  .carte h3{font-weight:400;font-size:1.05rem}
-  .carte .meta{font-size:.8rem;color:#6d6a62;margin-top:.3rem;font-family:var(--serif);font-style:italic}
-
-  .apropos{display:grid;grid-template-columns:1fr 1.4fr;gap:3rem;align-items:start}
-  .apropos p{line-height:1.75;max-width:58ch}
-  .apropos p + p{margin-top:1.2rem}
-  .contact{margin-top:2rem;font-size:.8rem;letter-spacing:.14em;text-transform:lowercase}
-  .contact a{color:inherit}
-
-  footer{background:var(--paper);color:#8b877c;border-top:1px solid var(--line);
-    padding:2rem 2.2rem;font-size:.72rem;letter-spacing:.14em;text-transform:lowercase;
-    display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-
-  @media(max-width:860px){
-    .grille{grid-template-columns:repeat(2,1fr);gap:1.8rem 1.1rem;max-width:none}
-    .carte .coord{font-size:.55rem;letter-spacing:.16em;margin:.7rem 0 .25rem}
-    .carte h3{font-size:.92rem}
-    .carte .meta{font-size:.72rem;margin-top:.2rem}
-    .apropos{grid-template-columns:1fr}
-    header{padding:1rem 1.3rem;flex-direction:column;align-items:flex-start;gap:.55rem}
-    header .nom{white-space:nowrap}
-    nav{gap:1.1rem}
-    section.claire{padding:4rem 1.3rem}
-    .bande-txt{padding:1.8rem 1.3rem}
-  }
-  @media(prefers-reduced-motion:reduce){
-    *{animation:none!important;transition:none!important}
-  }
-</style>
+<script>
+/* Avant le premier paint : js / entrée mémorisée pour la session / retour interne / ?seuil rejoue l'entrée.
+   Le gestionnaire d'entrée est posé ici : le seuil est actif avant l'arrivée de three.js. */
+(function(){
+  var d = document.documentElement; d.classList.add('js');
+  try {
+    if (location.search.indexOf('seuil') > -1) { sessionStorage.removeItem('entre'); }
+    else if (sessionStorage.getItem('entre') === '1' || (document.referrer && document.referrer.indexOf(location.origin) === 0)) {
+      d.classList.add('entered', 'direct', 'libre');
+    }
+  } catch (e) {}
+  /* le doigt bascule l'index au positif pour la session (hybrides : iPad + trackpad, Surface) ; le stylet survole, il ne bascule pas */
+  try { if (sessionStorage.getItem('tactile') === '1') d.classList.add('tactile'); } catch (e) {}
+  function tactile(e){ if (e.pointerType === 'touch') { d.classList.add('tactile'); try { sessionStorage.setItem('tactile', '1'); } catch (err) {} removeEventListener('pointerdown', tactile, true); } }
+  addEventListener('pointerdown', tactile, { capture:true, passive:true });
+  window.entrer = function(){
+    if (d.classList.contains('entered')) return;
+    d.classList.add('entered');
+    try { sessionStorage.setItem('entre', '1'); } catch (e) {}
+    dispatchEvent(new CustomEvent('entree'));
+    /* filet de sécurité si le module champ.js n'arrive pas : la page se libère quand même */
+    setTimeout(function(){ d.classList.add('libre'); var s = document.getElementById('seuil'); if (s) { s.hidden = true; s.inert = true; } }, 1500);
+  };
+})();
+</script>
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/index.css">
 </head>
-<body>
+<body class="grain">
+
+<a class="saut ui" href="#champ">aller aux projets</a>
 
 <canvas id="galaxie" aria-hidden="true"></canvas>
+<canvas id="ciel" aria-hidden="true" hidden></canvas>
 
-<div id="seuil" role="button" tabindex="0" aria-label="Entrer dans le portfolio">
-  <h1>côme le bozec.</h1>
+<div id="seuil">
+  <p class="nom-seuil">côme le bozec.</p>
   <div class="sous">architecture · territoires · données</div>
-  <div class="entrer">cliquer pour entrer</div>
+  <div class="entrer" role="button" tabindex="0" aria-label="Entrer dans le portfolio">cliquer pour entrer</div>
 </div>
+<script>
+(function(){
+  var s = document.getElementById('seuil'), b = s.querySelector('.entrer');
+  if (matchMedia('(hover:none)').matches) b.textContent = 'toucher pour entrer';
+  s.addEventListener('click', window.entrer);
+  b.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); window.entrer(); } });
+})();
+</script>
 
 <div id="portfolio">
-  <header>
-    <div class="nom">côme le bozec.</div>
-    <nav>
-      <a href="#territoires">Territoires</a>
-      <a href="#habiter">Habiter</a>
-      <a href="#flux">Flux</a>
-      <a href="#apropos">À propos</a>
+  <header class="tete ui" id="tete" tabindex="-1">
+    <a class="nom" href="./">côme le bozec.</a>
+    <nav class="axes" aria-label="Axes">
+      <a href="#territoires"><span class="numero">01 · </span>territoires</a>
+      <a href="#habiter" class="actif" aria-current="true"><span class="numero">02 · </span>habiter</a>
+      <a href="#flux"><span class="numero">03 · </span>flux</a>
+      <a href="#apropos">à propos</a>
     </nav>
   </header>
+  <p id="annonce" class="sr" aria-live="polite"></p>
 
-  <!-- ============ 01 · TERRITOIRES & DONNÉES ============ -->
-  <section class="bande" id="territoires">
-    <canvas data-anim="topo"></canvas>
-    <div class="bande-txt"><div class="cadre">
-      <div class="eyebrow">01 · Territoires &amp; données</div>
-      <h2>lire le sol avant de dessiner</h2>
-      <p class="ligne">analyses cartographiques, diagnostics territoriaux, données ouvertes mises au service du projet.</p>
-    </div></div>
-  </section>
-  <section class="claire">
-    <div class="cadre"><div class="grille">
-      <a class="carte" href="#">
-        <div class="vignette"><svg viewBox="0 0 480 480" preserveAspectRatio="xMidYMid slice">
-          <filter id="v1"><feTurbulence type="fractalNoise" baseFrequency=".012 .05" numOctaves="4" seed="7"/>
-          <feColorMatrix type="matrix" values="0 0 0 0 .75 0 0 0 0 .74 0 0 0 0 .7 0 0 0 .9 0"/></filter>
-          <rect width="480" height="480" fill="#0a0a0a"/><rect width="480" height="480" filter="url(#v1)" opacity=".8"/>
-        </svg></div>
-        <div class="coord">46.6°N — 2.4°E · france</div>
-        <h3>cartana</h3>
-        <div class="meta">diagnostic territorial par IA — projet indépendant</div>
-      </a>
-      <a class="carte" href="#">
-        <div class="vignette"><svg viewBox="0 0 480 480" preserveAspectRatio="xMidYMid slice">
-          <filter id="v2"><feTurbulence type="fractalNoise" baseFrequency=".05 .012" numOctaves="4" seed="13"/>
-          <feColorMatrix type="matrix" values="0 0 0 0 .72 0 0 0 0 .71 0 0 0 0 .68 0 0 0 .85 0"/></filter>
-          <rect width="480" height="480" fill="#0b0b0b"/><rect width="480" height="480" filter="url(#v2)" opacity=".8"/>
-        </svg></div>
-        <div class="coord">48.11°N — 1.68°O · rennes</div>
-        <h3>atlas des lisières</h3>
-        <div class="meta">cartographie sensible d'une frange urbaine — remplace par ton projet</div>
-      </a>
-      <a class="carte" href="#">
-        <div class="vignette"><svg viewBox="0 0 480 480" preserveAspectRatio="xMidYMid slice">
-          <filter id="v7"><feTurbulence type="fractalNoise" baseFrequency=".025 .025" numOctaves="5" seed="53"/>
-          <feColorMatrix type="matrix" values="0 0 0 0 .73 0 0 0 0 .72 0 0 0 0 .69 0 0 0 .82 0"/></filter>
-          <rect width="480" height="480" fill="#0a0a0a"/><rect width="480" height="480" filter="url(#v7)" opacity=".8"/>
-        </svg></div>
-        <div class="coord">48.11°N — 1.68°O · rennes</div>
-        <h3>palimpseste cadastral</h3>
-        <div class="meta">lecture diachronique d'un parcellaire — remplace par ton projet</div>
-      </a>
-    </div></div>
-  </section>
+  <main id="principal">
+    <h1 class="sr">côme le bozec. — portfolio d'architecture</h1>
 
-  <!-- ============ 02 · HABITER & CONSTRUIRE ============ -->
-  <section class="bande" id="habiter">
-    <canvas data-anim="ville"></canvas>
-    <div class="bande-txt"><div class="cadre">
-      <div class="eyebrow">02 · Habiter &amp; construire</div>
-      <h2>la donnée devient forme</h2>
-      <p class="ligne">projets d'architecture : habitat collectif, structures, matière — du diagnostic au détail.</p>
+    <div class="ligne-tete ui"><div>
+      <a href="projets/habiter-produire-partager.html">02.1 · habiter, produire, partager — bruxelles · 2025-2026</a>
+      <span class="sourd">d'autres projets en préparation</span>
     </div></div>
-  </section>
-  <section class="claire">
-    <div class="cadre"><div class="grille">
-      <a class="carte" href="projets/habiter-produire-partager.html">
-        <div class="vignette"><img src="projets/images/hpp-vignette.jpg?v=2"
-          alt="plan d'implantation — deux maisons et un jardin productif en cœur d'îlot" loading="lazy"></div>
-        <div class="coord">50.83°N — 4.34°E · bruxelles</div>
-        <h3>habiter, produire, partager</h3>
-        <div class="meta">habitat collectif autosuffisant — atelier II, 2025-2026</div>
-      </a>
-      <a class="carte" href="#">
-        <div class="vignette"><svg viewBox="0 0 480 480" preserveAspectRatio="xMidYMid slice">
-          <filter id="v4"><feTurbulence type="turbulence" baseFrequency=".004 .12" numOctaves="3" seed="4"/>
-          <feColorMatrix type="matrix" values="0 0 0 0 .7 0 0 0 0 .69 0 0 0 0 .66 0 0 0 .7 0"/></filter>
-          <rect width="480" height="480" fill="#0a0a0a"/><rect width="480" height="480" filter="url(#v4)" opacity=".85"/>
-        </svg></div>
-        <div class="coord">50.85°N — 4.35°E · saint-gilles</div>
-        <h3>charpente réciproque</h3>
-        <div class="meta">analyse structurelle Karamba3D — Grasshopper, 2026</div>
-      </a>
-      <a class="carte" href="#">
-        <div class="vignette"><svg viewBox="0 0 480 480" preserveAspectRatio="xMidYMid slice">
-          <filter id="v8"><feTurbulence type="turbulence" baseFrequency=".11 .008" numOctaves="3" seed="64"/>
-          <feColorMatrix type="matrix" values="0 0 0 0 .76 0 0 0 0 .75 0 0 0 0 .72 0 0 0 .6 0"/></filter>
-          <rect width="480" height="480" fill="#0c0c0c"/><rect width="480" height="480" filter="url(#v8)" opacity=".85"/>
-        </svg></div>
-        <div class="coord">50.83°N — 4.34°E · bruxelles</div>
-        <h3>axonométries éclatées</h3>
-        <div class="meta">représentation du projet collectif — studio 2026</div>
-      </a>
-    </div></div>
-  </section>
 
-  <!-- ============ 03 · FLUX & USAGES ============ -->
-  <section class="bande" id="flux">
-    <canvas data-anim="flux"></canvas>
-    <div class="bande-txt"><div class="cadre">
-      <div class="eyebrow">03 · Flux &amp; usages</div>
-      <h2>ce qui traverse les lieux</h2>
-      <p class="ligne">mobilités, scénarios d'évolution, temporalités — le projet comme trajectoire plutôt que comme objet.</p>
-    </div></div>
-  </section>
-  <section class="claire">
-    <div class="cadre"><div class="grille">
-      <a class="carte" href="#">
-        <div class="vignette"><svg viewBox="0 0 480 480" preserveAspectRatio="xMidYMid slice">
-          <filter id="v5"><feTurbulence type="fractalNoise" baseFrequency=".003 .08" numOctaves="3" seed="31"/>
-          <feColorMatrix type="matrix" values="0 0 0 0 .74 0 0 0 0 .73 0 0 0 0 .7 0 0 0 .8 0"/></filter>
-          <rect width="480" height="480" fill="#0a0a0a"/><rect width="480" height="480" filter="url(#v5)" opacity=".85"/>
-        </svg></div>
-        <div class="coord">50.85°N — 4.35°E · bruxelles</div>
-        <h3>scénarios 2036</h3>
-        <div class="meta">évolution décennale sans construction neuve — studio 2026</div>
-      </a>
-      <a class="carte" href="#">
-        <div class="vignette"><svg viewBox="0 0 480 480" preserveAspectRatio="xMidYMid slice">
-          <filter id="v6"><feTurbulence type="fractalNoise" baseFrequency=".08 .003" numOctaves="3" seed="42"/>
-          <feColorMatrix type="matrix" values="0 0 0 0 .7 0 0 0 0 .7 0 0 0 0 .67 0 0 0 .75 0"/></filter>
-          <rect width="480" height="480" fill="#0b0b0b"/><rect width="480" height="480" filter="url(#v6)" opacity=".85"/>
-        </svg></div>
-        <div class="coord">50.85°N — 4.35°E · bruxelles</div>
-        <h3>cartographies de mobilité</h3>
-        <div class="meta">flux quotidiens d'un quartier — remplace par ton projet</div>
-      </a>
-      <a class="carte" href="#">
-        <div class="vignette"><svg viewBox="0 0 480 480" preserveAspectRatio="xMidYMid slice">
-          <filter id="v9"><feTurbulence type="fractalNoise" baseFrequency=".006 .06" numOctaves="4" seed="77"/>
-          <feColorMatrix type="matrix" values="0 0 0 0 .71 0 0 0 0 .7 0 0 0 0 .67 0 0 0 .78 0"/></filter>
-          <rect width="480" height="480" fill="#0a0a0a"/><rect width="480" height="480" filter="url(#v9)" opacity=".85"/>
-        </svg></div>
-        <div class="coord">50.85°N — 4.35°E · bruxelles</div>
-        <h3>dérives piétonnes</h3>
-        <div class="meta">relevés de parcours quotidiens — remplace par ton projet</div>
-      </a>
-    </div></div>
-  </section>
+    <div class="champ-cadre">
+    <section class="champ" id="champ" style="--total:17.998" aria-label="documents du projet habiter, produire, partager">
 
-  <!-- ============ À PROPOS ============ -->
-  <section class="claire" id="apropos" style="border-top:1px solid var(--line)">
-    <div class="cadre apropos">
-      <div>
-        <div class="eyebrow">À propos</div>
-        <h2 style="font-weight:300;font-size:clamp(1.6rem,3vw,2.2rem)">côme le bozec.</h2>
-      </div>
-      <div>
-        <p>Étudiant en architecture (UCLouvain LOCI, Bruxelles), je travaille à l'intersection du projet, du territoire et de la donnée spatiale. Mon travail explore la manière dont l'analyse cartographique peut informer la conception, de l'échelle du détail constructif à celle du paysage.</p>
-        <p>Remplace ce paragraphe par ta vraie bio — deux ou trois phrases suffisent, les projets parlent pour toi.</p>
-        <div class="contact"><a href="mailto:contact@exemple.com">contact@exemple.com</a></div>
-      </div>
+      <a class="doc" id="d-hpp-coupe-50" href="projets/habiter-produire-partager.html" data-projet="hpp" data-doc="hpp-coupe-50" data-z="0" data-cart="droite" data-format="carre" data-cle
+         style="--col:0;--span:7;--y:0;--z:0;--ar:1.3464">
+        <span class="emprise">
+          <picture><source media="(hover: hover) and (forced-colors: none)" srcset="projets/images/hpp-coupe-50_neg.webp"><img class="neg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" aria-hidden="true" width="640" height="475" decoding="async"></picture>
+          <img class="pos" src="projets/images/hpp-coupe-50_1159.webp" srcset="projets/images/hpp-coupe-50_773.webp 773w, projets/images/hpp-coupe-50_1159.webp 1159w, projets/images/hpp-coupe-50_1400.webp 1400w, projets/images/hpp-coupe-50_2400.webp 2400w" sizes="(max-width:859px) 86vw, min(53vw, 850px)" width="2787" height="2070" alt="coupe transversale — la serre de culture occupe la toiture, les logements s'organisent dessous" loading="lazy" decoding="async">
+        </span>
+        <span class="cartouche ui"><span class="lignes"><span class="num">02.1</span><br><span class="nature">coupe transversale 1:50</span><br><span class="lieu sourd">bruxelles · 2025-2026</span></span>
+          <strong class="titre nom-projet">habiter, produire, partager</strong></span>
+      </a>
+
+      <a class="doc" id="d-hpp-axonometrie" href="projets/habiter-produire-partager.html" data-projet="hpp" data-doc="hpp-axonometrie" data-z="1" data-cart="dessus" data-format="portrait"
+         style="--col:7;--span:4;--y:2.6;--z:1;--ar:0.7865">
+        <span class="emprise">
+          <picture><source media="(hover: hover) and (forced-colors: none)" srcset="projets/images/hpp-axonometrie_neg.webp"><img class="neg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" aria-hidden="true" width="640" height="814" decoding="async"></picture>
+          <img class="pos" src="projets/images/hpp-axonometrie_662.webp" srcset="projets/images/hpp-axonometrie_442.webp 442w, projets/images/hpp-axonometrie_662.webp 662w, projets/images/hpp-axonometrie_906.webp 906w" sizes="(max-width:859px) 67vw, min(30vw, 490px)" width="906" height="1152" alt="axonométrie éclatée structurelle — structure ponctuelle en bois, rez en béton et parement de brique" loading="lazy" decoding="async">
+        </span>
+        <span class="cartouche ui"><span class="lignes"><span class="num">02.1</span><br><span class="nature">axonométrie éclatée</span><br><span class="lieu sourd">bruxelles · 2025-2026</span></span>
+          <strong class="titre nom-projet">habiter, produire, partager</strong></span>
+      </a>
+
+      <a class="doc" id="d-hpp-elevation" href="projets/habiter-produire-partager.html" data-projet="hpp" data-doc="hpp-elevation" data-z="2" data-cart="dessus-gauche" data-format="paysage"
+         style="--col:1;--span:11;--y:6.4;--z:2;--ar:4.4708">
+        <span class="emprise">
+          <picture><source media="(hover: hover) and (forced-colors: none)" srcset="projets/images/hpp-elevation_neg.webp"><img class="neg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" aria-hidden="true" width="640" height="143" decoding="async"></picture>
+          <img class="pos" src="projets/images/hpp-elevation_1214.webp" srcset="projets/images/hpp-elevation_800.webp 800w, projets/images/hpp-elevation_1214.webp 1214w, projets/images/hpp-elevation_1822.webp 1822w, projets/images/hpp-elevation_2400.webp 2400w" sizes="(max-width:859px) 100vw, min(83vw, 1340px)" width="2906" height="650" alt="élévation sur rue — le projet inséré dans le front bâti" loading="lazy" decoding="async">
+        </span>
+        <span class="cartouche ui"><span class="lignes"><span class="num">02.1</span><br><span class="nature">élévation sur rue</span><br><span class="lieu sourd">bruxelles · 2025-2026</span></span>
+          <strong class="titre nom-projet">habiter, produire, partager</strong></span>
+      </a>
+
+      <a class="doc" id="d-hpp-analyse-verts" href="projets/habiter-produire-partager.html" data-projet="hpp" data-doc="hpp-analyse-verts" data-z="1" data-cart="gauche" data-format="carre"
+         style="--col:7;--span:5;--y:9.6;--z:1;--ar:1.1007">
+        <span class="emprise">
+          <picture><source media="(hover: hover) and (forced-colors: none)" srcset="projets/images/hpp-analyse-verts_neg.webp"><img class="neg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" aria-hidden="true" width="640" height="581" decoding="async"></picture>
+          <img class="pos" src="projets/images/hpp-analyse-verts_800.webp" srcset="projets/images/hpp-analyse-verts_552.webp 552w, projets/images/hpp-analyse-verts_800.webp 800w, projets/images/hpp-analyse-verts_1388.webp 1388w" sizes="(max-width:859px) 86vw, min(37vw, 610px)" width="1388" height="1261" alt="carte d'analyse — espaces verts et jardinage accessibles au quartier" loading="lazy" decoding="async">
+        </span>
+        <span class="cartouche ui"><span class="lignes"><span class="num">02.1</span><br><span class="nature">carte d'analyse — espaces verts</span><br><span class="lieu sourd">bruxelles · 2025-2026</span></span>
+          <strong class="titre nom-projet">habiter, produire, partager</strong></span>
+      </a>
+
+      <a class="doc" id="d-hpp-cycle" href="projets/habiter-produire-partager.html" data-projet="hpp" data-doc="hpp-cycle" data-z="2" data-cart="dessous-gauche" data-format="paysage"
+         style="--col:3;--span:6;--y:11.3;--z:2;--ar:1.7839">
+        <span class="emprise">
+          <picture><source media="(hover: hover) and (forced-colors: none)" srcset="projets/images/hpp-cycle_neg.webp"><img class="neg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" aria-hidden="true" width="640" height="359" decoding="async"></picture>
+          <img class="pos" src="projets/images/hpp-cycle_994.webp" srcset="projets/images/hpp-cycle_662.webp 662w, projets/images/hpp-cycle_994.webp 994w, projets/images/hpp-cycle_1400.webp 1400w" sizes="(max-width:859px) 100vw, min(45vw, 730px)" width="2476" height="1388" alt="diagramme du cycle de fonctionnement, de la gouvernance associative au marché mensuel" loading="lazy" decoding="async">
+        </span>
+        <span class="cartouche ui"><span class="lignes"><span class="num">02.1</span><br><span class="nature">diagramme du cycle</span><br><span class="lieu sourd">bruxelles · 2025-2026</span></span>
+          <strong class="titre nom-projet">habiter, produire, partager</strong></span>
+      </a>
+
+      <a class="doc" id="d-hpp-coupe-urbaine" href="projets/habiter-produire-partager.html" data-projet="hpp" data-doc="hpp-coupe-urbaine" data-z="0" data-cart="droite" data-format="paysage"
+         style="--col:0;--span:7;--y:15.9;--z:0;--ar:3.3364">
+        <span class="emprise">
+          <picture><source media="(hover: hover) and (forced-colors: none)" srcset="projets/images/hpp-coupe-urbaine_neg.webp"><img class="neg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" aria-hidden="true" width="640" height="192" decoding="async"></picture>
+          <img class="pos" src="projets/images/hpp-coupe-urbaine_1159.webp" srcset="projets/images/hpp-coupe-urbaine_773.webp 773w, projets/images/hpp-coupe-urbaine_1159.webp 1159w, projets/images/hpp-coupe-urbaine_1400.webp 1400w, projets/images/hpp-coupe-urbaine_2400.webp 2400w" sizes="(max-width:859px) 100vw, min(53vw, 850px)" width="2906" height="871" alt="coupe urbaine à travers l'îlot" loading="lazy" decoding="async">
+        </span>
+        <span class="cartouche ui"><span class="lignes"><span class="num">02.1</span><br><span class="nature">coupe urbaine</span><br><span class="lieu sourd">bruxelles · 2025-2026</span></span>
+          <strong class="titre nom-projet">habiter, produire, partager</strong></span>
+      </a>
+
+      <div class="fenetre" aria-hidden="true" style="--col:0;--span:3;--y:9.4;--ar:1.2"></div>
+
+    </section>
     </div>
-  </section>
 
-  <footer>
+    <nav class="reglette ui" aria-label="Documents">
+      <a href="#d-hpp-coupe-50"><span>coupe 1:50</span></a>
+      <a href="#d-hpp-axonometrie"><span>axonométrie</span></a>
+      <a href="#d-hpp-elevation"><span>élévation</span></a>
+      <a href="#d-hpp-analyse-verts"><span>espaces verts</span></a>
+      <a href="#d-hpp-cycle"><span>cycle</span></a>
+      <a href="#d-hpp-coupe-urbaine"><span>coupe urbaine</span></a>
+    </nav>
+
+    <section class="inventaire ui" aria-labelledby="inv-titre">
+      <h2 id="inv-titre" class="sourd">inventaire</h2>
+      <div class="axe-groupe" id="territoires">
+        <h3>01 · territoires &amp; données</h3>
+        <ul><li class="sourd"><span>—</span><span>aucun document publié</span></li></ul>
+      </div>
+      <div class="axe-groupe" id="habiter">
+        <h3>02 · habiter &amp; construire</h3>
+        <ul>
+          <li><a href="projets/habiter-produire-partager.html" data-doc="hpp-coupe-50"><span>02.1</span><span>habiter, produire, partager</span><span class="sourd">bruxelles · 2025-2026</span></a></li>
+        </ul>
+      </div>
+      <div class="axe-groupe" id="flux">
+        <h3>03 · flux &amp; usages</h3>
+        <ul><li class="sourd"><span>—</span><span>aucun document publié</span></li></ul>
+      </div>
+      <div class="axe-groupe">
+        <h3 class="sourd">en préparation</h3>
+        <ul>
+          <li class="sourd"><span>—</span><span>en préparation</span></li>
+          <li class="sourd"><span>—</span><span>en préparation</span></li>
+          <li class="sourd"><span>—</span><span>en préparation</span></li>
+          <li class="sourd"><span>—</span><span>en préparation</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="apropos" id="apropos" aria-labelledby="apropos-titre">
+      <h2 id="apropos-titre" class="ui sourd">à propos</h2>
+      <dl class="ui">
+        <dt>formation</dt><dd>LOCI UCLouvain, Bruxelles — atelier II, 2025-2026</dd>
+        <dt>outils</dt><dd>rhino 8, grasshopper, qgis, d5 render, indesign</dd>
+      </dl>
+    </section>
+
+  </main>
+
+  <footer class="pied ui">
     <span>© 2026 côme le bozec.</span>
-    <span>bruxelles — rennes</span>
+    <span class="sourd">bruxelles — rennes</span>
+    <a href="./?seuil">revoir la galaxie</a>
   </footer>
 </div>
 
-<script src="three.min.js"></script>
+<script type="module" src="assets/js/champ.js"></script>
 <script>
-/* =====================================================================
-   SOCLE — constantes, bruits, fabrique de rendus
-===================================================================== */
-const DPR = Math.min(devicePixelRatio, 2);
-const MOBILE = innerWidth < 700;
-const REDUIT = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const TACTILE = matchMedia('(hover: none)').matches;
-
-const souris = { x:0, y:0 };
-addEventListener('mousemove', e => {
-  souris.x = (e.clientX/innerWidth - .5) * 2;
-  souris.y = (e.clientY/innerHeight - .5) * 2;
-});
-
-/* Bruit de valeur JS — 2D, pour le champ de vecteurs du flux */
-function hash2(x,y){ const s=Math.sin(x*127.1+y*311.7)*43758.5453; return s-Math.floor(s); }
-function vnoise2(x,y){
-  const xi=Math.floor(x),yi=Math.floor(y),xf=x-xi,yf=y-yi;
-  const u=xf*xf*(3-2*xf),v=yf*yf*(3-2*yf);
-  return hash2(xi,yi)*(1-u)*(1-v)+hash2(xi+1,yi)*u*(1-v)+hash2(xi,yi+1)*(1-u)*v+hash2(xi+1,yi+1)*u*v;
-}
-function fbm2(x,y){ return vnoise2(x,y)*.55+vnoise2(x*2.1,y*2.1)*.28+vnoise2(x*4.3,y*4.3)*.17; }
-
-/* Simplex 2D GPU (topographie) — snippet classique d'Ashima Arts */
-const GLSL_SNOISE = `
-vec3 permute(vec3 x){ return mod(((x*34.0)+1.0)*x, 289.0); }
-float snoise(vec2 v){
-  const vec4 C = vec4(0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439);
-  vec2 i = floor(v + dot(v, C.yy));
-  vec2 x0 = v - i + dot(i, C.xx);
-  vec2 i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
-  vec4 x12 = x0.xyxy + C.xxzz; x12.xy -= i1;
-  i = mod(i, 289.0);
-  vec3 p = permute(permute(i.y + vec3(0.0, i1.y, 1.0)) + i.x + vec3(0.0, i1.x, 1.0));
-  vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);
-  m = m*m; m = m*m;
-  vec3 x = 2.0 * fract(p * C.www) - 1.0;
-  vec3 h = abs(x) - 0.5;
-  vec3 ox = floor(x + 0.5);
-  vec3 a0 = x - ox;
-  m *= 1.79284291400159 - 0.85373472095314 * (a0*a0 + h*h);
-  vec3 g;
-  g.x = a0.x * x0.x + h.x * x0.y;
-  g.yz = a0.yz * x12.xz + h.yz * x12.yw;
-  return 130.0 * dot(m, g);
-}
-float fbm(vec2 p){
-  float v = 0.0, a = 0.5;
-  for(int i = 0; i < 4; i++){ v += a * snoise(p); p *= 2.03; a *= 0.5; }
-  return v;
-}`;
-
-/* Fabrique : un renderer + une caméra par canvas, dimensionnés sur leur bloc */
-function creerRendu(canvas){
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias:true });
-  renderer.setPixelRatio(DPR);
-  const camera = new THREE.PerspectiveCamera(50, 1, .1, 100);
-  function resize(){
-    const r = canvas.getBoundingClientRect();
-    const w = Math.max(1, Math.round(r.width));
-    const h = Math.max(1, Math.round(r.height));
-    renderer.setSize(w, h, false);   // false : le CSS garde la main sur la taille affichée
-    camera.aspect = w/h; camera.updateProjectionMatrix();
-  }
-  resize();
-  return { renderer, camera, resize };
-}
-
-const animations = [];   // { canvas, renderer, camera, scene, update, running, resize }
-
-/* =====================================================================
-   NÉBULEUSE — le seuil
-   Une sphère invisible révélée par les grains qui s'y sont posés
-   (l'homme invisible qu'on peint). Autour, un dégradé massif de
-   poussière converge sur elle depuis tout l'espace : densité cubique,
-   décélération à l'atterrissage. La caméra est immergée DANS ce
-   champ — des grains passent devant, à côté, derrière elle.
-   (Le canvas garde l'id #galaxie.)
-===================================================================== */
-function creerNebuleuse(canvas){
-  const { renderer, camera, resize } = creerRendu(canvas);
-  const scene = new THREE.Scene();
-  const groupe = new THREE.Group();
-  groupe.rotation.set(.15, 0, .22);        // axe incliné : la rotation se lit mieux
-  scene.add(groupe);
-
-  const R = 0.78;                          // rayon de la sphère invisible
-  const N_COQ  = MOBILE ? 26000 : 80000;   // grains posés sur la surface
-  const N_POUS = MOBILE ? 110000 : 400000; // poussière du dégradé (immersion)
-  const N = N_COQ + N_POUS;
-
-  const dir  = new Float32Array(N*3);      // direction unitaire (fixe)
-  const ray  = new Float32Array(N);        // rayon de repos
-  const alea = new Float32Array(N);
-  const pop  = new Float32Array(N);        // 0 = posé sur la sphère, 1 = poussière libre
-  const dep  = new Float32Array(N);        // densité locale du dépôt
-
-  const gauss = () => {                    // tirage en loi normale centrée
-    let u=0, v=0;
-    while(u===0) u=Math.random();
-    while(v===0) v=Math.random();
-    return Math.sqrt(-2*Math.log(u)) * Math.cos(2*Math.PI*v);
+/* three.js et la nébuleuse ne sont chargés qu'au premier passage : au retour, 603 Ko de moins */
+if (!document.documentElement.classList.contains('direct')) {
+  var s = document.createElement('script'); s.src = 'three.min.js';
+  s.onload = function(){
+    if (document.documentElement.classList.contains('entered')) { var c = document.getElementById('galaxie'); if (c) c.remove(); return; }
+    var g = document.createElement('script'); g.src = 'assets/js/galaxie.js'; document.body.appendChild(g);
   };
-
-  /* Le dépôt est inégal : un bruit doux sur la sphère décide où la
-     poussière s'est posée. On rejette les directions trop "propres". */
-  const bruitSurface = (x,y,z) =>
-    .5*vnoise2(x*2.3+9.7, y*2.3+3.1) + .5*vnoise2(y*2.3+5.4, z*2.3+1.8);
-
-  for(let i=0;i<N;i++){
-    const poussiere = i >= N_COQ;
-    let x, y, z, d, essais = 0;
-    do {
-      x=gauss(); y=gauss(); z=gauss();
-      const n = 1/(Math.sqrt(x*x+y*y+z*z)||1);
-      x*=n; y*=n; z*=n;                             // direction uniforme
-      d = bruitSurface(x,y,z);
-      essais++;
-    } while(!poussiere && essais < 25 && d < Math.random()*.75);
-    dir[i*3]=x; dir[i*3+1]=y; dir[i*3+2]=z;
-    pop[i]  = poussiere ? 1 : 0;
-    dep[i]  = d;
-    // dépôt en deux couches : une peau de contact serrée, et un manteau
-    // qui ne s'étend que vers l'extérieur et s'amincit — c'est lui qui
-    // fait le pont avec le nuage
-    const manteau = Math.random() < .45;
-    ray[i]  = poussiere ? R
-            : R + (manteau ? Math.abs(gauss())*0.13 : gauss()*0.018);
-    alea[i] = Math.random();
-  }
-  const g = new THREE.BufferGeometry();
-  // position n'est qu'un gabarit : tout se recalcule dans le shader
-  g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(N*3),3));
-  g.setAttribute('aDir',  new THREE.BufferAttribute(dir,3));
-  g.setAttribute('aRay',  new THREE.BufferAttribute(ray,1));
-  g.setAttribute('aAlea', new THREE.BufferAttribute(alea,1));
-  g.setAttribute('aPop',  new THREE.BufferAttribute(pop,1));
-  g.setAttribute('aDep',  new THREE.BufferAttribute(dep,1));
-
-  const m = new THREE.ShaderMaterial({
-    transparent:true, depthWrite:false, blending:THREE.NormalBlending,
-    uniforms:{ uTime:{value:0}, uSize:{value:0.75*DPR}, uR:{value:R}, uRMax:{value:11.0} },
-    vertexShader:`
-      attribute vec3 aDir; attribute float aRay; attribute float aAlea; attribute float aPop; attribute float aDep;
-      uniform float uTime; uniform float uSize; uniform float uR; uniform float uRMax;
-      varying float vLum; varying float vAlpha;
-      void main(){
-        // les grains posés vibrent à peine : la surface reste lisible
-        float souffle = sin(uTime*0.8 + aAlea*6.2831) * mix(0.012, 0.0, aPop);
-        // la poussière ARRIVE sur la sphère : née au loin, elle converge
-        // radialement et décélère en se posant (trajectoire cubique).
-        // La caméra (z ~ 6.4) est DANS ce champ : uRMax va bien au-delà.
-        float vitesse = 0.5 + aAlea*0.9;
-        float x01 = fract(uTime*0.02*vitesse + aAlea*7.0);
-        float rPous = uR + (uRMax - uR) * pow(1.0 - x01, 3.0);
-        float fondu = mix(1.0, smoothstep(0.0,0.08,x01)*(1.0-smoothstep(0.92,1.0,x01)), aPop);
-        float r = mix(aRay + souffle, rPous, aPop);
-        vec3 p = aDir * r;
-        // dégradé : plus un grain est proche de la sphère, plus il est présent
-        float prox = clamp(1.0 - (r - uR)/(uRMax - uR), 0.0, 1.0);
-        // continuité : plus un grain posé est haut dans le manteau,
-        // plus son apparence glisse vers celle de la poussière du nuage
-        float haut   = clamp((aRay - uR) / 0.13, 0.0, 1.0);
-        float gPose  = (0.5 + 0.5*fract(aAlea*13.7)) * (0.55 + 0.45*aDep);
-        float gNuage = (0.45 + 0.55*fract(aAlea*9.3)) * (0.3 + 0.7*prox*prox);
-        float grain  = mix(mix(gPose, gNuage, haut*haut), gNuage, aPop);
-        vLum   = grain * (0.85 + 0.15*sin(uTime*1.6 + aAlea*40.0));
-        vAlpha = mix(mix(0.72, 0.42, haut), 0.42, aPop) * fondu;
-        vec4 mv = modelViewMatrix * vec4(p,1.0);
-        gl_Position = projectionMatrix * mv;
-        // ~1 px, plafonné pour les grains qui frôlent la caméra
-        gl_PointSize = min(uSize * (6.6 / -mv.z), uSize * 3.2);
-      }`,
-    fragmentShader:`
-      varying float vLum; varying float vAlpha;
-      void main(){
-        vec2 c = gl_PointCoord - 0.5;
-        if(dot(c,c) > 0.25) discard;
-        gl_FragColor = vec4(vec3(1.0)*vLum, vAlpha);
-      }`
-  });
-  groupe.add(new THREE.Points(g,m));
-
-  const basePos = { x:0, y:.1, z:6.4 };    // position de repos avant l'entrée
-  camera.position.set(basePos.x, basePos.y, basePos.z);
-
-  const anim = {
-    canvas, renderer, camera, scene, resize, running:true,
-    entrer(){ basePos.z = 4.6; },          // travelling avant, vers l'anneau
-    update(t){
-      m.uniforms.uTime.value = REDUIT ? 10 : t;
-      if(!REDUIT) groupe.rotation.y = t * .05;
-      const amp = TACTILE ? 0 : 1;
-      camera.position.x += (basePos.x + souris.x*2.2*amp - camera.position.x)*.055;
-      camera.position.y += (basePos.y - souris.y*1.3*amp - camera.position.y)*.055;
-      camera.position.z += (basePos.z - camera.position.z)*.03;
-      camera.lookAt(0,0,0);                // le centre reste le pivot
-    }
-  };
-  animations.push(anim);
-  return anim;
+  document.body.appendChild(s);
 }
-
-/* =====================================================================
-   TOPOGRAPHIE — bande 01
-   Relief calculé sur le GPU ; les points proches d'une courbe de
-   niveau s'illuminent → carte IGN vivante.
-===================================================================== */
-function creerTopo(canvas){
-  const { renderer, camera, resize } = creerRendu(canvas);
-  const scene = new THREE.Scene();
-  const COTE = MOBILE ? 150 : 260, L = 14;
-  const N = COTE*COTE, pos = new Float32Array(N*3);
-  let k=0;
-  for(let i=0;i<COTE;i++) for(let j=0;j<COTE;j++){
-    pos[k++]=(i/(COTE-1)-.5)*L; pos[k++]=0; pos[k++]=(j/(COTE-1)-.5)*L*.62;
-  }
-  const g=new THREE.BufferGeometry();
-  g.setAttribute('position',new THREE.BufferAttribute(pos,3));
-  const m=new THREE.ShaderMaterial({
-    transparent:true, depthWrite:false, blending:THREE.AdditiveBlending,
-    uniforms:{ uTime:{value:0}, uSize:{value:9.5*DPR} },
-    vertexShader: GLSL_SNOISE + `
-      uniform float uTime; uniform float uSize;
-      varying float vElev;
-      void main(){
-        vec3 p = position;
-        float e = fbm(p.xz*0.24 + vec2(uTime*0.035, uTime*0.02));
-        p.y = e * 1.7;
-        vElev = e;
-        vec4 mv = modelViewMatrix * vec4(p,1.0);
-        gl_Position = projectionMatrix * mv;
-        gl_PointSize = uSize / -mv.z;
-      }`,
-    fragmentShader:`
-      varying float vElev;
-      void main(){
-        vec2 c = gl_PointCoord - 0.5;
-        if(dot(c,c) > 0.25) discard;
-        float b = fract(vElev * 8.0);
-        float ligne = 1.0 - smoothstep(0.0, 0.10, min(b, 1.0-b));
-        vec3 fond   = vec3(0.16,0.165,0.18);
-        vec3 ivoire = vec3(0.93,0.91,0.86);
-        vec3 col = mix(fond, ivoire, ligne*0.95 + smoothstep(0.35,1.0,vElev)*0.12);
-        gl_FragColor = vec4(col, 0.28 + 0.72*ligne);
-      }`
-  });
-  scene.add(new THREE.Points(g,m));
-  camera.position.set(0, 3.4, 7.4);
-  camera.lookAt(0,.4,0);
-  const anim = { canvas, renderer, camera, scene, resize, running:false,
-    update(t){ m.uniforms.uTime.value = REDUIT ? 10 : t; } };
-  animations.push(anim);
-  return anim;
-}
-
-/* =====================================================================
-   VILLE — bande 02 : le tissu urbain en nuage de points, montré
-   directement constitué (frémissement de scan + lente giration).
-===================================================================== */
-function creerVille(canvas){
-  const { renderer, camera, resize } = creerRendu(canvas);
-  const scene = new THREE.Scene();
-  const N = MOBILE ? 32000 : 80000, GRILLE = 9, CELLULE = 1.15;
-  const bats = []; let volumeTotal = 0;
-  for(let i=0;i<GRILLE;i++) for(let j=0;j<GRILLE;j++){
-    if(Math.random() < .14) continue;
-    const w=(.42+Math.random()*.4)*CELLULE, d=(.42+Math.random()*.4)*CELLULE;
-    const h=Math.pow(Math.random(),2.6)*4.6+.35;
-    bats.push({x:(i-(GRILLE-1)/2)*CELLULE, z:(j-(GRILLE-1)/2)*CELLULE, w,d,h, v:w*d*h});
-    volumeTotal += w*d*h;
-  }
-  const pos=new Float32Array(N*3);
-  const alea=new Float32Array(N), teinte=new Float32Array(N);
-  let k=0;
-  for(const b of bats){
-    const n = Math.round(N*b.v/volumeTotal);
-    for(let p=0;p<n && k<N;p++,k++){
-      const k3=k*3, y=Math.random()*b.h;
-      pos[k3]=b.x+(Math.random()-.5)*b.w; pos[k3+1]=y; pos[k3+2]=b.z+(Math.random()-.5)*b.d;
-      alea[k]=Math.random(); teinte[k]=.3+.65*(y/b.h);
-    }
-  }
-  const g=new THREE.BufferGeometry();
-  g.setAttribute('position',new THREE.BufferAttribute(pos,3));
-  g.setAttribute('aAlea',new THREE.BufferAttribute(alea,1));
-  g.setAttribute('aTeinte',new THREE.BufferAttribute(teinte,1));
-  const m=new THREE.ShaderMaterial({
-    transparent:true, depthWrite:false, blending:THREE.AdditiveBlending,
-    uniforms:{ uTime:{value:0}, uSize:{value:8.5*DPR} },
-    vertexShader:`
-      attribute float aAlea; attribute float aTeinte;
-      uniform float uTime; uniform float uSize;
-      varying float vTeinte;
-      void main(){
-        vec3 p = position;
-        p.y += sin(uTime*1.3 + aAlea*40.0)*0.012;   // frémissement du scan
-        vTeinte = aTeinte;
-        vec4 mv = modelViewMatrix * vec4(p,1.0);
-        gl_Position = projectionMatrix * mv;
-        gl_PointSize = uSize / -mv.z;
-      }`,
-    fragmentShader:`
-      varying float vTeinte;
-      void main(){
-        vec2 c = gl_PointCoord - 0.5;
-        if(dot(c,c) > 0.25) discard;
-        gl_FragColor = vec4(vec3(0.93,0.91,0.86)*vTeinte, 0.7);
-      }`
-  });
-  const grpVille = new THREE.Group();
-  grpVille.add(new THREE.Points(g,m));
-  const trame = new THREE.GridHelper(GRILLE*CELLULE, GRILLE, 0x2a2a28, 0x1c1c1a);
-  trame.material.transparent = true; trame.material.opacity = .35;
-  grpVille.add(trame);
-  scene.add(grpVille);
-  camera.position.set(4.8, 3.6, 6.2);
-  camera.lookAt(0,.9,0);
-
-  const anim = { canvas, renderer, camera, scene, resize, running:false,
-    update(t){
-      m.uniforms.uTime.value = REDUIT ? 10 : t;
-      if(!REDUIT) grpVille.rotation.y = t * .03;        // lente giration
-    } };
-  animations.push(anim);
-  return anim;
-}
-
-/* =====================================================================
-   FLUX — bande 03 : segments orientés par un champ de vecteurs
-===================================================================== */
-function creerFlux(canvas){
-  const { renderer, camera, resize } = creerRendu(canvas);
-  const scene = new THREE.Scene();
-  const N = MOBILE ? 5000 : 11000, BX = 7.2, BZ = 3.2;
-  const px=new Float32Array(N), pz=new Float32Array(N), vit=new Float32Array(N);
-  for(let i=0;i<N;i++){ px[i]=(Math.random()-.5)*2*BX; pz[i]=(Math.random()-.5)*2*BZ; vit[i]=.5+Math.random()*.9; }
-  const pos=new Float32Array(N*6), col=new Float32Array(N*6);
-  for(let i=0;i<N;i++){
-    const i6=i*6;
-    col[i6]=col[i6+1]=col[i6+2]=.06;                    // queue sombre
-    col[i6+3]=.9; col[i6+4]=.88; col[i6+5]=.82;         // tête ivoire
-  }
-  const g=new THREE.BufferGeometry();
-  const attrPos=new THREE.BufferAttribute(pos,3); attrPos.setUsage(THREE.DynamicDrawUsage);
-  g.setAttribute('position',attrPos);
-  g.setAttribute('color',new THREE.BufferAttribute(col,3));
-  scene.add(new THREE.LineSegments(g, new THREE.LineBasicMaterial({
-    vertexColors:true, transparent:true, opacity:.8, blending:THREE.AdditiveBlending, depthWrite:false })));
-  camera.position.set(0, 6.4, 2.7);
-  camera.lookAt(0,0,0);
-
-  let tPrec = 0;
-  const anim = { canvas, renderer, camera, scene, resize, running:false,
-    update(t){
-      let dt = Math.min(t-tPrec, .05); tPrec = t;
-      if(REDUIT) dt = 0;
-      const T = REDUIT ? 10 : t;
-      for(let i=0;i<N;i++){
-        const a = fbm2(px[i]*.20 + T*.02, pz[i]*.20 - T*.014) * Math.PI * 4.0;
-        const vx=Math.cos(a), vz=Math.sin(a);
-        px[i]+=vx*vit[i]*dt; pz[i]+=vz*vit[i]*dt;
-        if(px[i]> BX) px[i]=-BX; if(px[i]<-BX) px[i]= BX;
-        if(pz[i]> BZ) pz[i]=-BZ; if(pz[i]<-BZ) pz[i]= BZ;
-        const i6=i*6, L=.16*vit[i];
-        pos[i6]=px[i]-vx*L;  pos[i6+1]=0; pos[i6+2]=pz[i]-vz*L;
-        pos[i6+3]=px[i];     pos[i6+4]=0; pos[i6+5]=pz[i];
-      }
-      attrPos.needsUpdate = true;
-    } };
-  animations.push(anim);
-  return anim;
-}
-
-/* =====================================================================
-   ASSEMBLAGE — création, observateurs de visibilité, seuil, boucle
-===================================================================== */
-const nebuleuse = creerNebuleuse(document.getElementById('galaxie'));
-const fabriques = { topo:creerTopo, ville:creerVille, flux:creerFlux };
-document.querySelectorAll('canvas[data-anim]').forEach(c => fabriques[c.dataset.anim](c));
-
-const horloge = new THREE.Clock();
-
-/* Chaque bande ne calcule que lorsqu'elle est visible à l'écran */
-const obsAnim = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    const a = animations.find(a => a.canvas === e.target);
-    if(!a) return;
-    a.running = e.isIntersecting;
-    if(e.isIntersecting && a.activer) a.activer(horloge.getElapsedTime());
-  });
-}, { threshold: .05 });
-animations.filter(a => a !== nebuleuse).forEach(a => obsAnim.observe(a.canvas));
-
-/* Seuil : la nébuleuse s'éteint, le portfolio s'ouvre sur la bande 01 */
-const seuil = document.getElementById('seuil');
-if(TACTILE) seuil.querySelector('.entrer').textContent = 'toucher pour entrer';
-let entre = false;
-function entrer(){
-  if(entre) return; entre = true;
-  document.body.classList.add('entered');
-  nebuleuse.entrer();
-  setTimeout(()=>{ nebuleuse.running = false; }, 1200);  // arrêt complet après le fondu
-}
-
-seuil.addEventListener('click', entrer);
-seuil.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' ') entrer(); });
-
-/* Révélation des cartes au scroll */
-const obsCartes = new IntersectionObserver(entries => {
-  entries.forEach((e,i) => {
-    if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('visible'), i*120); obsCartes.unobserve(e.target); }
-  });
-}, { threshold:.15 });
-document.querySelectorAll('.carte').forEach(c => obsCartes.observe(c));
-
-/* Boucle unique pour toutes les scènes actives */
-addEventListener('resize', () => animations.forEach(a => a.resize()));
-function tick(){
-  const t = horloge.getElapsedTime();
-  for(const a of animations){
-    if(!a.running) continue;
-    a.update(t);
-    a.renderer.render(a.scene, a.camera);
-  }
-  requestAnimationFrame(tick);
-}
-tick();
 </script>
 </body>
 </html>
