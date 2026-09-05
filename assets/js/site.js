@@ -101,7 +101,7 @@
     diapo.innerHTML = p.diapos.map((d, k) => `<div class="vue" data-n="${k}"><img src="${prefixe}${d.src}" width="${d.w}" height="${d.h}" alt="${echappe(p.titre)}, planche ${k+1}" loading="${Math.abs(k - n) <= 1 ? 'eager' : 'lazy'}" decoding="async"></div>`).join('');
     titre.textContent = p.titre;
     meta.innerHTML = CHAMPS.filter(([k]) => p.fiche && p.fiche[k]).map(([k, l]) => `<div class="lb-champ"><dt>${l}</dt><dd>${p.fiche[k]}</dd></div>`).join('');
-    desc.innerHTML = `<p>${p.description}</p>`;
+    desc.innerHTML = (p.texte && p.texte.length ? p.texte : [p.description]).map(t => `<p>${t}</p>`).join('');
     photo.textContent = p.photographie || '';
     marquerChargees();
   }
