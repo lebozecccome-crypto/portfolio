@@ -92,13 +92,13 @@
      ================================================================== */
   const lb = document.getElementById('lightbox');
   if (!lb) return;
-  const diapo = lb.querySelector('.diapo'), titre = lb.querySelector('.lb-titre'), infoBtn = lb.querySelector('.lb-info'),
+  const diapo = lb.querySelector('.diapo'), titre = lb.querySelector('.lb-titre'), infoBtn = lb.querySelector('.lb-info'), legende = lb.querySelector('.lb-legende'),
         panneau = lb.querySelector('.lb-panneau'), meta = lb.querySelector('.lb-meta'), desc = lb.querySelector('.lb-description'),
         photo = lb.querySelector('.lb-photographie'), annonce = lb.querySelector('.lb-annonce');
   let courant = null, index = 0, ouverte = false, infoOuverte = false, sansPush = false, positionDefilement = 0, declencheur = null, redim = false;
 
   function construire(p, n){
-    diapo.innerHTML = p.diapos.map((d, k) => `<div class="vue" data-n="${k}"><img src="${prefixe}${d.src}" width="${d.w}" height="${d.h}" alt="${echappe(p.titre)}, planche ${k+1}" loading="${Math.abs(k - n) <= 1 ? 'eager' : 'lazy'}" decoding="async"></div>`).join('');
+    diapo.innerHTML = p.diapos.map((d, k) => `<div class="vue" data-n="${k}"><img src="${prefixe}${d.src}" width="${d.w}" height="${d.h}" alt="${echappe(d.legende || (p.titre + ', planche ' + (k+1)))}" loading="${Math.abs(k - n) <= 1 ? 'eager' : 'lazy'}" decoding="async"></div>`).join('');
     titre.textContent = p.titre;
     meta.innerHTML = CHAMPS.filter(([k]) => p.fiche && p.fiche[k]).map(([k, l]) => `<div class="lb-champ"><dt>${l}</dt><dd>${p.fiche[k]}</dd></div>`).join('');
     desc.innerHTML = (p.texte && p.texte.length ? p.texte : [p.description]).map(t => `<p>${t}</p>`).join('');
@@ -113,7 +113,9 @@
     const vue = diapo.querySelector(`.vue[data-n="${n}"]`);
     if (vue){ const suiv = diapo.querySelector(`.vue[data-n="${(n+1) % N}"] img`); if (suiv) suiv.loading = 'eager'; }
     diapo.scrollTo({ left: n * diapo.clientWidth, behavior: matchMedia('(prefers-reduced-motion:reduce)').matches ? 'auto' : 'smooth' });
-    if (annonce) annonce.textContent = `${courant.titre}, planche ${n+1} sur ${N}`;
+    const leg = courant.diapos[n].legende || '';
+    if (legende){ legende.textContent = leg; legende.title = leg; }
+    if (annonce) annonce.textContent = `${courant.titre}, planche ${n+1} sur ${N}${leg ? ' — ' + leg : ''}`;
     majHash(pousser);
   }
   function majHash(pousser){
@@ -175,7 +177,7 @@
   diapo.addEventListener('scroll', () => {
     if (!ouverte || redim) return;
     const n = Math.round(diapo.scrollLeft / diapo.clientWidth);
-    if (n !== index && courant){ index = n; if (annonce) annonce.textContent = `${courant.titre}, planche ${n+1} sur ${courant.diapos.length}`; majHash(true); }
+    if (n !== index && courant){ index = n; const leg = courant.diapos[n].legende || ''; if (legende){ legende.textContent = leg; legende.title = leg; } if (annonce) annonce.textContent = `${courant.titre}, planche ${n+1} sur ${courant.diapos.length}${leg ? ' — ' + leg : ''}`; majHash(true); }
   }, { passive:true });
   addEventListener('resize', () => { if (!ouverte) return; redim = true; requestAnimationFrame(() => { diapo.scrollTo({ left: index * diapo.clientWidth, behavior:'auto' }); requestAnimationFrame(() => { redim = false; }); }); });
 
