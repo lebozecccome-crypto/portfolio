@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>côme le bozec. — portfolio</title>
-<meta name="description" content="côme le bozec — portfolio d'architecture. étudiant à l'UCLouvain LOCI, Bruxelles.">
+<meta name="description" content="côme le bozec — architecture portfolio. student at UCLouvain LOCI, Brussels.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta property="og:type" content="website">
 <meta property="og:title" content="côme le bozec. — portfolio">
-<meta property="og:description" content="architecture · territoires · données — portfolio de côme le bozec.">
+<meta property="og:description" content="architecture · territories · data — portfolio of côme le bozec.">
 <meta property="og:url" content="https://comelebozec.com/">
 <meta property="og:image" content="https://comelebozec.com/partage.png">
-<meta property="og:locale" content="fr_BE">
+<meta property="og:locale" content="en_GB">
 <meta name="theme-color" content="#050505">
 <script>
 /* Avant le premier paint : js / entrée mémorisée pour la session / retour interne / ?seuil rejoue l'entrée.
@@ -47,13 +47,13 @@
 
 <div id="seuil">
   <p class="nom-seuil">côme le bozec.</p>
-  <div class="sous">architecture · territoires · données</div>
-  <div class="entrer" role="button" tabindex="0" aria-label="Entrer dans le portfolio">cliquer pour entrer</div>
+  <div class="sous">architecture · territories · data</div>
+  <div class="entrer" role="button" tabindex="0" aria-label="Enter the portfolio">click to enter</div>
 </div>
 <script>
 (function(){
   var s = document.getElementById('seuil'), b = s.querySelector('.entrer');
-  if (matchMedia('(hover:none)').matches) b.textContent = 'toucher pour entrer';
+  if (matchMedia('(hover:none)').matches) b.textContent = 'tap to enter';
   s.addEventListener('click', window.entrer);
   b.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); window.entrer(); } });
 })();
@@ -80,39 +80,39 @@
       <nav aria-label="Navigation">
         <div class="rangee">
           <div class="espace">&nbsp;</div>
-          <a class="lien gris" href="projets.html">liste des projets</a>
+          <a class="lien gris" href="projets.html">project list</a>
           <div class="espace visible-petit">&nbsp;</div>
         </div>
         <div class="rangee">
-          <a class="lien gris" href="a-propos.html">à propos</a>
+          <a class="lien gris" href="a-propos.html">about</a>
           <div class="espace cache-petit">&nbsp;</div>
         </div>
       </nav>
     </div>
   </header>
 
-  <h1 class="sr">côme le bozec. — portfolio d'architecture</h1>
-  <section class="grille" id="grille" aria-label="projets"></section>
-  <noscript><p class="cellule blanc">les projets se consultent avec JavaScript activé, ou depuis la <a href="projets.html">liste des projets</a>.</p></noscript>
+  <h1 class="sr">côme le bozec. — architecture portfolio</h1>
+  <section class="grille" id="grille" aria-label="projects"></section>
+  <noscript><p class="cellule blanc">the projects need JavaScript, or can be browsed from the <a href="projets.html">project list</a>.</p></noscript>
 
-  <section class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="projet" aria-hidden="true">
+  <section class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="project" aria-hidden="true">
     <div class="lightbox-inner">
       <div class="lb-barre">
         <div class="lb-titre"></div>
         <div class="lb-info"><button type="button" aria-controls="lb-panneau">information</button></div>
         <div class="lb-legende" aria-hidden="true"></div>
         <div class="lb-espace" aria-hidden="true"></div>
-        <div class="lb-fermer"><button type="button" aria-label="fermer le projet">côme le bozec.</button></div>
+        <div class="lb-fermer"><button type="button" aria-label="close project">côme le bozec.</button></div>
       </div>
       <div class="diapo"></div>
-      <button class="prec" type="button" aria-label="planche précédente"></button>
-      <button class="suiv" type="button" aria-label="planche suivante"></button>
+      <button class="prec" type="button" aria-label="previous plate"></button>
+      <button class="suiv" type="button" aria-label="next plate"></button>
       <div class="lb-panneau" id="lb-panneau" aria-hidden="true">
-        <button class="lb-panneau-fermer-mobile" type="button">fermer</button>
+        <button class="lb-panneau-fermer-mobile" type="button">close</button>
         <div class="lb-panneau-inner">
           <div class="lb-panneau-tete">
-            <div class="lb-panneau-libelle">projet</div>
-            <button class="lb-panneau-actions" type="button">fermer</button>
+            <div class="lb-panneau-libelle">project</div>
+            <button class="lb-panneau-actions" type="button">close</button>
           </div>
           <div class="lb-panneau-corps">
             <dl class="lb-meta"></dl>

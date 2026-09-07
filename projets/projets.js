@@ -5,65 +5,65 @@ window.PROJETS = [
   /* ---- projet réel : habiter, produire, partager — Berchem-Sainte-Agathe (atelier II, LOCI UCLouvain, 2025-2026) ---- */
   {
     slug: 'habiter-produire-partager', titre: 'Habiter, produire, partager',
-    description: "À Berchem-Sainte-Agathe, six logements collectifs se répartissent en deux maisons de part et d'autre d'un jardin nourricier, sur une parcelle traversante en cœur d'îlot. Le projet organise une gradation du public au privé — la rue, le grand commun, le commun, le petit commun, la chambre — et resserre les séjours pour que l'on se retrouve dans les espaces partagés, autour d'une production agroalimentaire qui relie les logements entre eux et au quartier.",
+    description: 'In Berchem-Sainte-Agathe, six collective housing units are divided between two houses on either side of a food-producing garden, on a through plot at the heart of the urban block. The project sets out a gradation from public to private — the street, the great common, the common, the small common, the bedroom — and tightens the living rooms so that people come together in the shared spaces, around food production that links the dwellings to one another and to the neighbourhood.',
     texte: [
-      "Depuis soixante-dix ans, la modernisation du logement a consisté à agrandir sans cesse l'espace privé ; une famille entière pouvait autrefois tenir dans une seule chambre. Le projet prend le chemin inverse et construit une gradation du public au commun puis au privé : la rue et le marché ouvert au quartier, le grand commun du jardin et de la serre, le commun de chaque maison, le petit commun d'un palier partagé entre quelques foyers, enfin la chambre. Chaque seuil est un lieu, pas une porte.",
-      "Les séjours sont volontairement resserrés. Ce qui n'est plus dans le logement se retrouve dans les espaces communs : la cuisine collective, la buanderie, l'atelier, les terrasses cultivées, la serre et la salle du rez ouverte de plain-pied sur le jardin. Les habitants sont invités à s'y réunir plutôt qu'à s'isoler, et la vie des maisons se lit depuis le jardin.",
-      "Un projet commun de production agroalimentaire lie les logements : potagers en pleine terre, serres de culture et une serre coiffant chaque toiture, qui prend l'étage le plus ensoleillé pendant que les logements s'organisent dessous. Le collectif, constitué en association, gère les cultures, les espaces partagés et un marché mensuel ouvert à la commune : le projet s'implante dans la vie du quartier et en devient un engrenage.",
-      "Deux maisons tenues par le jardin dans la profondeur de la parcelle ; trois régimes constructifs : rez en béton et parement de brique, poteaux-poutres en bois, serre légère au faîte."
+      'For seventy years, the modernisation of housing has meant enlarging private space ever further; a whole family could once fit into a single room. The project takes the opposite path and builds a gradation from public to common and then to private: the street and the market open to the neighbourhood, the great common of the garden and the greenhouse, the common of each house, the small common of a landing shared between a few households, and finally the bedroom. Each threshold is a place, not a door.',
+      'The living rooms are deliberately tight. What is no longer in the dwelling is found in the shared spaces: the shared kitchen, the laundry, the workshop, the cultivated terraces, the greenhouse and the ground-floor room opening level with the garden. Residents are invited to gather there rather than withdraw, and the life of the houses can be read from the garden.',
+      'A shared food production project links the dwellings: vegetable gardens in open ground, growing greenhouses and a greenhouse crowning each roof, which takes the sunniest floor while the dwellings are arranged beneath. The collective, set up as an association, runs the crops, the shared spaces and a monthly market open to the municipality: the project settles into the life of the neighbourhood and becomes one of its working parts.',
+      'Two houses held by the garden in the depth of the plot; three structural systems: concrete ground floor with brick facing, timber post-and-beam, light greenhouse at the ridge.'
     ],
-    couverture: { src: 'projets/images/hpp-implantation_1400.webp', w: 1400, h: 1081, legende: "deux maisons tenues par le jardin productif, dans la profondeur de la parcelle" },
+    couverture: { src: 'projets/images/hpp-implantation_1400.webp', w: 1400, h: 1081, legende: 'two houses held by the productive garden, in the depth of the plot' },
     diapos: [
-      { src: 'projets/images/hpp-coupe-50_1400.webp', w: 1400, h: 1040, legende: "la serre coiffe les logements — cultures suspendues sous le faîte, potagers sur les terrasses" },
-      { src: 'projets/images/hpp-elevation_1400.webp', w: 1400, h: 313, legende: "sur la rue, le projet reprend les hauteurs de ses voisins" },
-      { src: 'projets/images/hpp-coupe-urbaine_1400.webp', w: 1400, h: 420, legende: "la traversée de l'îlot — le projet s'abaisse pour laisser entrer le jardin" },
-      { src: 'projets/images/hpp-implantation_1400.webp', w: 1400, h: 1081, legende: "deux maisons tenues par le jardin productif, dans la profondeur de la parcelle" },
-      { src: 'projets/images/hpp-plan-rdc-100_1400.webp', w: 1400, h: 1195, legende: "au rez, les espaces communs s'ouvrent de plain-pied sur le jardin" },
-      { src: 'projets/images/hpp-plan-r1-100_1400.webp', w: 1400, h: 1199, legende: "à l'étage, les chambres et la terrasse commune" },
-      { src: 'projets/images/hpp-plan-r2-100_1400.webp', w: 1400, h: 1192, legende: "au deuxième, les logements sous la serre" },
-      { src: 'projets/images/hpp-plan-r3-100_1400.webp', w: 1400, h: 1194, legende: "au dernier niveau, la serre de production et ses tables de culture" },
-      { src: 'projets/images/hpp-plan-r1_1400.webp', w: 1400, h: 827, legende: "le premier étage en détail, de la rue au jardin" },
-      { src: 'projets/images/hpp-axonometrie_906.webp', w: 906, h: 1152, legende: "trois régimes constructifs — béton et brique au rez, poteaux-poutres en bois, serre légère au faîte" },
-      { src: 'projets/images/hpp-croquis_800.webp', w: 800, h: 1357, legende: "premières intentions — les seuils du commun, le marché ouvert au quartier" },
-      { src: 'projets/images/hpp-cycle_1400.webp', w: 1400, h: 785, legende: "le fonctionnement en boucle — produire, transformer, partager, réinvestir" },
-      { src: 'projets/images/hpp-analyse-verts_1388.webp', w: 1388, h: 1261, legende: "ce que le quartier offre déjà — parcs, potagers collectifs et aires de jeux à 400 m du site" },
-      { src: 'projets/images/hpp-analyse-alimentation_950.webp', w: 950, h: 976, legende: "où l'on se nourrit — circuits courts et commerces autour du site" },
-      { src: 'projets/images/hpp-analyse-bati_1056.webp', w: 1056, h: 1095, legende: "les gabarits du tissu, du rez aux quinze mètres" },
-      { src: 'projets/images/hpp-narration_760.webp', w: 760, h: 927, legende: "la commune cultivée — le territoire raconté par ses jardins" },
-      { src: 'projets/images/hpp-herbier_712.webp', w: 712, h: 937, legende: "six espèces spontanées relevées sur place, de l'origan sauvage à la digitale pourpre" },
-      { src: 'projets/images/hpp-ref-molenbeek_407.webp', w: 407, h: 560, legende: "référence — hé architecture, molenbeek 2024 : la maison étendue par son toit" },
-      { src: 'projets/images/hpp-ref-melbourne_457.webp', w: 457, h: 560, legende: "référence — austin maynard architects, melbourne 2022 : la coursive comme lieu de vie" }
+      { src: 'projets/images/hpp-coupe-50_1400.webp', w: 1400, h: 1040, legende: 'the greenhouse crowns the dwellings — crops hung beneath the ridge, vegetable gardens on the terraces' },
+      { src: 'projets/images/hpp-elevation_1400.webp', w: 1400, h: 313, legende: 'on the street, the project takes up the heights of its neighbours' },
+      { src: 'projets/images/hpp-coupe-urbaine_1400.webp', w: 1400, h: 420, legende: 'the crossing of the urban block — the project drops down to let the garden in' },
+      { src: 'projets/images/hpp-implantation_1400.webp', w: 1400, h: 1081, legende: 'two houses held by the productive garden, in the depth of the plot' },
+      { src: 'projets/images/hpp-plan-rdc-100_1400.webp', w: 1400, h: 1195, legende: 'on the ground floor, the shared spaces open level with the garden' },
+      { src: 'projets/images/hpp-plan-r1-100_1400.webp', w: 1400, h: 1199, legende: 'on the first floor, the bedrooms and the shared terrace' },
+      { src: 'projets/images/hpp-plan-r2-100_1400.webp', w: 1400, h: 1192, legende: 'on the second floor, the dwellings beneath the greenhouse' },
+      { src: 'projets/images/hpp-plan-r3-100_1400.webp', w: 1400, h: 1194, legende: 'on the top floor, the production greenhouse and its growing tables' },
+      { src: 'projets/images/hpp-plan-r1_1400.webp', w: 1400, h: 827, legende: 'the first floor in detail, from the street to the garden' },
+      { src: 'projets/images/hpp-axonometrie_906.webp', w: 906, h: 1152, legende: 'three structural systems — concrete and brick on the ground floor, timber post-and-beam, light greenhouse at the ridge' },
+      { src: 'projets/images/hpp-croquis_800.webp', w: 800, h: 1357, legende: 'first intentions — the thresholds of the common, the market open to the neighbourhood' },
+      { src: 'projets/images/hpp-cycle_1400.webp', w: 1400, h: 785, legende: 'the loop at work — produce, process, share, reinvest' },
+      { src: 'projets/images/hpp-analyse-verts_1388.webp', w: 1388, h: 1261, legende: 'what the neighbourhood already offers — parks, collective vegetable gardens and playgrounds within 400 m of the site' },
+      { src: 'projets/images/hpp-analyse-alimentation_950.webp', w: 950, h: 976, legende: 'where people get their food — short supply chains and shops around the site' },
+      { src: 'projets/images/hpp-analyse-bati_1056.webp', w: 1056, h: 1095, legende: 'the massing of the urban fabric, from ground floor to fifteen metres' },
+      { src: 'projets/images/hpp-narration_760.webp', w: 760, h: 927, legende: 'the cultivated municipality — the territory told through its gardens' },
+      { src: 'projets/images/hpp-herbier_712.webp', w: 712, h: 937, legende: 'six spontaneous species recorded on site, from wild marjoram to purple foxglove' },
+      { src: 'projets/images/hpp-ref-molenbeek_407.webp', w: 407, h: 560, legende: 'reference — hé architecture, molenbeek 2024: the house extended by its roof' },
+      { src: 'projets/images/hpp-ref-melbourne_457.webp', w: 457, h: 560, legende: 'reference — austin maynard architects, melbourne 2022: the access gallery as a place to live' }
     ],
-    fiche: { lieu: 'Berchem-Sainte-Agathe, Bruxelles', annee: '2025-2026', programme: 'six logements collectifs et leurs espaces communs — serre, buanderie, cuisine collective, jardin productif', surface: '1 100 m²', statut: "projet d'atelier, LOCI UCLouvain", equipe: 'analyse de site et volumétrie en binôme avec Hamza El Arja — bâtiment, documents et dessins : Côme Le Bozec' },
-    photographie: 'dessins : Côme Le Bozec'
+    fiche: { lieu: 'Berchem-Sainte-Agathe, Brussels', annee: '2025-2026', programme: 'six collective housing units and their shared spaces — greenhouse, laundry, shared kitchen, productive garden', surface: '1,100 m²', statut: 'studio project, LOCI UCLouvain', equipe: 'site analysis and massing study in a two-person team with Hamza El Arja — building, documents and drawings: Côme Le Bozec' },
+    photographie: 'drawings: Côme Le Bozec'
   },
   {
     slug: 'maison-du-marais', titre: 'Maison du Marais',
-    description: "Posée sur pilotis au bord d'une roselière, la maison réunit trois volumes de bois brûlé autour d'une coursive ouverte. Les baies cadrent l'eau à hauteur d'assise, la toiture collecte la pluie vers une citerne, et la façade nord se referme presque entièrement pour tenir le vent d'hiver.",
+    description: 'Set on stilts at the edge of a reed bed, the house brings together three volumes of charred timber around an open access gallery. The openings frame the water at seated height, the roof collects rainwater into a cistern, and the north façade closes almost entirely to hold off the winter wind.',
     couverture: { src: 'projets/images/fictif/photo-01_1280x720.jpg', w: 1280, h: 720 },
     diapos: [
       { src: 'projets/images/fictif/photo-01_1280x720.jpg', w: 1280, h: 720 },
       { src: 'projets/images/fictif/photo-06_1280x960.jpg', w: 1280, h: 960 },
       { src: 'projets/images/fictif/photo-09_1280x1706.jpg', w: 1280, h: 1706 }
     ],
-    fiche: { lieu: 'Marais de Lessines, Hainaut', annee: '2024', programme: 'maison individuelle', surface: '168 m²', statut: 'projet fictif — espace réservé' },
-    photographie: "photographies d'attente — picsum.photos"
+    fiche: { lieu: 'Lessines marshes, Hainaut', annee: '2024', programme: 'single-family house', surface: '168 m²', statut: 'placeholder project — space reserved' },
+    photographie: 'placeholder photographs — picsum.photos'
   },
   {
     slug: 'halle-des-tanneurs', titre: 'Halle des Tanneurs',
-    description: "La Halle des Tanneurs transforme un entrepôt de 1910 en marché couvert et ateliers partagés. La charpente métallique est conservée et peinte en blanc, un plancher intermédiaire s'insère entre les fermes, et une nouvelle verrière redonne au sol de brique la lumière que les extensions successives lui avaient prise.",
+    description: 'The Halle des Tanneurs turns a 1910 warehouse into a covered market and shared workshops. The metal roof frame is kept and painted white, an intermediate floor slots in between the trusses, and a new glazed roof gives back to the brick floor the light that successive extensions had taken from it.',
     couverture: { src: 'projets/images/fictif/photo-02_1280x692.jpg', w: 1280, h: 692 },
     diapos: [
       { src: 'projets/images/fictif/photo-02_1280x692.jpg', w: 1280, h: 692 },
       { src: 'projets/images/fictif/photo-04_1280x853.jpg', w: 1280, h: 853 },
       { src: 'projets/images/fictif/photo-14_1280x853.jpg', w: 1280, h: 853 }
     ],
-    fiche: { lieu: 'Braine-le-Comte', annee: '2023', programme: 'marché couvert et ateliers', surface: '2 400 m²', statut: 'projet fictif — espace réservé' },
-    photographie: "photographies d'attente — picsum.photos"
+    fiche: { lieu: 'Braine-le-Comte', annee: '2023', programme: 'covered market and workshops', surface: '2,400 m²', statut: 'placeholder project — space reserved' },
+    photographie: 'placeholder photographs — picsum.photos'
   },
   {
     slug: 'tour-du-canal', titre: 'Tour du Canal',
-    description: "Vingt-quatre logements traversants empilés sur huit niveaux, au bord du canal. Chaque appartement possède une loggia profonde qui sert de pièce d'été ; la façade en briques claires se creuse au sud et se lisse au nord, et le rez-de-chaussée accueille un atelier de réparation de vélos ouvert sur le quai.",
+    description: 'Twenty-four dual-aspect dwellings stacked over eight levels, on the edge of the canal. Each flat has a deep loggia that serves as a summer room; the pale brick façade is hollowed out to the south and smoothed to the north, and the ground floor holds a bicycle repair workshop opening onto the quay.',
     couverture: { src: 'projets/images/fictif/photo-03_1280x1918.jpg', w: 1280, h: 1918 },
     diapos: [
       { src: 'projets/images/fictif/photo-03_1280x1918.jpg', w: 1280, h: 1918 },
@@ -71,67 +71,67 @@ window.PROJETS = [
       { src: 'projets/images/fictif/photo-13_1280x1918.jpg', w: 1280, h: 1918 },
       { src: 'projets/images/fictif/photo-10_1280x800.jpg', w: 1280, h: 800 }
     ],
-    fiche: { lieu: 'Bruxelles, Molenbeek', annee: '2022-2025', programme: '24 logements et un atelier', surface: '3 150 m²', statut: 'projet fictif — espace réservé' },
-    photographie: "photographies d'attente — picsum.photos"
+    fiche: { lieu: 'Brussels, Molenbeek', annee: '2022-2025', programme: '24 dwellings and a workshop', surface: '3,150 m²', statut: 'placeholder project — space reserved' },
+    photographie: 'placeholder photographs — picsum.photos'
   },
   {
     slug: 'serre-urbaine', titre: 'Serre urbaine',
-    description: "Sur le toit d'un parking, une serre de production maraîchère de soixante mètres de long distribue trois salles communes chauffées par l'air des cultures. La structure en bois lamellé porte des châssis de verre simple récupérés ; le sol de la serre est un plancher de tables, démontable, réglé sur la hauteur des cultures.",
+    description: 'On the roof of a car park, a market-garden greenhouse sixty metres long serves three shared rooms heated by the air of the crops. The glue-laminated timber structure carries reclaimed single-glazed frames; the greenhouse floor is a deck of tables, demountable, set to the height of the crops.',
     couverture: { src: 'projets/images/fictif/photo-04_1280x853.jpg', w: 1280, h: 853 },
     diapos: [
       { src: 'projets/images/fictif/photo-04_1280x853.jpg', w: 1280, h: 853 },
       { src: 'projets/images/fictif/photo-16_1280x960.jpg', w: 1280, h: 960 }
     ],
-    fiche: { lieu: 'Anderlecht', annee: '2025', programme: 'serre productive et espaces communs', surface: '1 100 m²', statut: 'projet fictif — espace réservé' },
-    photographie: "photographies d'attente — picsum.photos"
+    fiche: { lieu: 'Anderlecht', annee: '2025', programme: 'productive greenhouse and shared spaces', surface: '1,100 m²', statut: 'placeholder project — space reserved' },
+    photographie: 'placeholder photographs — picsum.photos'
   },
   {
     slug: 'six-maisons-en-bande', titre: 'Six maisons en bande',
-    description: "Six maisons en bande sur une parcelle en pente, chacune décalée d'un demi-niveau par rapport à sa voisine. Les toits en pente inverse dessinent une seule ligne brisée sur la rue ; à l'arrière, les jardins sont reliés par un chemin commun qui descend jusqu'au verger conservé.",
+    description: 'Six terraced houses on a sloping plot, each offset by half a level from its neighbour. The reverse-pitched roofs draw a single broken line along the street; at the rear, the gardens are linked by a shared path running down to the retained orchard.',
     couverture: { src: 'projets/images/fictif/photo-05_1280x1600.jpg', w: 1280, h: 1600 },
     diapos: [
       { src: 'projets/images/fictif/photo-05_1280x1600.jpg', w: 1280, h: 1600 },
       { src: 'projets/images/fictif/photo-11_1280x1024.jpg', w: 1280, h: 1024 },
       { src: 'projets/images/fictif/photo-15_1280x640.jpg', w: 1280, h: 640 }
     ],
-    fiche: { lieu: 'Uccle', annee: '2024', programme: 'six maisons en bande', surface: '890 m²', statut: 'projet fictif — espace réservé' },
-    photographie: "photographies d'attente — picsum.photos"
+    fiche: { lieu: 'Uccle', annee: '2024', programme: 'six terraced houses', surface: '890 m²', statut: 'placeholder project — space reserved' },
+    photographie: 'placeholder photographs — picsum.photos'
   },
   {
     slug: 'atelier-senne', titre: 'Atelier Senne',
-    description: "Un atelier de menuiserie et son logement de gardien, glissés dans la profondeur d'un îlot bruxellois. Le volume de l'atelier est un hangar de bois à sheds orientés au nord ; la maison, en brique, s'appuie contre le mur mitoyen et regarde la cour de travail par une seule grande fenêtre.",
+    description: "A joinery workshop and its caretaker's dwelling, slipped into the depth of a Brussels urban block. The workshop volume is a timber shed with north-facing sawtooth roofs; the brick house leans against the party wall and looks onto the working yard through a single large window.",
     couverture: { src: 'projets/images/fictif/photo-06_1280x960.jpg', w: 1280, h: 960 },
     diapos: [
       { src: 'projets/images/fictif/photo-06_1280x960.jpg', w: 1280, h: 960 },
       { src: 'projets/images/fictif/photo-12_1280x720.jpg', w: 1280, h: 720 }
     ],
-    fiche: { lieu: 'Bruxelles, Cureghem', annee: '2021', programme: 'atelier et logement', surface: '620 m²', statut: 'projet fictif — espace réservé' },
-    photographie: "photographies d'attente — picsum.photos"
+    fiche: { lieu: 'Brussels, Cureghem', annee: '2021', programme: 'workshop and dwelling', surface: '620 m²', statut: 'placeholder project — space reserved' },
+    photographie: 'placeholder photographs — picsum.photos'
   },
   {
     slug: 'belvedere-de-la-dyle', titre: 'Belvédère de la Dyle',
-    description: "Une plateforme de bois de douze mètres carrés, portée par quatre pieux, au-dessus de la prairie inondable. On y accède par une passerelle qui devient escalier ; un banc court sur trois côtés et le quatrième reste ouvert sur la rivière. La structure est conçue pour être submergée deux semaines par an.",
+    description: 'A timber platform of twelve square metres, carried on four piles, above the flood meadow. It is reached by a footbridge that becomes a stair; a bench runs along three sides and the fourth stays open to the river. The structure is designed to be submerged two weeks a year.',
     couverture: { src: 'projets/images/fictif/photo-07_1280x1280.jpg', w: 1280, h: 1280 },
     diapos: [
       { src: 'projets/images/fictif/photo-07_1280x1280.jpg', w: 1280, h: 1280 },
       { src: 'projets/images/fictif/photo-08_1280x549.jpg', w: 1280, h: 549 }
     ],
-    fiche: { lieu: 'Vallée de la Dyle, Brabant wallon', annee: '2023', programme: 'belvédère paysager', surface: '12 m²', statut: 'projet fictif — espace réservé' },
-    photographie: "photographies d'attente — picsum.photos"
+    fiche: { lieu: 'Dyle valley, Walloon Brabant', annee: '2023', programme: 'landscape belvedere', surface: '12 m²', statut: 'placeholder project — space reserved' },
+    photographie: 'placeholder photographs — picsum.photos'
   },
   {
     slug: 'cabane-des-dunes', titre: 'Cabane des Dunes',
-    description: "Refuge de plage démontable en panneaux de contreplaqué marine, assemblé en deux jours par une équipe de quatre personnes. Le plan est un carré de quatre mètres ; la toiture se soulève d'un côté pour laisser entrer le vent d'ouest, et se ferme entièrement à la fin de la saison.",
+    description: 'Demountable beach shelter in marine plywood panels, assembled in two days by a team of four. The plan is a four-metre square; the roof lifts on one side to let in the west wind, and closes completely at the end of the season.',
     couverture: { src: 'projets/images/fictif/photo-08_1280x549.jpg', w: 1280, h: 549 },
     diapos: [
       { src: 'projets/images/fictif/photo-08_1280x549.jpg', w: 1280, h: 549 },
       { src: 'projets/images/fictif/photo-09_1280x1706.jpg', w: 1280, h: 1706 },
       { src: 'projets/images/fictif/photo-01_1280x720.jpg', w: 1280, h: 720 }
     ],
-    fiche: { lieu: 'De Panne, littoral', annee: '2022', programme: 'refuge saisonnier', surface: '16 m²', statut: 'projet fictif — espace réservé' },
-    photographie: "photographies d'attente — picsum.photos"
+    fiche: { lieu: 'De Panne, coast', annee: '2022', programme: 'seasonal shelter', surface: '16 m²', statut: 'placeholder project — space reserved' },
+    photographie: 'placeholder photographs — picsum.photos'
   }
 ];
 
 /* Libellés des champs de la fiche, dans l'ordre d'affichage */
-window.PROJETS_CHAMPS = [['lieu', 'Lieu'], ['annee', 'Année'], ['programme', 'Programme'], ['surface', 'Surface'], ['statut', 'Statut'], ['equipe', 'Équipe']];
+window.PROJETS_CHAMPS = [['lieu', 'Location'], ['annee', 'Year'], ['programme', 'Programme'], ['surface', 'Area'], ['statut', 'Status'], ['equipe', 'Team']];

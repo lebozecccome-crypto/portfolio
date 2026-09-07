@@ -43,7 +43,7 @@
   const grille = document.getElementById('grille');
   if (grille){
     grille.innerHTML = P.map((p, i) => `
-      <div class="ligne${i % 2 ? ' droite' : ''}" data-slug="${p.slug}" tabindex="0" role="link" aria-label="${echappe(p.titre)} — ouvrir le projet">
+      <div class="ligne${i % 2 ? ' droite' : ''}" data-slug="${p.slug}" tabindex="0" role="link" aria-label="${echappe(p.titre)} — open project">
         <div class="cellule-img"><article>
           <figure>
             <div class="titre-petit"><h1>${echappe(p.titre)}</h1></div>
@@ -71,7 +71,7 @@
       <div class="liste-cellule">
         <button class="liste-titre" type="button" aria-expanded="false" aria-controls="dep-${p.slug}">${echappe(p.titre)}</button>
         <div class="depliant" id="dep-${p.slug}"><div>
-          <div class="img-cadre" style="--ar:${p.couverture.w}/${p.couverture.h}" data-slug="${p.slug}" role="link" tabindex="-1" aria-label="ouvrir le projet ${echappe(p.titre)}">
+          <div class="img-cadre" style="--ar:${p.couverture.w}/${p.couverture.h}" data-slug="${p.slug}" role="link" tabindex="-1" aria-label="open project ${echappe(p.titre)}">
             <img src="${prefixe}${p.couverture.src}" width="${p.couverture.w}" height="${p.couverture.h}" alt="" loading="lazy" decoding="async"><span class="indicateur" aria-hidden="true"></span>
           </div>
           <div class="depliant-desc"><p>${p.description}</p></div>
@@ -98,7 +98,7 @@
   let courant = null, index = 0, ouverte = false, infoOuverte = false, sansPush = false, positionDefilement = 0, declencheur = null, redim = false;
 
   function construire(p, n){
-    diapo.innerHTML = p.diapos.map((d, k) => `<div class="vue" data-n="${k}"><img src="${prefixe}${d.src}" width="${d.w}" height="${d.h}" alt="${echappe(d.legende || (p.titre + ', planche ' + (k+1)))}" loading="${Math.abs(k - n) <= 1 ? 'eager' : 'lazy'}" decoding="async"></div>`).join('');
+    diapo.innerHTML = p.diapos.map((d, k) => `<div class="vue" data-n="${k}"><img src="${prefixe}${d.src}" width="${d.w}" height="${d.h}" alt="${echappe(d.legende || (p.titre + ', plate ' + (k+1)))}" loading="${Math.abs(k - n) <= 1 ? 'eager' : 'lazy'}" decoding="async"></div>`).join('');
     titre.textContent = p.titre;
     meta.innerHTML = CHAMPS.filter(([k]) => p.fiche && p.fiche[k]).map(([k, l]) => `<div class="lb-champ"><dt>${l}</dt><dd>${p.fiche[k]}</dd></div>`).join('');
     desc.innerHTML = (p.texte && p.texte.length ? p.texte : [p.description]).map(t => `<p>${t}</p>`).join('');
@@ -115,7 +115,7 @@
     diapo.scrollTo({ left: n * diapo.clientWidth, behavior: matchMedia('(prefers-reduced-motion:reduce)').matches ? 'auto' : 'smooth' });
     const leg = courant.diapos[n].legende || '';
     if (legende){ legende.textContent = leg; legende.title = leg; }
-    if (annonce) annonce.textContent = `${courant.titre}, planche ${n+1} sur ${N}${leg ? ' — ' + leg : ''}`;
+    if (annonce) annonce.textContent = `${courant.titre}, plate ${n+1} of ${N}${leg ? ' — ' + leg : ''}`;
     majHash(pousser);
   }
   function majHash(pousser){
@@ -177,7 +177,7 @@
   diapo.addEventListener('scroll', () => {
     if (!ouverte || redim) return;
     const n = Math.round(diapo.scrollLeft / diapo.clientWidth);
-    if (n !== index && courant){ index = n; const leg = courant.diapos[n].legende || ''; if (legende){ legende.textContent = leg; legende.title = leg; } if (annonce) annonce.textContent = `${courant.titre}, planche ${n+1} sur ${courant.diapos.length}${leg ? ' — ' + leg : ''}`; majHash(true); }
+    if (n !== index && courant){ index = n; const leg = courant.diapos[n].legende || ''; if (legende){ legende.textContent = leg; legende.title = leg; } if (annonce) annonce.textContent = `${courant.titre}, plate ${n+1} of ${courant.diapos.length}${leg ? ' — ' + leg : ''}`; majHash(true); }
   }, { passive:true });
   addEventListener('resize', () => { if (!ouverte) return; redim = true; requestAnimationFrame(() => { diapo.scrollTo({ left: index * diapo.clientWidth, behavior:'auto' }); requestAnimationFrame(() => { redim = false; }); }); });
 
