@@ -37,17 +37,34 @@ window.PROJETS = [
     fiche: { lieu: 'Berchem-Sainte-Agathe, Brussels', annee: '2025-2026', programme: 'six collective housing units and their shared spaces — greenhouse, laundry, shared kitchen, productive garden', surface: '1,100 m²', statut: 'studio project, LOCI UCLouvain', equipe: 'site analysis and massing study in a two-person team with Hamza El Arja — building, documents and drawings: Côme Le Bozec' },
     photographie: 'drawings: Côme Le Bozec'
   },
-  {
-    slug: 'marsh-house', titre: 'Marsh House',
-    description: 'Set on stilts at the edge of a reed bed, the house brings together three volumes of charred timber around an open access gallery. The openings frame the water at seated height, the roof collects rainwater into a cistern, and the north façade closes almost entirely to hold off the winter wind.',
-    couverture: { src: 'projets/images/fictif/photo-01_1280x720.jpg', w: 1280, h: 720 },
-    diapos: [
-      { src: 'projets/images/fictif/photo-01_1280x720.jpg', w: 1280, h: 720 },
-      { src: 'projets/images/fictif/photo-06_1280x960.jpg', w: 1280, h: 960 },
-      { src: 'projets/images/fictif/photo-09_1280x1706.jpg', w: 1280, h: 1706 }
+    {
+    slug: 'three-seasons',
+    titre: 'Three Seasons',
+    description: "In Braine-l'Alleud, the former Carimar warehouse becomes a cultural centre for young people, backed by the municipality's existing associations, as part of an urban renewal programme. Brick and metal structures are kept, and the masonry dismantled to free the east flank is reused as walls between the rooms. Inside, three atmospheres: a foyer in the manner of a guinguette, joined to the public space; an entrance hall lit through sawtooth roofs; a quiet garden of maples turning with the seasons.",
+    texte: [
+      "The conversion of the former Carimar warehouse is part of an urban renewal programme to revive the neighbourhood and give young people a place of culture, backed by the municipality's existing associations. The site has a strong architectural identity: brick buildings, metal structures, a large central yard. The main access for cars and visitors is from the north-east; to the east, the Hain runs along the site, with a green space by the delivery area. Across the site, the project opens the Hain further onto the yard, to separate the delivery access from the building's entrance, and sets out benches for visitors, marking the foyer's extension onto the public space.",
+      "Three atmospheres share the building. The first borrows from the guinguette: open to the neighbourhood and a varied public, including people far from creative and cultural production. Joined directly to the public space, the foyer can run on its own; its terrace extends it as far as the event requires. Long, wide openings in the existing façades make the industrial building welcoming and show what happens inside. The second is the entrance hall, lit from above through its sawtooth roofs and large enough for visitors and the scenery workshop's performances. Through its glazing, passers-by see the main corridor and the rooms opening off it like the teeth of a comb.",
+      'The third is a quiet garden, reached from the multi-purpose rooms given over to some of the workshops, to rest and to exhibitions. Maples fill it, their bright foliage turning with the seasons — green in summer, red and yellow in autumn — and the ground under them is for sitting and for activities in the open air. The garden runs along a new façade whose brick patterns reinterpret the masonry of the existing warehouse: a textured backdrop. At its far end stands the original west façade, its two bays and double-pitched roofs cutting the skyline; a bench of reused bricks is set against it.',
+      'The aim is to keep as much of the old as possible and reuse some of it to build the new. Exposed brick and metal structures stay, and what is added uses the same materials, brick and steel, so old and new read together. The walls between the multi-purpose rooms are load-bearing brick piers, infilled with brick from the masonry dismantled to free the east flank of the site. Between rooms and workshops, these bricks make a good acoustic break, sometimes lined on one face with acoustic panels or curtains. The other face stays exposed and speaks to the existing building: its blue joints show the history of successive interventions.',
     ],
-    fiche: { lieu: 'Lessines marshes, Hainaut', annee: '2024', programme: 'single-family house', surface: '168 m²', statut: 'placeholder project — space reserved' },
-    photographie: 'placeholder photographs — picsum.photos'
+    couverture: { src: 'projets/images/tsa-photo-01-hall-racks_1021.webp', w: 1021, h: 1004, legende: 'the warehouse as found — storage racks beneath the sawtooth roofs' },
+    diapos: [
+      { src: 'projets/images/tsa-site-plan_1400.webp', w: 1400, h: 846, legende: 'site plan — the Carimar site around its central yard, the Hain along the east edge, the neighbouring buildings' },
+      { src: 'projets/images/tsa-ground-floor_1400.webp', w: 1400, h: 1718, legende: 'ground floor — foyer on the yard, entrance hall under the sawtooth roofs, rooms and workshops off the corridor, maple garden to the north; new in red, existing in grey' },
+      { src: 'projets/images/tsa-first-floor_1400.webp', w: 1400, h: 1718, legende: 'first floor — the single upper level, above the multi-purpose rooms' },
+      { src: 'projets/images/tsa-photo-01-hall-racks_1021.webp', w: 1021, h: 1004, legende: 'the warehouse as found — storage racks beneath the sawtooth roofs' },
+      { src: 'projets/images/tsa-photo-03-hall-yard_1009.webp', w: 1009, h: 1004, legende: 'as found — from inside the warehouse towards the yard, two figures in the opening against the light' },
+      { src: 'projets/images/tsa-photo-04-trusses_1021.webp', w: 1021, h: 1004, legende: 'as found — timber trusses and brick walls of the workshop wing, equipment in store' },
+      { src: 'projets/images/tsa-photo-02-roof-pallets_1033.webp', w: 1033, h: 1004, legende: 'as found — the roof structure over stacked pallets, timber and brick' },
+      { src: 'projets/images/tsa-photo-12-gate_953.webp', w: 953, h: 957, legende: 'as found — the warehouse gate onto the yard, painted brick under a metal roof' },
+      { src: 'projets/images/tsa-photo-06-brick-canopy_1001.webp', w: 1001, h: 1013, legende: 'as found — brick wall and metal canopy on the yard, a parked car' },
+      { src: 'projets/images/tsa-photo-09-alley_1009.webp', w: 1009, h: 1004, legende: 'as found — the alley along the sawtooth roofs, towards the neighbourhood' },
+      { src: 'projets/images/tsa-photo-07-hain-brick_1021.webp', w: 1021, h: 1004, legende: 'as found — the Hain at the foot of a brick gable' },
+      { src: 'projets/images/tsa-photo-11-hain-building_964.webp', w: 964, h: 945, legende: 'as found — the Hain along the building, the east flank to be freed' },
+      { src: 'projets/images/tsa-photo-08-hain-trees_1033.webp', w: 1033, h: 1004, legende: 'as found — trees over the Hain, the houses of the neighbourhood behind' },
+    ],
+    fiche: { lieu: "Braine-l'Alleud, Walloon Brabant", annee: '2024-2025', programme: 'conversion of a former warehouse into a cultural centre for young people — foyer and terrace, entrance hall, multi-purpose rooms and workshops, garden', statut: 'studio project, LOCI UCLouvain', equipe: 'project in a two-person team with Maëlis Alban' },
+    photographie: 'drawings: Côme Le Bozec and Maëlis Alban'
   },
   {
     slug: 'tanners-hall', titre: 'Tanners’ Hall',
