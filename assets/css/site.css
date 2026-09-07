@@ -4,7 +4,7 @@
    lightbox en trois cellules (titre | information | nom), liste en trois colonnes, page à trois colonnes.
    Points de rupture : 970 px et 680 px. Palette : fond #e6e7e8, cellule #fff, cellule grise #dcdcdc, actif #000. */
 
-html{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#000;-webkit-text-size-adjust:100%;box-sizing:border-box}
+html{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#000;background:#e6e7e8;-webkit-text-size-adjust:100%;box-sizing:border-box}
 *,*::before,*::after{box-sizing:inherit;margin:0;padding:0}
 body{background:#e6e7e8;font-size:20px;line-height:22px;font-weight:400;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 h1,h2,h3,p{font-size:20px;line-height:22px;font-weight:400}
@@ -27,6 +27,13 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid 
    SEUIL — page de garde galaxie (identité conservée)
    ================================================================== */
 html.js:not(.libre) body{overflow:hidden}
+/* avant l'entrée, le document porte la couleur de la galaxie. D'après les retours d'expérience sur Safari iOS 26
+   (1ar.io, nasedk.in, jahir.dev, forums Apple), la teinte des zones hors fenêtre (barre d'état en haut, barre d'adresse
+   et indicateur d'accueil en bas) est prise sur la page — élément fixed collé au bord, sinon fond de body (ou de html
+   selon les sources) — et theme-color n'y a plus d'effet observé ; les deux fonds sont posés par prudence.
+   Le fond revient au clair en 1 200 ms, avec la galaxie. */
+html.js:not(.entered),html.js:not(.entered) body{background:#050505}
+html.js,html.js body{transition:background-color 1200ms ease}
 #galaxie{position:fixed;inset:0;z-index:0;width:100%;height:100%;display:block;background:#050505}
 html.direct #galaxie,html:not(.js) #galaxie{display:none}
 #seuil{position:fixed;inset:0;z-index:3000;display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -39,6 +46,7 @@ html.direct #galaxie,html:not(.js) #galaxie{display:none}
 html.entered #seuil{pointer-events:none;opacity:0;transition:opacity 420ms ease-in-out}
 html.direct #seuil,html:not(.js) #seuil,#seuil[hidden]{display:none}
 html.entered #galaxie{opacity:0;transition:opacity 1200ms ease}
+html.libre #galaxie{display:none} /* filet si three.js n'a pas chargé : un élément fixe à opacité 0 est encore échantillonné */
 
 /* la page n'existe pas avant l'entrée ; elle apparaît en fondu, à 300 ms, en 600 ms */
 #page{display:none;position:relative;z-index:1}
@@ -237,7 +245,7 @@ html.tactile .prec,html.tactile .suiv{display:none}
 
 /* ---- mouvement réduit : les fondus restent, le flou disparaît au repos ---- */
 @media (prefers-reduced-motion:reduce){
-  .entete-inner,.lb-panneau,.depliant{transition:none}
+  html.js,html.js body,.entete-inner,.lb-panneau,.depliant{transition:none}
   html:not(.tactile) .grille .img-cadre img{filter:none;top:0;left:0;width:100%;height:100%}
   #seuil .entrer{animation:none;opacity:.8}
 }

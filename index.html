@@ -12,15 +12,18 @@
 <meta property="og:url" content="https://comelebozec.com/">
 <meta property="og:image" content="https://comelebozec.com/partage.png">
 <meta property="og:locale" content="fr_BE">
+<meta name="theme-color" content="#050505">
 <script>
 /* Avant le premier paint : js / entrée mémorisée pour la session / retour interne / ?seuil rejoue l'entrée.
    Le gestionnaire d'entrée est posé ici : le seuil est actif avant l'arrivée de three.js. */
 (function(){
   var d = document.documentElement; d.classList.add('js');
+  /* theme-color : barres sombres sur le seuil (Android Chrome, Safari iOS 15-18), claires une fois entré */
+  function clair(){ var m = document.querySelector('meta[name="theme-color"]'); if (m) m.content = '#e6e7e8'; }
   try {
     if (location.search.indexOf('seuil') > -1) { sessionStorage.removeItem('entre'); }
     else if (sessionStorage.getItem('entre') === '1' || (document.referrer && document.referrer.indexOf(location.origin) === 0)) {
-      d.classList.add('entered', 'direct', 'libre');
+      d.classList.add('entered', 'direct', 'libre'); clair();
     }
     if (sessionStorage.getItem('tactile') === '1') d.classList.add('tactile');
   } catch (e) {}
@@ -31,6 +34,7 @@
     d.classList.add('entered');
     try { sessionStorage.setItem('entre', '1'); } catch (e) {}
     dispatchEvent(new CustomEvent('entree'));
+    setTimeout(clair, matchMedia('(prefers-reduced-motion:reduce)').matches ? 0 : 1200);
     setTimeout(function(){ d.classList.add('libre'); var s = document.getElementById('seuil'); if (s) { s.hidden = true; s.inert = true; } }, 1500);
   };
 })();
