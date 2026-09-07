@@ -4,7 +4,7 @@
 window.PROJETS = [
   /* ---- projet réel : habiter, produire, partager — Berchem-Sainte-Agathe (atelier II, LOCI UCLouvain, 2025-2026) ---- */
   {
-    slug: 'habiter-produire-partager', titre: 'Habiter, produire, partager',
+    slug: 'dwelling-producing-sharing', titre: 'Dwelling, Producing, Sharing',
     description: 'In Berchem-Sainte-Agathe, six collective housing units are divided between two houses on either side of a food-producing garden, on a through plot at the heart of the urban block. The project sets out a gradation from public to private — the street, the great common, the common, the small common, the bedroom — and tightens the living rooms so that people come together in the shared spaces, around food production that links the dwellings to one another and to the neighbourhood.',
     texte: [
       'For seventy years, the modernisation of housing has meant enlarging private space ever further; a whole family could once fit into a single room. The project takes the opposite path and builds a gradation from public to common and then to private: the street and the market open to the neighbourhood, the great common of the garden and the greenhouse, the common of each house, the small common of a landing shared between a few households, and finally the bedroom. Each threshold is a place, not a door.',
@@ -38,7 +38,7 @@ window.PROJETS = [
     photographie: 'drawings: Côme Le Bozec'
   },
   {
-    slug: 'maison-du-marais', titre: 'Maison du Marais',
+    slug: 'marsh-house', titre: 'Marsh House',
     description: 'Set on stilts at the edge of a reed bed, the house brings together three volumes of charred timber around an open access gallery. The openings frame the water at seated height, the roof collects rainwater into a cistern, and the north façade closes almost entirely to hold off the winter wind.',
     couverture: { src: 'projets/images/fictif/photo-01_1280x720.jpg', w: 1280, h: 720 },
     diapos: [
@@ -50,7 +50,7 @@ window.PROJETS = [
     photographie: 'placeholder photographs — picsum.photos'
   },
   {
-    slug: 'halle-des-tanneurs', titre: 'Halle des Tanneurs',
+    slug: 'tanners-hall', titre: 'Tanners’ Hall',
     description: 'The Halle des Tanneurs turns a 1910 warehouse into a covered market and shared workshops. The metal roof frame is kept and painted white, an intermediate floor slots in between the trusses, and a new glazed roof gives back to the brick floor the light that successive extensions had taken from it.',
     couverture: { src: 'projets/images/fictif/photo-02_1280x692.jpg', w: 1280, h: 692 },
     diapos: [
@@ -62,7 +62,7 @@ window.PROJETS = [
     photographie: 'placeholder photographs — picsum.photos'
   },
   {
-    slug: 'tour-du-canal', titre: 'Tour du Canal',
+    slug: 'canal-tower', titre: 'Canal Tower',
     description: 'Twenty-four dual-aspect dwellings stacked over eight levels, on the edge of the canal. Each flat has a deep loggia that serves as a summer room; the pale brick façade is hollowed out to the south and smoothed to the north, and the ground floor holds a bicycle repair workshop opening onto the quay.',
     couverture: { src: 'projets/images/fictif/photo-03_1280x1918.jpg', w: 1280, h: 1918 },
     diapos: [
@@ -75,7 +75,7 @@ window.PROJETS = [
     photographie: 'placeholder photographs — picsum.photos'
   },
   {
-    slug: 'serre-urbaine', titre: 'Serre urbaine',
+    slug: 'rooftop-greenhouse', titre: 'Rooftop Greenhouse',
     description: 'On the roof of a car park, a market-garden greenhouse sixty metres long serves three shared rooms heated by the air of the crops. The glue-laminated timber structure carries reclaimed single-glazed frames; the greenhouse floor is a deck of tables, demountable, set to the height of the crops.',
     couverture: { src: 'projets/images/fictif/photo-04_1280x853.jpg', w: 1280, h: 853 },
     diapos: [
@@ -86,7 +86,7 @@ window.PROJETS = [
     photographie: 'placeholder photographs — picsum.photos'
   },
   {
-    slug: 'six-maisons-en-bande', titre: 'Six maisons en bande',
+    slug: 'six-terraced-houses', titre: 'Six Terraced Houses',
     description: 'Six terraced houses on a sloping plot, each offset by half a level from its neighbour. The reverse-pitched roofs draw a single broken line along the street; at the rear, the gardens are linked by a shared path running down to the retained orchard.',
     couverture: { src: 'projets/images/fictif/photo-05_1280x1600.jpg', w: 1280, h: 1600 },
     diapos: [
@@ -98,7 +98,7 @@ window.PROJETS = [
     photographie: 'placeholder photographs — picsum.photos'
   },
   {
-    slug: 'atelier-senne', titre: 'Atelier Senne',
+    slug: 'senne-workshop', titre: 'Senne Workshop',
     description: "A joinery workshop and its caretaker's dwelling, slipped into the depth of a Brussels urban block. The workshop volume is a timber shed with north-facing sawtooth roofs; the brick house leans against the party wall and looks onto the working yard through a single large window.",
     couverture: { src: 'projets/images/fictif/photo-06_1280x960.jpg', w: 1280, h: 960 },
     diapos: [
@@ -109,7 +109,7 @@ window.PROJETS = [
     photographie: 'placeholder photographs — picsum.photos'
   },
   {
-    slug: 'belvedere-de-la-dyle', titre: 'Belvédère de la Dyle',
+    slug: 'dyle-belvedere', titre: 'Dyle Belvedere',
     description: 'A timber platform of twelve square metres, carried on four piles, above the flood meadow. It is reached by a footbridge that becomes a stair; a bench runs along three sides and the fourth stays open to the river. The structure is designed to be submerged two weeks a year.',
     couverture: { src: 'projets/images/fictif/photo-07_1280x1280.jpg', w: 1280, h: 1280 },
     diapos: [
@@ -120,7 +120,7 @@ window.PROJETS = [
     photographie: 'placeholder photographs — picsum.photos'
   },
   {
-    slug: 'cabane-des-dunes', titre: 'Cabane des Dunes',
+    slug: 'dune-hut', titre: 'Dune Hut',
     description: 'Demountable beach shelter in marine plywood panels, assembled in two days by a team of four. The plan is a four-metre square; the roof lifts on one side to let in the west wind, and closes completely at the end of the season.',
     couverture: { src: 'projets/images/fictif/photo-08_1280x549.jpg', w: 1280, h: 549 },
     diapos: [

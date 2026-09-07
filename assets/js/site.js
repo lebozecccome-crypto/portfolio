@@ -1,6 +1,6 @@
 /* comelebozec.com — entrée depuis le seuil, en-tête rétractable, grille d'accueil, lightbox, liste des projets.
    Comportements repris du site de référence : en-tête qui se rétracte de 80 px au défilement (seuil 78 px, hystérésis 30 px),
-   images qui apparaissent en fondu une fois chargées, lightbox adressée par #slug&diapo-N (bouton retour = diapo précédente
+   images qui apparaissent en fondu une fois chargées, lightbox adressée par #slug&plate-N (bouton retour = diapo précédente
    puis fermeture), Échap à deux niveaux (panneau d'information, puis lightbox), moitiés d'écran = précédent / suivant. */
 (function(){
   const html = document.documentElement;
@@ -119,7 +119,7 @@
     majHash(pousser);
   }
   function majHash(pousser){
-    const url = location.pathname + location.search + '#' + courant.slug + '&diapo-' + (index + 1);
+    const url = location.pathname + location.search + '#' + courant.slug + '&plate-' + (index + 1);
     if (sansPush){ sansPush = false; history.replaceState({ lb: courant.slug, n: index }, '', url); return; }
     if (pousser) history.pushState({ lb: courant.slug, n: index }, '', url);
     else history.replaceState({ lb: courant.slug, n: index }, '', url);
@@ -181,8 +181,12 @@
   }, { passive:true });
   addEventListener('resize', () => { if (!ouverte) return; redim = true; requestAnimationFrame(() => { diapo.scrollTo({ left: index * diapo.clientWidth, behavior:'auto' }); requestAnimationFrame(() => { redim = false; }); }); });
 
-  /* ---- historique : #slug&diapo-N ; retour = diapo précédente, puis fermeture ---- */
-  function lireHash(){ const m = /^#([a-z0-9-]+)&diapo-(\d+)$/.exec(location.hash); return m ? { slug: m[1], n: parseInt(m[2], 10) - 1 } : null; }
+  /* ---- historique : #slug&plate-N ; retour = planche précédente, puis fermeture ----
+     ALIAS : les adresses françaises d'avant la traduction (#habiter-produire-partager, &diapo-N)
+     restent valables et ouvrent le même projet. */
+  const ALIAS = { 'habiter-produire-partager': 'dwelling-producing-sharing' };
+  function lireHash(){ const m = /^#([a-z0-9-]+)&(?:plate|diapo)-(\d+)$/.exec(location.hash);
+    return m ? { slug: ALIAS[m[1]] || m[1], n: parseInt(m[2], 10) - 1 } : null; }
   addEventListener('popstate', () => {
     const h = lireHash();
     if (h){ ouvrir(h.slug, h.n, true); }

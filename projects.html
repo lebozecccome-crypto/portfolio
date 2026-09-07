@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#e6e7e8">
+<title>project list — côme le bozec.</title>
+<meta name="description" content="project list — côme le bozec, architecture portfolio.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>
+(function(){
+  var d = document.documentElement; d.classList.add('js', 'entered', 'direct', 'libre');
+  try { sessionStorage.setItem('entre', '1'); if (sessionStorage.getItem('tactile') === '1') d.classList.add('tactile'); } catch (e) {}
+  function tactile(e){ if (e.pointerType === 'touch') { d.classList.add('tactile'); try { sessionStorage.setItem('tactile', '1'); } catch (err) {} removeEventListener('pointerdown', tactile, true); } }
+  addEventListener('pointerdown', tactile, { capture:true, passive:true });
+})();
+</script>
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body class="page-normale page-liste">
+
+<div id="page" tabindex="-1">
+  <header class="entete">
+    <div class="entete-inner">
+      <nav aria-label="Navigation">
+        <div class="rangee3">
+          <a class="lien gris" href="about.html">about</a>
+          <div class="espace">&nbsp;</div>
+          <a class="lien gris actif" href="projects.html" aria-current="page">project list</a>
+        </div>
+        <div class="rangee3">
+          <div class="espace">&nbsp;</div>
+          <a class="lien blanc" href="./">côme le bozec.</a>
+          <div class="espace">&nbsp;</div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <h1 class="sr">project list</h1>
+  <section class="liste" id="liste" aria-label="project list"></section>
+
+  <section class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="project" aria-hidden="true">
+    <div class="lightbox-inner">
+      <div class="lb-barre">
+        <div class="lb-titre"></div>
+        <div class="lb-info"><button type="button" aria-controls="lb-panneau">information</button></div>
+        <div class="lb-legende" aria-hidden="true"></div>
+        <div class="lb-espace" aria-hidden="true"></div>
+        <div class="lb-fermer"><button type="button" aria-label="close project">côme le bozec.</button></div>
+      </div>
+      <div class="diapo"></div>
+      <button class="prec" type="button" aria-label="previous plate"></button>
+      <button class="suiv" type="button" aria-label="next plate"></button>
+      <div class="lb-panneau" id="lb-panneau" aria-hidden="true">
+        <button class="lb-panneau-fermer-mobile" type="button">close</button>
+        <div class="lb-panneau-inner">
+          <div class="lb-panneau-tete">
+            <div class="lb-panneau-libelle">project</div>
+            <button class="lb-panneau-actions" type="button">close</button>
+          </div>
+          <div class="lb-panneau-corps">
+            <dl class="lb-meta"></dl>
+            <div class="lb-contenu">
+              <div class="lb-description"></div>
+              <div class="lb-photographie"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="sr lb-annonce" aria-live="polite"></p>
+    </div>
+  </section>
+</div>
+
+<script src="projets/projets.js"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>
