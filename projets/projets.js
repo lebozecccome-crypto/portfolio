@@ -34,7 +34,7 @@ window.PROJETS = [
       { src: 'projets/images/hpp-ref-molenbeek_407.webp', w: 407, h: 560, legende: "référence — hé architecture, molenbeek 2024 : la maison étendue par son toit" },
       { src: 'projets/images/hpp-ref-melbourne_457.webp', w: 457, h: 560, legende: "référence — austin maynard architects, melbourne 2022 : la coursive comme lieu de vie" }
     ],
-    fiche: { lieu: 'Berchem-Sainte-Agathe, Bruxelles', annee: '2025-2026', programme: 'six logements collectifs et leurs espaces communs — serre, buanderie, cuisine collective, jardin productif', surface: '1 100 m²', statut: "projet d'atelier, LOCI UCLouvain", equipe: 'atelier en binôme avec Hamza El Arja — projet présenté : Côme Le Bozec' },
+    fiche: { lieu: 'Berchem-Sainte-Agathe, Bruxelles', annee: '2025-2026', programme: 'six logements collectifs et leurs espaces communs — serre, buanderie, cuisine collective, jardin productif', surface: '1 100 m²', statut: "projet d'atelier, LOCI UCLouvain", equipe: 'analyse de site et volumétrie en binôme avec Hamza El Arja — bâtiment, documents et dessins : Côme Le Bozec' },
     photographie: 'dessins : Côme Le Bozec'
   },
   {
