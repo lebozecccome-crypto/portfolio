@@ -52,6 +52,11 @@ window.PROJETS = [
       { src: 'projets/images/tsa-site-plan_1400.webp', w: 1400, h: 846, legende: 'site plan — the Carimar site around its central yard, the Hain along the east edge, the neighbouring buildings' },
       { src: 'projets/images/tsa-ground-floor_1400.webp', w: 1400, h: 1718, legende: 'ground floor — foyer on the yard, entrance hall under the sawtooth roofs, rooms and workshops off the corridor, maple garden to the north; new in red, existing in grey' },
       { src: 'projets/images/tsa-first-floor_1400.webp', w: 1400, h: 1718, legende: 'first floor — the single upper level, above the multi-purpose rooms' },
+      { src: 'projets/images/tsa-map-situation_1400.webp', w: 1400, h: 2013, legende: 'situation plan, 1:6 000 — the site outlined in red, the Hain running north to south, railway line 124 to the east' },
+      { src: 'projets/images/tsa-map-connections_1174.webp', w: 1174, h: 1526, legende: 'connections, 1:15 000 — municipal roads and paths, railway line 124, the RAVeL greenway, bus stops, the Hain' },
+      { src: 'projets/images/tsa-map-land-use_1162.webp', w: 1162, h: 1543, legende: 'land use, 1:15 000 — housing, rural housing, mixed economic activity, public facilities; the warehouse in red' },
+      { src: 'projets/images/tsa-map-building-heights_1174.webp', w: 1174, h: 1456, legende: 'building heights, 1:15 000 — from single-storey to three storeys and more; the warehouse among the tallest' },
+      { src: 'projets/images/tsa-map-figure-ground_1162.webp', w: 1162, h: 1361, legende: 'figure-ground, 1:15 000 — the built fabric, the warehouse in red' },
       { src: 'projets/images/tsa-photo-01-hall-racks_1021.webp', w: 1021, h: 1004, legende: 'the warehouse as found — storage racks beneath the sawtooth roofs' },
       { src: 'projets/images/tsa-photo-03-hall-yard_1009.webp', w: 1009, h: 1004, legende: 'as found — from inside the warehouse towards the yard, two figures in the opening against the light' },
       { src: 'projets/images/tsa-photo-04-trusses_1021.webp', w: 1021, h: 1004, legende: 'as found — timber trusses and brick walls of the workshop wing, equipment in store' },
@@ -64,7 +69,7 @@ window.PROJETS = [
       { src: 'projets/images/tsa-photo-08-hain-trees_1033.webp', w: 1033, h: 1004, legende: 'as found — trees over the Hain, the houses of the neighbourhood behind' },
     ],
     fiche: { lieu: "Braine-l'Alleud, Walloon Brabant", annee: '2024-2025', programme: 'conversion of a former warehouse into a cultural centre for young people — foyer and terrace, entrance hall, multi-purpose rooms and workshops, garden', statut: 'studio project, LOCI UCLouvain', equipe: 'project in a two-person team with Maëlis Alban' },
-    photographie: 'drawings: Côme Le Bozec and Maëlis Alban'
+    photographie: 'drawings: Côme Le Bozec and Maëlis Alban — maps: Côme Le Bozec, from SPW Géoportail de la Wallonie data (CC BY 4.0)'
   },
   {
     slug: 'tanners-hall', titre: 'Tanners’ Hall',
