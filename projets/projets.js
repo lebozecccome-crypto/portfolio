@@ -12,7 +12,7 @@ window.PROJETS = [
       'A shared food production project links the dwellings: vegetable gardens in open ground, growing greenhouses and a greenhouse crowning each roof, which takes the sunniest floor while the dwellings are arranged beneath. The collective, set up as an association, runs the crops, the shared spaces and a monthly market open to the municipality: the project settles into the life of the neighbourhood and becomes one of its working parts.',
       'Two houses held by the garden in the depth of the plot; three structural systems: concrete ground floor with brick facing, timber post-and-beam, light greenhouse at the ridge.'
     ],
-    couverture: { src: 'projets/images/hpp-implantation_1400.webp', w: 1400, h: 1081, legende: 'two houses held by the productive garden, in the depth of the plot' },
+    couverture: { src: 'projets/images/hpp-cover-model_1400.webp', w: 1400, h: 1400, legende: 'the model — brick ground floor, timber upper floors, the greenhouse frame at the ridge' },
     diapos: [
       { src: 'projets/images/hpp-coupe-50_1400.webp', w: 1400, h: 1040, legende: 'the greenhouse crowns the dwellings — crops hung beneath the ridge, vegetable gardens on the terraces' },
       { src: 'projets/images/hpp-elevation_1400.webp', w: 1400, h: 313, legende: 'on the street, the project takes up the heights of its neighbours' },
@@ -24,6 +24,9 @@ window.PROJETS = [
       { src: 'projets/images/hpp-plan-r3-100_1400.webp', w: 1400, h: 1194, legende: 'on the top floor, the production greenhouse and its growing tables' },
       { src: 'projets/images/hpp-plan-r1_1400.webp', w: 1400, h: 827, legende: 'the first floor in detail, from the street to the garden' },
       { src: 'projets/images/hpp-axonometrie_906.webp', w: 906, h: 1152, legende: 'three structural systems — concrete and brick on the ground floor, timber post-and-beam, light greenhouse at the ridge' },
+      { src: 'projets/images/hpp-model-01-corner_1400.webp', w: 1400, h: 1867, legende: 'the model — brick ground floor, timber upper floors, the greenhouse frame at the ridge' },
+      { src: 'projets/images/hpp-model-02-street_1400.webp', w: 1400, h: 1867, legende: 'the model — the street elevation, the slatted timber façade over the open ground floor' },
+      { src: 'projets/images/hpp-model-03-garden_1400.webp', w: 1400, h: 1867, legende: 'the model — the garden side, the terraces and the greenhouse frame above' },
       { src: 'projets/images/hpp-croquis_800.webp', w: 800, h: 1357, legende: 'first intentions — the thresholds of the common, the market open to the neighbourhood' },
       { src: 'projets/images/hpp-cycle_1400.webp', w: 1400, h: 785, legende: 'the loop at work — produce, process, share, reinvest' },
       { src: 'projets/images/hpp-analyse-verts_1388.webp', w: 1388, h: 1261, legende: 'what the neighbourhood already offers — parks, collective vegetable gardens and playgrounds within 400 m of the site' },
@@ -31,6 +34,8 @@ window.PROJETS = [
       { src: 'projets/images/hpp-analyse-bati_1056.webp', w: 1056, h: 1095, legende: 'the massing of the urban fabric, from ground floor to fifteen metres' },
       { src: 'projets/images/hpp-narration_760.webp', w: 760, h: 927, legende: 'the cultivated municipality — the territory told through its gardens' },
       { src: 'projets/images/hpp-herbier_712.webp', w: 712, h: 937, legende: 'six spontaneous species recorded on site, from wild marjoram to purple foxglove' },
+      { src: 'projets/images/hpp-site-01-shed_1400.webp', w: 1400, h: 1050, legende: 'as found — inside an existing shed, racks and stored material' },
+      { src: 'projets/images/hpp-site-02-street_1400.webp', w: 1400, h: 934, legende: 'as found — the street front, the neighbouring houses and the passage to the plot' },
       { src: 'projets/images/hpp-ref-molenbeek_407.webp', w: 407, h: 560, legende: 'reference — hé architecture, molenbeek 2024: the house extended by its roof' },
       { src: 'projets/images/hpp-ref-melbourne_457.webp', w: 457, h: 560, legende: 'reference — austin maynard architects, melbourne 2022: the access gallery as a place to live' }
     ],
