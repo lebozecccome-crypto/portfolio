@@ -12,7 +12,7 @@ window.PROJETS = [
       'A shared food production project links the dwellings: vegetable gardens in open ground, growing greenhouses and a greenhouse crowning each roof, which takes the sunniest floor while the dwellings are arranged beneath. The collective, set up as an association, runs the crops, the shared spaces and a monthly market open to the municipality: the project settles into the life of the neighbourhood and becomes one of its working parts.',
       'Two houses held by the garden in the depth of the plot; three structural systems: concrete ground floor with brick facing, timber post-and-beam, light greenhouse at the ridge.'
     ],
-    couverture: { src: 'projets/images/hpp-cover-model_1400.webp', w: 1400, h: 1400, legende: 'the model — brick ground floor, timber upper floors, the greenhouse frame at the ridge' },
+    couverture: { src: 'projets/images/hpp-site-02-street_1400.webp', w: 1400, h: 934, legende: 'as found — the street front, the neighbouring houses and the passage to the plot' },
     diapos: [
       { src: 'projets/images/hpp-coupe-50_1400.webp', w: 1400, h: 1040, legende: 'the greenhouse crowns the dwellings — crops hung beneath the ridge, vegetable gardens on the terraces' },
       { src: 'projets/images/hpp-elevation_1400.webp', w: 1400, h: 313, legende: 'on the street, the project takes up the heights of its neighbours' },
