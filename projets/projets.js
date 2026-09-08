@@ -76,17 +76,26 @@ window.PROJETS = [
     fiche: { lieu: "Braine-l'Alleud, Walloon Brabant", annee: '2024-2025', programme: 'conversion of a former warehouse into a cultural centre for young people — foyer and terrace, entrance hall, multi-purpose rooms and workshops, garden', statut: 'studio project, LOCI UCLouvain', equipe: 'project in a two-person team with Maëlis Alban' },
     photographie: 'drawings: Côme Le Bozec and Maëlis Alban — maps: Côme Le Bozec, from SPW Géoportail de la Wallonie data (CC BY 4.0)'
   },
-  {
-    slug: 'tanners-hall', titre: 'Tanners’ Hall',
-    description: 'The Halle des Tanneurs turns a 1910 warehouse into a covered market and shared workshops. The metal roof frame is kept and painted white, an intermediate floor slots in between the trusses, and a new glazed roof gives back to the brick floor the light that successive extensions had taken from it.',
-    couverture: { src: 'projets/images/fictif/photo-02_1280x692.jpg', w: 1280, h: 692 },
-    diapos: [
-      { src: 'projets/images/fictif/photo-02_1280x692.jpg', w: 1280, h: 692 },
-      { src: 'projets/images/fictif/photo-04_1280x853.jpg', w: 1280, h: 853 },
-      { src: 'projets/images/fictif/photo-14_1280x853.jpg', w: 1280, h: 853 }
+    {
+    slug: 'house-on-rue-au-tiroir',
+    titre: 'House on Rue au Tiroir',
+    description: 'On Rue au Tiroir, a terraced house sits between two neighbours, the street on one side and, a few steps down, the garden on the other. A bookcase wall rises through every floor and carries the stair; long passages run through the house, so that the rooms connect freely and daylight reaches deep inside. On the roof, a second living room and a terrace facing due south.',
+    texte: [
+      'A terraced house between two neighbours, on ground that falls from the street to the garden. The project sets out to make the spaces flow into one another and to bring in as much daylight as possible. On the ground floor a long passage runs the length of the house: from the front door, along the living room and past the stair, to the dining room at the back and a few steps down to the garden. The rooms open off it, and light comes in at both ends.',
+      'A bookcase wall rises through the house, from the ground floor to the roof level, and carries the stair. The axonometric draws it apart from the house as a tall grid of shelves; in the section the flights climb against it one above the other, books, bottles and vases on the shelves beside them. Around it, on the first and second floors, two bedrooms and a bathroom on each; on the first floor the landing opens onto a terrace on the garden side, over the back of the ground floor.',
+      'The roof is rethought as a space of its own. At the top of the stair, a second living room; in front of it, on the street side, a terrace with a table and chairs, facing due south: a place to catch the sun and an extra living space. The section brings it all together: three floors and the roof level, the bookcase wall running through them, the stair climbing against it from bottom to top.',
     ],
-    fiche: { lieu: 'Braine-le-Comte', annee: '2023', programme: 'covered market and workshops', surface: '2,400 m²', statut: 'placeholder project — space reserved' },
-    photographie: 'placeholder photographs — picsum.photos'
+    couverture: { src: 'projets/images/rat-section_1400.webp', w: 1400, h: 794, legende: 'the section — the bookcase wall carries the stair from the ground floor to the roof level; the garden a few steps below the house on one side, the street on the other' },
+    diapos: [
+      { src: 'projets/images/rat-section_1400.webp', w: 1400, h: 794, legende: 'the section — the bookcase wall carries the stair from the ground floor to the roof level; the garden a few steps below the house on one side, the street on the other' },
+      { src: 'projets/images/rat-axonometric_1400.webp', w: 1400, h: 1115, legende: 'exploded axonometric — the house cut open and the bookcase wall drawn apart from it; the garden steps on one side, the street on the other' },
+      { src: 'projets/images/rat-plan-r0_1400.webp', w: 1400, h: 474, legende: 'ground floor — dining room on the garden side, living room on the street side, the stair between them; the passage runs from the front door to the garden steps' },
+      { src: 'projets/images/rat-plan-r1_1400.webp', w: 1400, h: 332, legende: 'first floor — two bedrooms and a bathroom around the stair; the landing opens onto a terrace on the garden side' },
+      { src: 'projets/images/rat-plan-r2_1400.webp', w: 1400, h: 332, legende: 'second floor — the same layout, two bedrooms and a bathroom around the stair' },
+      { src: 'projets/images/rat-plan-r3_1400.webp', w: 1400, h: 332, legende: 'roof level — a second living room at the top of the stair, and the terrace on the street side, facing due south' },
+    ],
+    fiche: { lieu: 'Rue au Tiroir', annee: '2024-2025', programme: 'terraced house — living and dining rooms, four bedrooms and two bathrooms, a second living room and a terrace on the roof', statut: 'studio project, LOCI UCLouvain' },
+    photographie: 'drawings: Côme Le Bozec'
   },
   {
     slug: 'canal-tower', titre: 'Canal Tower',
