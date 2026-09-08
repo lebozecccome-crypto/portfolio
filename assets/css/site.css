@@ -106,6 +106,11 @@ figcaption{position:relative;z-index:1;background:#fff}
   html:not(.tactile) .ligne:focus-within .img-cadre img{top:0;left:0;width:100%;height:100%;filter:blur(0)}
 }
 .ligne:focus-visible{outline:2px solid #000;outline-offset:-2px}
+/* projet en cours : la cellule reste floue, au survol comme au toucher, et ne s'ouvre pas */
+.ligne.en-cours{cursor:default}
+.grille .ligne.en-cours .img-cadre img,html:not(.tactile) .ligne.en-cours:hover .img-cadre img{top:-5%;left:-5%;width:110%;height:110%;filter:blur(30px)}
+.liste-titre.en-cours{cursor:default}
+.liste-titre.en-cours:hover{color:#000;background:#dcdcdc}
 
 /* ==================================================================
    LIGHTBOX — plan superposé : barre de cellules (titre | information | nom = sortie), diaporama, panneau d'information

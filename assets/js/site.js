@@ -43,7 +43,7 @@
   const grille = document.getElementById('grille');
   if (grille){
     grille.innerHTML = P.map((p, i) => `
-      <div class="ligne${i % 2 ? ' droite' : ''}" data-slug="${p.slug}" tabindex="0" role="link" aria-label="${echappe(p.titre)} — open project">
+      <div class="ligne${i % 2 ? ' droite' : ''}${p.enCours ? ' en-cours' : ''}" data-slug="${p.slug}"${p.enCours ? ' aria-label="' + echappe(p.titre) + '"' : ' tabindex="0" role="link" aria-label="' + echappe(p.titre) + ' — open project"'}>
         <div class="cellule-img"><article>
           <figure>
             <div class="titre-petit"><h1>${echappe(p.titre)}</h1></div>
@@ -56,8 +56,8 @@
         </article></div>
         <div class="cellule-titre"><div class="titre-grand" aria-hidden="true"><h1>${echappe(p.titre)}</h1></div></div>
       </div>`).join('');
-    grille.addEventListener('click', e => { const l = e.target.closest('.ligne'); if (l) ouvrir(l.dataset.slug, 0, false); });
-    grille.addEventListener('keydown', e => { const l = e.target.closest('.ligne'); if (l && (e.key === 'Enter' || e.key === ' ')){ e.preventDefault(); ouvrir(l.dataset.slug, 0, false); } });
+    grille.addEventListener('click', e => { const l = e.target.closest('.ligne'); if (l && !l.classList.contains('en-cours')) ouvrir(l.dataset.slug, 0, false); });
+    grille.addEventListener('keydown', e => { const l = e.target.closest('.ligne'); if (l && !l.classList.contains('en-cours') && (e.key === 'Enter' || e.key === ' ')){ e.preventDefault(); ouvrir(l.dataset.slug, 0, false); } });
     marquerChargees();
   }
 
@@ -67,7 +67,8 @@
     /* motif de la référence : ligne impaire = colonnes 1 et 3, ligne paire = colonne 2 */
     const rangs = []; let i = 0;
     while (i < P.length){ rangs.push([P[i], null, P[i+1] || null]); i += 2; if (i < P.length){ rangs.push([null, P[i], null]); i += 1; } }
-    const cellule = p => p ? `
+    const cellule = p => p && p.enCours ? `
+      <div class="liste-cellule"><div class="liste-titre en-cours" aria-disabled="true">${echappe(p.titre)}</div></div>` : p ? `
       <div class="liste-cellule">
         <button class="liste-titre" type="button" aria-expanded="false" aria-controls="dep-${p.slug}">${echappe(p.titre)}</button>
         <div class="depliant" id="dep-${p.slug}"><div>
@@ -125,7 +126,7 @@
     else history.replaceState({ lb: courant.slug, n: index }, '', url);
   }
   function ouvrir(slug, n, depuisHistorique){
-    const p = P.find(x => x.slug === slug); if (!p) return;
+    const p = P.find(x => x.slug === slug); if (!p || p.enCours || !p.diapos.length) return;
     const deja = ouverte && courant === p;
     courant = p;
     if (!deja){

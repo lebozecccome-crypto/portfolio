@@ -98,74 +98,14 @@ window.PROJETS = [
     photographie: 'drawings: Côme Le Bozec'
   },
   {
-    slug: 'canal-tower', titre: 'Canal Tower',
-    description: 'Twenty-four dual-aspect dwellings stacked over eight levels, on the edge of the canal. Each flat has a deep loggia that serves as a summer room; the pale brick façade is hollowed out to the south and smoothed to the north, and the ground floor holds a bicycle repair workshop opening onto the quay.',
-    couverture: { src: 'projets/images/fictif/photo-03_1280x1918.jpg', w: 1280, h: 1918 },
-    diapos: [
-      { src: 'projets/images/fictif/photo-03_1280x1918.jpg', w: 1280, h: 1918 },
-      { src: 'projets/images/fictif/photo-05_1280x1600.jpg', w: 1280, h: 1600 },
-      { src: 'projets/images/fictif/photo-13_1280x1918.jpg', w: 1280, h: 1918 },
-      { src: 'projets/images/fictif/photo-10_1280x800.jpg', w: 1280, h: 800 }
-    ],
-    fiche: { lieu: 'Brussels, Molenbeek', annee: '2022-2025', programme: '24 dwellings and a workshop', surface: '3,150 m²', statut: 'placeholder project — space reserved' },
-    photographie: 'placeholder photographs — picsum.photos'
-  },
-  {
-    slug: 'rooftop-greenhouse', titre: 'Rooftop Greenhouse',
-    description: 'On the roof of a car park, a market-garden greenhouse sixty metres long serves three shared rooms heated by the air of the crops. The glue-laminated timber structure carries reclaimed single-glazed frames; the greenhouse floor is a deck of tables, demountable, set to the height of the crops.',
-    couverture: { src: 'projets/images/fictif/photo-04_1280x853.jpg', w: 1280, h: 853 },
-    diapos: [
-      { src: 'projets/images/fictif/photo-04_1280x853.jpg', w: 1280, h: 853 },
-      { src: 'projets/images/fictif/photo-16_1280x960.jpg', w: 1280, h: 960 }
-    ],
-    fiche: { lieu: 'Anderlecht', annee: '2025', programme: 'productive greenhouse and shared spaces', surface: '1,100 m²', statut: 'placeholder project — space reserved' },
-    photographie: 'placeholder photographs — picsum.photos'
-  },
-  {
-    slug: 'six-terraced-houses', titre: 'Six Terraced Houses',
-    description: 'Six terraced houses on a sloping plot, each offset by half a level from its neighbour. The reverse-pitched roofs draw a single broken line along the street; at the rear, the gardens are linked by a shared path running down to the retained orchard.',
-    couverture: { src: 'projets/images/fictif/photo-05_1280x1600.jpg', w: 1280, h: 1600 },
-    diapos: [
-      { src: 'projets/images/fictif/photo-05_1280x1600.jpg', w: 1280, h: 1600 },
-      { src: 'projets/images/fictif/photo-11_1280x1024.jpg', w: 1280, h: 1024 },
-      { src: 'projets/images/fictif/photo-15_1280x640.jpg', w: 1280, h: 640 }
-    ],
-    fiche: { lieu: 'Uccle', annee: '2024', programme: 'six terraced houses', surface: '890 m²', statut: 'placeholder project — space reserved' },
-    photographie: 'placeholder photographs — picsum.photos'
-  },
-  {
-    slug: 'senne-workshop', titre: 'Senne Workshop',
-    description: "A joinery workshop and its caretaker's dwelling, slipped into the depth of a Brussels urban block. The workshop volume is a timber shed with north-facing sawtooth roofs; the brick house leans against the party wall and looks onto the working yard through a single large window.",
-    couverture: { src: 'projets/images/fictif/photo-06_1280x960.jpg', w: 1280, h: 960 },
-    diapos: [
-      { src: 'projets/images/fictif/photo-06_1280x960.jpg', w: 1280, h: 960 },
-      { src: 'projets/images/fictif/photo-12_1280x720.jpg', w: 1280, h: 720 }
-    ],
-    fiche: { lieu: 'Brussels, Cureghem', annee: '2021', programme: 'workshop and dwelling', surface: '620 m²', statut: 'placeholder project — space reserved' },
-    photographie: 'placeholder photographs — picsum.photos'
-  },
-  {
-    slug: 'dyle-belvedere', titre: 'Dyle Belvedere',
-    description: 'A timber platform of twelve square metres, carried on four piles, above the flood meadow. It is reached by a footbridge that becomes a stair; a bench runs along three sides and the fourth stays open to the river. The structure is designed to be submerged two weeks a year.',
-    couverture: { src: 'projets/images/fictif/photo-07_1280x1280.jpg', w: 1280, h: 1280 },
-    diapos: [
-      { src: 'projets/images/fictif/photo-07_1280x1280.jpg', w: 1280, h: 1280 },
-      { src: 'projets/images/fictif/photo-08_1280x549.jpg', w: 1280, h: 549 }
-    ],
-    fiche: { lieu: 'Dyle valley, Walloon Brabant', annee: '2023', programme: 'landscape belvedere', surface: '12 m²', statut: 'placeholder project — space reserved' },
-    photographie: 'placeholder photographs — picsum.photos'
-  },
-  {
-    slug: 'dune-hut', titre: 'Dune Hut',
-    description: 'Demountable beach shelter in marine plywood panels, assembled in two days by a team of four. The plan is a four-metre square; the roof lifts on one side to let in the west wind, and closes completely at the end of the season.',
-    couverture: { src: 'projets/images/fictif/photo-08_1280x549.jpg', w: 1280, h: 549 },
-    diapos: [
-      { src: 'projets/images/fictif/photo-08_1280x549.jpg', w: 1280, h: 549 },
-      { src: 'projets/images/fictif/photo-09_1280x1706.jpg', w: 1280, h: 1706 },
-      { src: 'projets/images/fictif/photo-01_1280x720.jpg', w: 1280, h: 720 }
-    ],
-    fiche: { lieu: 'De Panne, coast', annee: '2022', programme: 'seasonal shelter', surface: '16 m²', statut: 'placeholder project — space reserved' },
-    photographie: 'placeholder photographs — picsum.photos'
+    slug: 'work-in-progress',
+    titre: 'Work in progress',
+    enCours: true,
+    description: 'the next project is in preparation.',
+    couverture: { src: 'projets/images/fictif/photo-01_1280x720.jpg', w: 1280, h: 720 },
+    diapos: [],
+    fiche: { statut: 'in preparation' },
+    photographie: ''
   }
 ];
 
