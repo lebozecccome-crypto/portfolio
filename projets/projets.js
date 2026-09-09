@@ -28,7 +28,6 @@ window.PROJETS = [
       { src: 'projets/images/hpp-model-02-street_1400.webp', w: 1400, h: 1867, legende: 'the model — the street elevation, the slatted timber façade over the open ground floor' },
       { src: 'projets/images/hpp-model-03-garden_1400.webp', w: 1400, h: 1867, legende: 'the model — the garden side, the terraces and the greenhouse frame above' },
       { src: 'projets/images/hpp-croquis_800.webp', w: 800, h: 1357, legende: 'first intentions — the thresholds of the common, the market open to the neighbourhood' },
-      { src: 'projets/images/hpp-cycle_1400.webp', w: 1400, h: 785, legende: 'the loop at work — produce, process, share, reinvest' },
       { src: 'projets/images/hpp-analyses_3061.webp', w: 3061, h: 976, legende: 'site analysis, three readings of the neighbourhood — parks, collective vegetable gardens and playgrounds within 400 m; where people get their food, short supply chains and shops; the massing of the fabric, from ground floor to fifteen metres' },
       { src: 'projets/images/hpp-narration_760.webp', w: 760, h: 927, legende: 'the cultivated municipality — the territory told through its gardens' },
       { src: 'projets/images/hpp-herbier_712.webp', w: 712, h: 937, legende: 'six spontaneous species recorded on site, from wild marjoram to purple foxglove' },
