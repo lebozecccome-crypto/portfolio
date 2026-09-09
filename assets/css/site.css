@@ -84,6 +84,8 @@ html.entered:not(.direct) #page{animation:apparait 600ms ease-in-out 300ms both}
 .img-cadre{position:relative;width:100%;overflow:hidden;aspect-ratio:var(--ar,16/9);background:transparent}
 .img-cadre img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 500ms ease-in-out}
 .img-cadre img.ok{opacity:1}
+/* dessins sans fond : le blanc de l'image prend la couleur du fond, seuls les traits restent (photos exclues) */
+img.dessin{mix-blend-mode:multiply}
 .indicateur{position:absolute;top:50%;left:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border:1px solid #000;border-radius:50%;
   border-right-color:transparent;animation:tourne 1s linear infinite;opacity:.4}
 .img-cadre img.ok ~ .indicateur,.img-cadre img.ok + .indicateur{display:none}
