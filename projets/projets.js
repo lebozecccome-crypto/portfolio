@@ -14,6 +14,7 @@ window.PROJETS = [
     ],
     couverture: { src: 'projets/images/hpp-site-02-street_1400.webp', w: 1400, h: 934, photo: true, legende: 'as found — the street front, the neighbouring houses and the passage to the plot' },
     diapos: [
+      { src: 'projets/images/hpp-map-nolli_1400.webp', w: 1400, h: 1400, legende: 'figure-ground, 1:10 000 — the site in black in the fabric of Berchem-Sainte-Agathe' },
       { src: 'projets/images/hpp-coupe-50_1400.webp', w: 1400, h: 1040, legende: 'the greenhouse crowns the dwellings — crops hung beneath the ridge, vegetable gardens on the terraces' },
       { src: 'projets/images/hpp-elevation_1400.webp', w: 1400, h: 313, legende: 'on the street, the project takes up the heights of its neighbours' },
       { src: 'projets/images/hpp-coupe-urbaine_1400.webp', w: 1400, h: 420, legende: 'the crossing of the urban block — the project drops down to let the garden in' },
