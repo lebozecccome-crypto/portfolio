@@ -81,10 +81,12 @@ html.entered:not(.direct) #page{animation:apparait 600ms ease-in-out 300ms both}
 .ligne.droite .cellule-titre{order:1}
 .cellule-img{position:relative;min-width:0;overflow:hidden}
 .cellule-img figure{position:relative}
-.img-cadre{position:relative;width:100%;overflow:hidden;aspect-ratio:var(--ar,16/9);background:transparent}
+.img-cadre{position:relative;width:100%;overflow:hidden;aspect-ratio:var(--ar,16/9);background:#e6e7e8}
 .img-cadre img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 500ms ease-in-out}
 .img-cadre img.ok{opacity:1}
-/* dessins sans fond : le blanc de l'image prend la couleur du fond, seuls les traits restent (photos exclues) */
+/* dessins sans fond : le blanc de l'image prend la couleur du fond, seuls les traits restent (photos exclues).
+   La fusion se fait avec le fond du conteneur le plus proche : .img-cadre et .vue portent donc le gris du site,
+   car .diapo (z-index) et #page (z-index) isolent leurs descendants de l'arrière-plan de la page. */
 img.dessin{mix-blend-mode:multiply}
 .indicateur{position:absolute;top:50%;left:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border:1px solid #000;border-radius:50%;
   border-right-color:transparent;animation:tourne 1s linear infinite;opacity:.4}
@@ -137,7 +139,7 @@ html.lightbox-ouverte body{overflow:hidden}
 .diapo{position:absolute;top:26px;left:0;right:0;z-index:1;height:calc(100% - 26px);display:flex;overflow:hidden;scroll-snap-type:x mandatory;
   scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .diapo::-webkit-scrollbar{display:none}
-.vue{flex:0 0 100%;height:100%;scroll-snap-align:center;display:flex;align-items:center;justify-content:center;position:relative}
+.vue{flex:0 0 100%;height:100%;scroll-snap-align:center;display:flex;align-items:center;justify-content:center;position:relative;background:#e6e7e8}
 .vue img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block}
 .prec,.suiv{position:absolute;top:26px;z-index:10;width:50%;height:calc(100% - 26px);background:transparent}
 .lightbox.info-ouverte .prec,.lightbox.info-ouverte .suiv{height:calc(30% - 26px)}
