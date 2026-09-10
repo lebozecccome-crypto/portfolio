@@ -128,10 +128,10 @@ html.lightbox-ouverte body{overflow:hidden}
 .lightbox-inner{position:relative;width:100%;height:100%}
 .lb-barre{position:absolute;top:0;left:0;right:0;z-index:35;display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:26px auto;min-height:52px;pointer-events:none}
 .lb-titre{grid-column:1;grid-row:1;background:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:2px 4px;pointer-events:auto}
-.lb-legende{grid-column:1/3;grid-row:2;padding:2px 4px;background:#fff;white-space:normal;pointer-events:none}
+.lb-legende{grid-column:1;grid-row:2;padding:2px 4px;white-space:normal;pointer-events:none}
 .lb-legende:empty{display:none}
 .lb-espace{display:none;pointer-events:none}
-.lb-info{grid-column:2;grid-row:1;background:#dcdcdc;pointer-events:auto}
+.lb-info{grid-column:2;grid-row:2;align-self:start;background:#dcdcdc;pointer-events:auto}
 .lb-fermer{grid-column:3;grid-row:1;background:#fff;pointer-events:auto}
 .lb-info button,.lb-fermer button{display:block;width:100%;padding:2px 4px;text-align:left;transition:background 250ms ease-in-out,color 250ms ease-in-out}
 .lb-info button:hover,.lb-fermer button:hover{color:#fff;background:#000}
