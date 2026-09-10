@@ -104,7 +104,7 @@
   addEventListener('resize', mesurerBarre);
 
   function construire(p, n){
-    diapo.innerHTML = p.diapos.map((d, k) => `<div class="vue" data-n="${k}"><img class="${d.photo ? '' : 'dessin'}" src="${prefixe}${d.src}" width="${d.w}" height="${d.h}" alt="${echappe(d.legende || (p.titre + ', plate ' + (k+1)))}" loading="${Math.abs(k - n) <= 1 ? 'eager' : 'lazy'}" decoding="async"></div>`).join('');
+    diapo.innerHTML = p.diapos.map((d, k) => `<div class="vue" data-n="${k}"><img class="${d.photo ? '' : 'dessin'}"${d.echelle ? ` style="max-width:${Math.round(d.echelle*100)}%;max-height:${Math.round(d.echelle*100)}%"` : ''} src="${prefixe}${d.src}" width="${d.w}" height="${d.h}" alt="${echappe(d.legende || (p.titre + ', plate ' + (k+1)))}" loading="${Math.abs(k - n) <= 1 ? 'eager' : 'lazy'}" decoding="async"></div>`).join('');
     titre.textContent = p.titre;
     meta.innerHTML = CHAMPS.filter(([k]) => p.fiche && p.fiche[k]).map(([k, l]) => `<div class="lb-champ"><dt>${l}</dt><dd>${p.fiche[k]}</dd></div>`).join('');
     desc.innerHTML = (p.texte && p.texte.length ? p.texte : [p.description]).map(t => `<p>${t}</p>`).join('');
