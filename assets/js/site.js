@@ -98,6 +98,11 @@
         photo = lb.querySelector('.lb-photographie'), annonce = lb.querySelector('.lb-annonce');
   let courant = null, index = 0, ouverte = false, infoOuverte = false, sansPush = false, positionDefilement = 0, declencheur = null, redim = false;
 
+  /* la légende peut tenir sur plusieurs lignes : on mesure la barre et la planche descend dessous */
+  const barre = lb.querySelector('.lb-barre');
+  function mesurerBarre(){ if (barre) lb.style.setProperty('--barre', Math.max(52, barre.offsetHeight) + 'px'); }
+  addEventListener('resize', mesurerBarre);
+
   function construire(p, n){
     diapo.innerHTML = p.diapos.map((d, k) => `<div class="vue" data-n="${k}"><img class="${d.photo ? '' : 'dessin'}" src="${prefixe}${d.src}" width="${d.w}" height="${d.h}" alt="${echappe(d.legende || (p.titre + ', plate ' + (k+1)))}" loading="${Math.abs(k - n) <= 1 ? 'eager' : 'lazy'}" decoding="async"></div>`).join('');
     titre.textContent = p.titre;
@@ -116,6 +121,7 @@
     diapo.scrollTo({ left: n * diapo.clientWidth, behavior: matchMedia('(prefers-reduced-motion:reduce)').matches ? 'auto' : 'smooth' });
     const leg = courant.diapos[n].legende || '';
     if (legende){ legende.textContent = leg; legende.title = leg; }
+    mesurerBarre();
     if (annonce) annonce.textContent = `${courant.titre}, plate ${n+1} of ${N}${leg ? ' — ' + leg : ''}`;
     majHash(pousser);
   }
@@ -178,7 +184,7 @@
   diapo.addEventListener('scroll', () => {
     if (!ouverte || redim) return;
     const n = Math.round(diapo.scrollLeft / diapo.clientWidth);
-    if (n !== index && courant){ index = n; const leg = courant.diapos[n].legende || ''; if (legende){ legende.textContent = leg; legende.title = leg; } if (annonce) annonce.textContent = `${courant.titre}, plate ${n+1} of ${courant.diapos.length}${leg ? ' — ' + leg : ''}`; majHash(true); }
+    if (n !== index && courant){ index = n; const leg = courant.diapos[n].legende || ''; if (legende){ legende.textContent = leg; legende.title = leg; mesurerBarre(); } if (annonce) annonce.textContent = `${courant.titre}, plate ${n+1} of ${courant.diapos.length}${leg ? ' — ' + leg : ''}`; majHash(true); }
   }, { passive:true });
   addEventListener('resize', () => { if (!ouverte) return; redim = true; requestAnimationFrame(() => { diapo.scrollTo({ left: index * diapo.clientWidth, behavior:'auto' }); requestAnimationFrame(() => { redim = false; }); }); });
 

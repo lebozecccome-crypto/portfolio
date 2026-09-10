@@ -23,7 +23,7 @@ window.PROJETS = [
       { src: 'projets/images/hpp-plan-r2-100_1464.webp', w: 1464, h: 1246, legende: 'on the second floor, the dwellings beneath the greenhouse' },
       { src: 'projets/images/hpp-plan-r3-100_1464.webp', w: 1464, h: 1249, legende: 'on the top floor, the production greenhouse and its growing tables' },
       { src: 'projets/images/hpp-plan-r1_2787.webp', w: 2787, h: 1646, legende: 'the first floor in detail, from the street to the garden' },
-      { src: 'projets/images/hpp-axonometrie_906.webp', w: 906, h: 1152, legende: 'three structural systems — concrete and brick on the ground floor, timber post-and-beam, light greenhouse at the ridge' },
+      { src: 'projets/images/hpp-axonometrie-legende_906.webp', w: 906, h: 1152, legende: 'three structural systems — concrete and brick on the ground floor, timber post-and-beam, light greenhouse at the ridge' },
       { src: 'projets/images/hpp-model-01-corner_1400.webp', w: 1400, h: 1867, photo: true, legende: 'the model — brick ground floor, timber upper floors, the greenhouse frame at the ridge' },
       { src: 'projets/images/hpp-model-02-street_1400.webp', w: 1400, h: 1867, photo: true, legende: 'the model — the street elevation, the slatted timber façade over the open ground floor' },
       { src: 'projets/images/hpp-model-03-garden_1400.webp', w: 1400, h: 1867, photo: true, legende: 'the model — the garden side, the terraces and the greenhouse frame above' },
