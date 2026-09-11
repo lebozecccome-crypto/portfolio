@@ -1,6 +1,8 @@
 /* Contenu : un projet réel (habiter, produire, partager) puis des projets FICTIFS, sans aucun tiers réel — pour ces derniers seuls comptent l'emplacement, le volume et les rapports d'échelle des zones de texte et d'image.
    Chaque projet : titre (h1 de la colonne vide, 96 px), description (légende sous l'image, 40 à 70 mots),
-   couverture (image de la grille, rapport natif conservé), diapos (planches de la lightbox), fiche (panneau Information). */
+   couverture (image de la grille, rapport natif conservé), diapos (planches de la lightbox), fiche (panneau Information).
+   enCours : true pour l'espace réservé, ou un libellé pour un projet réel mis en pause — image floutée, projet
+   non ouvrable, le libellé remplace la description sous l'image et suit le titre dans la liste. */
 window.PROJETS = [
   /* ---- projet réel : habiter, produire, partager — Berchem-Sainte-Agathe (atelier II, LOCI UCLouvain, 2025-2026) ---- */
   {
@@ -79,6 +81,7 @@ window.PROJETS = [
     {
     slug: 'house-on-rue-au-tiroir',
     titre: 'House on Rue au Tiroir',
+    enCours: 'work in progress',   /* en pause : supprimer cette ligne pour rouvrir le projet */
     description: 'On Rue au Tiroir, a terraced house sits between two neighbours, the street on one side and, a few steps down, the garden on the other. A bookcase wall rises through every floor and carries the stair; long passages run through the house, so that the rooms connect freely and daylight reaches deep inside. On the roof, a second living room and a terrace facing due south.',
     texte: [
       'A terraced house between two neighbours, on ground that falls from the street to the garden. The project sets out to make the spaces flow into one another and to bring in as much daylight as possible. On the ground floor a long passage runs the length of the house: from the front door, along the living room and past the stair, to the dining room at the back and a few steps down to the garden. The rooms open off it, and light comes in at both ends.',

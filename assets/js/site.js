@@ -43,7 +43,7 @@
   const grille = document.getElementById('grille');
   if (grille){
     grille.innerHTML = P.map((p, i) => `
-      <div class="ligne${i % 2 ? ' droite' : ''}${p.enCours ? ' en-cours' : ''}" data-slug="${p.slug}"${p.enCours ? ' aria-label="' + echappe(p.titre) + '"' : ' tabindex="0" role="link" aria-label="' + echappe(p.titre) + ' — open project"'}>
+      <div class="ligne${i % 2 ? ' droite' : ''}${p.enCours ? ' en-cours' : ''}" data-slug="${p.slug}"${p.enCours ? ' aria-label="' + echappe(p.titre) + (typeof p.enCours === 'string' ? ' — ' + echappe(p.enCours) : '') + '"' : ' tabindex="0" role="link" aria-label="' + echappe(p.titre) + ' — open project"'}>
         <div class="cellule-img"><article>
           <figure>
             <div class="titre-petit"><h1>${echappe(p.titre)}</h1></div>
@@ -52,7 +52,7 @@
               <span class="indicateur" aria-hidden="true"></span>
             </div>
           </figure>
-          <figcaption><div class="legende"><p>${p.description}</p></div></figcaption>
+          <figcaption><div class="legende"><p>${typeof p.enCours === 'string' ? echappe(p.enCours) : p.description}</p></div></figcaption>
         </article></div>
         <div class="cellule-titre"><div class="titre-grand" aria-hidden="true"><h1>${echappe(p.titre)}</h1></div></div>
       </div>`).join('');
@@ -68,7 +68,7 @@
     const rangs = []; let i = 0;
     while (i < P.length){ rangs.push([P[i], null, P[i+1] || null]); i += 2; if (i < P.length){ rangs.push([null, P[i], null]); i += 1; } }
     const cellule = p => p && p.enCours ? `
-      <div class="liste-cellule"><div class="liste-titre en-cours" aria-disabled="true">${echappe(p.titre)}</div></div>` : p ? `
+      <div class="liste-cellule"><div class="liste-titre en-cours" aria-disabled="true">${echappe(p.titre)}${typeof p.enCours === 'string' ? ' — ' + echappe(p.enCours) : ''}</div></div>` : p ? `
       <div class="liste-cellule">
         <button class="liste-titre" type="button" aria-expanded="false" aria-controls="dep-${p.slug}">${echappe(p.titre)}</button>
         <div class="depliant" id="dep-${p.slug}"><div>
