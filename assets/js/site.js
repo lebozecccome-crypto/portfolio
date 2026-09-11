@@ -68,7 +68,7 @@
     const rangs = []; let i = 0;
     while (i < P.length){ rangs.push([P[i], null, P[i+1] || null]); i += 2; if (i < P.length){ rangs.push([null, P[i], null]); i += 1; } }
     const cellule = p => p && p.enCours ? `
-      <div class="liste-cellule"><div class="liste-titre en-cours" aria-disabled="true">${echappe(p.titre)}${typeof p.enCours === 'string' ? ' — ' + echappe(p.enCours) : ''}</div></div>` : p ? `
+      <div class="liste-cellule"><div class="liste-titre en-cours" aria-disabled="true"${typeof p.enCours === 'string' ? ' title="' + echappe(p.enCours) + '"' : ''}>${echappe(p.titre)}</div></div>` : p ? `
       <div class="liste-cellule">
         <button class="liste-titre" type="button" aria-expanded="false" aria-controls="dep-${p.slug}">${echappe(p.titre)}</button>
         <div class="depliant" id="dep-${p.slug}"><div>
@@ -190,8 +190,9 @@
 
   /* ---- historique : #slug&plate-N ; retour = planche précédente, puis fermeture ----
      ALIAS : les adresses françaises d'avant la traduction (#habiter-produire-partager, &diapo-N)
+     et l'ancien nom de la maison de la rue au Tiroir (#house-on-rue-au-tiroir)
      restent valables et ouvrent le même projet. */
-  const ALIAS = { 'habiter-produire-partager': 'dwelling-producing-sharing' };
+  const ALIAS = { 'habiter-produire-partager': 'dwelling-producing-sharing', 'house-on-rue-au-tiroir': 'home-from-the-street-to-the-drawer' };
   function lireHash(){ const m = /^#([a-z0-9-]+)&(?:plate|diapo)-(\d+)$/.exec(location.hash);
     return m ? { slug: ALIAS[m[1]] || m[1], n: parseInt(m[2], 10) - 1 } : null; }
   addEventListener('popstate', () => {

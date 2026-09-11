@@ -2,7 +2,7 @@
    Chaque projet : titre (h1 de la colonne vide, 96 px), description (légende sous l'image, 40 à 70 mots),
    couverture (image de la grille, rapport natif conservé), diapos (planches de la lightbox), fiche (panneau Information).
    enCours : true pour l'espace réservé, ou un libellé pour un projet réel mis en pause — image floutée, projet
-   non ouvrable, le libellé remplace la description sous l'image et suit le titre dans la liste. */
+   non ouvrable, le libellé remplace la description sous l'image et sert d'infobulle dans la liste. */
 window.PROJETS = [
   /* ---- projet réel : habiter, produire, partager — Berchem-Sainte-Agathe (atelier II, LOCI UCLouvain, 2025-2026) ---- */
   {
@@ -79,8 +79,8 @@ window.PROJETS = [
     photographie: 'drawings: Côme Le Bozec and Maëlis Alban — maps: Côme Le Bozec, from SPW Géoportail de la Wallonie data (CC BY 4.0)'
   },
     {
-    slug: 'house-on-rue-au-tiroir',
-    titre: 'House on Rue au Tiroir',
+    slug: 'home-from-the-street-to-the-drawer',
+    titre: 'Home, From the Street to the Drawer',
     enCours: 'work in progress',   /* en pause : supprimer cette ligne pour rouvrir le projet */
     description: 'On Rue au Tiroir, a terraced house sits between two neighbours, the street on one side and, a few steps down, the garden on the other. A bookcase wall rises through every floor and carries the stair; long passages run through the house, so that the rooms connect freely and daylight reaches deep inside. On the roof, a second living room and a terrace facing due south.',
     texte: [
