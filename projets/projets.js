@@ -15,9 +15,9 @@ window.PROJETS = [
     couverture: { src: 'projets/images/hpp-site-02-street_1400.webp', w: 1400, h: 934, photo: true, legende: 'as found — the street front, the neighbouring houses and the passage to the plot' },
     diapos: [
       { src: 'projets/images/hpp-map-nolli_1400.webp', w: 1400, h: 1400, legende: 'figure-ground, 1:10 000 — the site in black in the fabric of Berchem-Sainte-Agathe' },
-      { src: 'projets/images/hpp-coupe-50_2787.webp', w: 2787, h: 2070, legende: 'the greenhouse crowns the dwellings — crops hung beneath the ridge, vegetable gardens on the terraces' },
-      { src: 'projets/images/hpp-elevation_2800.webp', w: 2800, h: 626, legende: 'on the street, the project takes up the heights of its neighbours' },
       { src: 'projets/images/hpp-implantation_2800.webp', w: 2800, h: 2162, legende: 'site plan — the building and the productive garden in the depth of the plot' },
+      { src: 'projets/images/hpp-elevation_2800.webp', w: 2800, h: 626, legende: 'on the street, the project takes up the heights of its neighbours' },
+      { src: 'projets/images/hpp-coupe-50_2787.webp', w: 2787, h: 2070, legende: 'the greenhouse crowns the dwellings — crops hung beneath the ridge, vegetable gardens on the terraces' },
       { src: 'projets/images/hpp-plan-rdc-100_1466.webp', w: 1466, h: 1251, legende: 'on the ground floor, the shared spaces open level with the garden' },
       { src: 'projets/images/hpp-plan-r1-100_1462.webp', w: 1462, h: 1252, legende: 'on the first floor, the bedrooms and the shared terrace' },
       { src: 'projets/images/hpp-plan-r2-100_1464.webp', w: 1464, h: 1246, legende: 'on the second floor, the dwellings beneath the greenhouse' },
