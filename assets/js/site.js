@@ -104,18 +104,37 @@
   addEventListener('resize', mesurerBarre);
 
   function construire(p, n){
-    diapo.innerHTML = p.diapos.map((d, k) => `<div class="vue" data-n="${k}"><img class="${d.photo ? '' : 'dessin'}"${d.echelle ? ` style="max-width:${Math.round(d.echelle*100)}%;max-height:${Math.round(d.echelle*100)}%"` : ''} src="${prefixe}${d.src}" width="${d.w}" height="${d.h}" alt="${echappe(d.legende || (p.titre + ', plate ' + (k+1)))}" loading="${Math.abs(k - n) <= 1 ? 'eager' : 'lazy'}" decoding="async"></div>`).join('');
+    diapo.innerHTML = p.diapos.map((d, k) => {
+      const label = echappe(d.legende || (p.titre + ', plate ' + (k+1)));
+      const contenu = d.animation
+        ? `<iframe class="animation-charpente" data-src="${prefixe}${d.src}" title="${label}" sandbox="allow-scripts"></iframe>`
+        : `<img class="${d.photo ? '' : 'dessin'}"${d.echelle ? ` style="max-width:${d.echelle*100}%;max-height:${d.echelle*100}%"` : ''} src="${prefixe}${d.src}" width="${d.w}" height="${d.h}" alt="${label}" loading="${Math.abs(k - n) <= 1 ? 'eager' : 'lazy'}" decoding="async">`;
+      return `<div class="vue" data-n="${k}">${contenu}</div>`;
+    }).join('');
+    diapo.querySelectorAll('iframe').forEach(frame => frame.addEventListener('load', synchroniserAnimation));
     titre.textContent = p.titre;
     meta.innerHTML = CHAMPS.filter(([k]) => p.fiche && p.fiche[k]).map(([k, l]) => `<div class="lb-champ"><dt>${l}</dt><dd>${p.fiche[k]}</dd></div>`).join('');
     desc.innerHTML = (p.texte && p.texte.length ? p.texte : [p.description]).map(t => `<p>${t}</p>`).join('');
     photo.textContent = p.photographie || '';
     marquerChargees();
   }
+  function synchroniserAnimation(){
+    const animee = ouverte && !!courant?.diapos[index]?.animation;
+    lb.classList.toggle('animation-active', !!animee);
+    diapo.querySelectorAll('iframe').forEach(frame => {
+      const active = !!animee && Number(frame.parentElement.dataset.n) === index && !infoOuverte;
+      if (active && !frame.hasAttribute('src')) frame.src = frame.dataset.src;
+      if (frame.hasAttribute('src')) frame.contentWindow.postMessage({ type:'portfolio-animation', active }, '*');
+      frame.tabIndex = active ? 0 : -1;
+      frame.inert = !active;
+    });
+  }
   function aller(n, pousser){
     if (!courant) return;
     const N = courant.diapos.length;
     n = ((n % N) + N) % N;                                  /* bouclage : jamais de cul-de-sac */
     index = n;
+    synchroniserAnimation();
     const vue = diapo.querySelector(`.vue[data-n="${n}"]`);
     if (vue){ const suiv = diapo.querySelector(`.vue[data-n="${(n+1) % N}"] img`); if (suiv) suiv.loading = 'eager'; }
     diapo.scrollTo({ left: n * diapo.clientWidth, behavior: matchMedia('(prefers-reduced-motion:reduce)').matches ? 'auto' : 'smooth' });
@@ -156,6 +175,7 @@
   function fermer(){
     if (!ouverte) return;
     ouverte = false;
+    synchroniserAnimation();
     fermerInfo();
     lb.classList.remove('visible');
     html.classList.remove('lightbox-ouverte');
@@ -166,8 +186,17 @@
     if (declencheur && declencheur.focus) declencheur.focus({ preventScroll:true });
     courant = null;
   }
-  function ouvrirInfo(){ infoOuverte = true; lb.classList.add('info-ouverte'); panneau.setAttribute('aria-hidden', 'false'); }
-  function fermerInfo(){ infoOuverte = false; lb.classList.remove('info-ouverte'); panneau.setAttribute('aria-hidden', 'true'); }
+  function ouvrirInfo(){ infoOuverte = true; lb.classList.add('info-ouverte'); panneau.setAttribute('aria-hidden', 'false'); synchroniserAnimation(); }
+  function fermerInfo(){ infoOuverte = false; lb.classList.remove('info-ouverte'); panneau.setAttribute('aria-hidden', 'true'); synchroniserAnimation(); }
+
+  addEventListener('message', e => {
+    if (!ouverte || !courant.diapos[index].animation) return;
+    const frame = diapo.querySelector(`.vue[data-n="${index}"] iframe`);
+    if (!frame || e.source !== frame.contentWindow || e.data?.type !== 'portfolio-navigation') return;
+    if (e.data.key === 'Escape'){ if (infoOuverte) fermerInfo(); else fermer(); }
+    else if (e.data.key === 'ArrowLeft') aller(index - 1, true);
+    else if (e.data.key === 'ArrowRight') aller(index + 1, true);
+  });
 
   infoBtn.querySelector('button').addEventListener('click', () => infoOuverte ? fermerInfo() : ouvrirInfo());
   lb.querySelector('.prec').addEventListener('click', () => aller(index - 1, true));
@@ -184,7 +213,7 @@
   diapo.addEventListener('scroll', () => {
     if (!ouverte || redim) return;
     const n = Math.round(diapo.scrollLeft / diapo.clientWidth);
-    if (n !== index && courant){ index = n; const leg = courant.diapos[n].legende || ''; if (legende){ legende.textContent = leg; legende.title = leg; mesurerBarre(); } if (annonce) annonce.textContent = `${courant.titre}, plate ${n+1} of ${courant.diapos.length}${leg ? ' — ' + leg : ''}`; majHash(true); }
+    if (n !== index && courant){ index = n; synchroniserAnimation(); const leg = courant.diapos[n].legende || ''; if (legende){ legende.textContent = leg; legende.title = leg; mesurerBarre(); } if (annonce) annonce.textContent = `${courant.titre}, plate ${n+1} of ${courant.diapos.length}${leg ? ' — ' + leg : ''}`; majHash(true); }
   }, { passive:true });
   addEventListener('resize', () => { if (!ouverte) return; redim = true; requestAnimationFrame(() => { diapo.scrollTo({ left: index * diapo.clientWidth, behavior:'auto' }); requestAnimationFrame(() => { redim = false; }); }); });
 

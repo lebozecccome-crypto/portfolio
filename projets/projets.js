@@ -103,17 +103,24 @@ window.PROJETS = [
   {
     slug: 'family-house-lancieux',
     titre: 'Family House in Lancieux',
-    description: 'Environmental studies for a family house in Lancieux.',
+    description: 'Environmental and timber-structure studies for a family house in Lancieux.',
+    texte: [
+      'Seasonal sunlight, incident solar energy, local wind and daylight are examined alongside the timber frame and selected structural analyses.',
+      'The structural studies come from an exploratory Karamba3D model with assumed C24 timber and rigid connections (S0). G denotes dead load and S denotes snow. The animation amplifies the static displacement field under G + S from 0 to 30 times; the maximum sampled displacement is 30.8 mm. Its colours show displacement, resultant bending moment or roof loads. The separate local bending-moment diagram uses 1.35 G + 1.50 S and a diagram scale of 0.12 m per kN\u00b7m.'
+    ],
     couverture: { src: 'projets/images/lancieux/lancieux-annual-solar.webp', w: 2800, h: 1610, photo: true },
     diapos: [
-      { src: 'projets/images/lancieux/lancieux-sun-paths.webp', w: 2540, h: 2540, photo: true },
-      { src: 'projets/images/lancieux/lancieux-section-summer.webp', w: 1680, h: 885, photo: true },
-      { src: 'projets/images/lancieux/lancieux-section-equinox.webp', w: 1680, h: 885, photo: true },
-      { src: 'projets/images/lancieux/lancieux-section-winter.webp', w: 1680, h: 885, photo: true },
-      { src: 'projets/images/lancieux/lancieux-annual-solar.webp', w: 2800, h: 1610, photo: true },
-      { src: 'projets/images/lancieux/lancieux-wind-southwest.webp', w: 2370, h: 2370, photo: true },
-      { src: 'projets/images/lancieux/lancieux-wind-south.webp', w: 2370, h: 2370, photo: true },
-      { src: 'projets/images/lancieux/lancieux-daylight.webp', w: 2800, h: 931, photo: true }
+      { src: 'projets/images/lancieux/lancieux-sun-paths.webp', w: 2540, h: 2540, photo: true, echelle: 1/3, legende: 'seasonal sun paths \u2014 June, March and December \u00b7 solar time' },
+      { src: 'projets/images/lancieux/lancieux-section-summer.webp', w: 1680, h: 885, photo: true, echelle: 1/3, legende: 'summer solstice \u2014 north\u2013south section \u00b7 solar noon altitude 64.8\u00b0' },
+      { src: 'projets/images/lancieux/lancieux-section-equinox.webp', w: 1680, h: 885, photo: true, echelle: 1/3, legende: 'spring equinox \u2014 north\u2013south section \u00b7 solar noon altitude 41.8\u00b0' },
+      { src: 'projets/images/lancieux/lancieux-section-winter.webp', w: 1680, h: 885, photo: true, echelle: 1/3, legende: 'winter solstice \u2014 north\u2013south section \u00b7 solar noon altitude 18.0\u00b0' },
+      { src: 'projets/images/lancieux/lancieux-annual-solar.webp', w: 2800, h: 1610, photo: true, echelle: 1/3, legende: 'annual solar exposure \u2014 roofs, fa\u00e7ades and ground \u00b7 0\u20131,600 kWh/m\u00b2' },
+      { src: 'projets/images/lancieux/lancieux-wind-southwest.webp', w: 2370, h: 2370, photo: true, echelle: 1/3, legende: 'southwest wind \u2014 speed 1.50 m above local ground \u00b7 0\u20135 m/s' },
+      { src: 'projets/images/lancieux/lancieux-wind-south.webp', w: 2370, h: 2370, photo: true, echelle: 1/3, legende: 'south wind \u2014 speed 1.50 m above local ground \u00b7 0\u20135 m/s' },
+      { src: 'projets/images/lancieux/lancieux-daylight.webp', w: 2800, h: 931, photo: true, echelle: 1/3, legende: 'ground-floor daylight factor \u2014 overcast sky \u00b7 0.80 m above floor \u00b7 0\u201310+%' },
+      { src: 'projets/images/lancieux/lancieux-timber-structure.svg', w: 2130, h: 935, photo: true, echelle: 1/3, legende: 'timber structure \u2014 267 members, shown with their modelled sections' },
+      { src: 'projets/images/lancieux/lancieux-timber-animation.html', animation: true, legende: 'timber frame in motion \u2014 dead load + snow \u00b7 static deformation amplified \u00d70\u201330' },
+      { src: 'projets/images/lancieux/lancieux-bending-moment.svg', w: 1564, h: 932, photo: true, echelle: 1/3, legende: 'bending moment My \u2014 bay F06\u2013F08 \u00b7 blue \u221210 to orange +10 kN\u00b7m \u00b7 1.35G + 1.50S' }
     ],
     fiche: { lieu: 'Lancieux, France', programme: 'family house' }
   },
