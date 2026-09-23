@@ -113,17 +113,26 @@ window.PROJETS = [
     diapos: [
       { src: 'projets/images/lancieux/lancieux-presentation.png', w: 1536, h: 1024, photo: true, legende: 'garden view' },
       { src: 'projets/images/lancieux/lancieux-sun-paths.webp', w: 2540, h: 2540, photo: true, echelle: 2/3, legende: 'sun paths' },
-      { groupe: 'solaire', legende: 'seasonal sunlight', images: [
-        { src: 'projets/images/lancieux/lancieux-section-summer.webp', w: 1680, h: 885, photo: true, legende: 'summer \u00b7 64.8\u00b0' },
-        { src: 'projets/images/lancieux/lancieux-section-equinox.webp', w: 1680, h: 885, photo: true, legende: 'equinox \u00b7 41.8\u00b0' },
-        { src: 'projets/images/lancieux/lancieux-section-winter.webp', w: 1680, h: 885, photo: true, legende: 'winter \u00b7 18.0\u00b0' }
+      { groupe: 'solaire', legende: 'seasonal sunlight \u00b7 solar noon', images: [
+        { src: 'projets/images/lancieux/lancieux-section-summer.webp', w: 1680, h: 885, photo: true, legende: 'summer solstice \u00b7 21\u00a0June \u00b7 64.8\u00b0' },
+        { src: 'projets/images/lancieux/lancieux-section-equinox.webp', w: 1680, h: 885, photo: true, legende: 'spring equinox \u00b7 21\u00a0March \u00b7 41.8\u00b0' },
+        { src: 'projets/images/lancieux/lancieux-section-winter.webp', w: 1680, h: 885, photo: true, legende: 'winter solstice \u00b7 21\u00a0December \u00b7 18.0\u00b0' }
       ] },
-      { src: 'projets/images/lancieux/lancieux-annual-solar.webp', w: 2800, h: 1610, photo: true, echelle: 2/3, legende: 'annual solar exposure \u00b7 0\u20131,600 kWh/m\u00b2' },
-      { groupe: 'vent', legende: 'wind \u00b7 0\u20135 m/s', images: [
+      { src: 'projets/images/lancieux/lancieux-annual-solar.webp', w: 2800, h: 1610, photo: true, echelle: 2/3, legende: 'annual solar exposure', bareme: {
+        titre: 'Annual solar irradiation', unite: 'kWh/m\u00b2', graduations: ['0', '400', '800', '1,200', '1,600'],
+        couleurs: ['rgb(27% 2% 50%) 0%', 'rgb(47% 2% 55%) 20%', 'rgb(90% 3% 23%) 40%', 'rgb(100% 25% 1.5%) 60%', 'rgb(100% 65% 1%) 80%', 'rgb(100% 100% 3.5%) 100%']
+      } },
+      { groupe: 'vent', legende: 'wind', bareme: {
+        titre: 'Wind speed', unite: 'm/s', graduations: ['0', '1', '2', '3', '4', '5'],
+        couleurs: ['#4825ad 0%', '#443ed7 20%', '#448aeb 40%', '#30c5c9 56%', '#93dca0 72%', '#f5ed7c 87%', '#ff8146 100%']
+      }, images: [
         { src: 'projets/images/lancieux/lancieux-wind-southwest.webp', w: 2370, h: 2370, photo: true, legende: 'southwest' },
         { src: 'projets/images/lancieux/lancieux-wind-south.webp', w: 2370, h: 2370, photo: true, legende: 'south' }
       ] },
-      { src: 'projets/images/lancieux/lancieux-daylight.webp', w: 2800, h: 931, photo: true, echelle: 2/3, legende: 'daylight factor \u00b7 0\u201310+%' },
+      { src: 'projets/images/lancieux/lancieux-daylight.webp', w: 2800, h: 931, photo: true, echelle: 4/9, legende: 'daylight factor', bareme: {
+        titre: 'Daylight factor', unite: '%', graduations: ['0', '2', '4', '6', '8', '10+'],
+        couleurs: ['#fffde9 0%', '#fff6b2 15%', '#ffe675 35%', '#ffd23a 55%', '#ffae2e 75%', '#fa6924 100%']
+      } },
       { src: 'projets/images/lancieux/lancieux-timber-structure.svg', w: 2130, h: 935, photo: true, echelle: 2/3, legende: 'timber frame' },
       { src: 'projets/images/lancieux/lancieux-timber-animation.html?v=2', animation: true, legende: 'timber frame \u00b7 G + snow' }
     ],

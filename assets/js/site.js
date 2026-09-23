@@ -118,7 +118,13 @@
         : d.images
           ? `<div class="planche-composee ${d.groupe}">${d.images.map(im => `<figure>${image(im, im.legende)}<figcaption>${echappe(im.legende)}</figcaption></figure>`).join('')}</div>`
           : image(d, d.legende || (p.titre + ', plate ' + (k+1)));
-      return `<div class="vue${d.images ? ' vue-composee' : ''}" data-n="${k}">${contenu}</div>`;
+      const b = d.bareme;
+      const bareme = b ? `<div class="echelle-couleurs" role="img" aria-label="${echappe(b.titre + ', ' + b.unite + ': ' + b.graduations.join(', '))}">
+        <div class="echelle-titre">${echappe(b.titre)} <span>${echappe(b.unite)}</span></div>
+        <div class="echelle-degrade" style="background:linear-gradient(90deg,${b.couleurs.join(',')})" aria-hidden="true"></div>
+        <div class="echelle-graduations" aria-hidden="true">${b.graduations.map((g, i) => `<span style="left:${100 * i / (b.graduations.length - 1)}%">${echappe(g)}</span>`).join('')}</div>
+      </div>` : '';
+      return `<div class="vue${d.images ? ' vue-composee' : ''}${b ? ' vue-analyse' : ''}" data-n="${k}">${contenu}${bareme}</div>`;
     }).join('');
     diapo.querySelectorAll('iframe').forEach(frame => frame.addEventListener('load', synchroniserAnimation));
     titre.textContent = p.titre;
