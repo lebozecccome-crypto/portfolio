@@ -18,6 +18,12 @@
     const s = document.getElementById('seuil'); if (s){ s.hidden = true; s.inert = true; }
     const g = document.getElementById('galaxie'); if (g && !g.getContext) g.remove();
     const cible = document.getElementById('page'); if (cible) cible.focus({ preventScroll:true });
+    /* Le diaporama n'avait pas de largeur derrière le seuil d'entrée. */
+    if (document.getElementById('lightbox') && ouverte && courant){
+      mesurerBarre();
+      diapo.scrollTo({ left:index * diapo.clientWidth, behavior:'instant' });
+      synchroniserAnimation();
+    }
   }
   if (html.classList.contains('entered') && !html.classList.contains('direct')) setTimeout(liberer, 1200);
   else if (!html.classList.contains('direct')) addEventListener('entree', () => setTimeout(liberer, 1200), { once:true });
@@ -122,7 +128,7 @@
     const animee = ouverte && !!courant?.diapos[index]?.animation;
     lb.classList.toggle('animation-active', !!animee);
     diapo.querySelectorAll('iframe').forEach(frame => {
-      const active = !!animee && Number(frame.parentElement.dataset.n) === index && !infoOuverte;
+      const active = !!animee && html.classList.contains('libre') && Number(frame.parentElement.dataset.n) === index && !infoOuverte;
       if (active && !frame.hasAttribute('src')) frame.src = frame.dataset.src;
       if (frame.hasAttribute('src')) frame.contentWindow.postMessage({ type:'portfolio-animation', active }, '*');
       frame.tabIndex = active ? 0 : -1;
