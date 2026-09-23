@@ -112,10 +112,13 @@
   function construire(p, n){
     diapo.innerHTML = p.diapos.map((d, k) => {
       const label = echappe(d.legende || (p.titre + ', plate ' + (k+1)));
+      const image = (im, alt) => `<img class="${im.photo ? '' : 'dessin'}"${im.echelle ? ` style="max-width:${im.echelle*100}%;max-height:${im.echelle*100}%"` : ''} src="${prefixe}${im.src}" width="${im.w}" height="${im.h}" alt="${echappe(alt)}" loading="${Math.abs(k - n) <= 1 ? 'eager' : 'lazy'}" decoding="async">`;
       const contenu = d.animation
         ? `<iframe class="animation-charpente" data-src="${prefixe}${d.src}" title="${label}" sandbox="allow-scripts"></iframe>`
-        : `<img class="${d.photo ? '' : 'dessin'}"${d.echelle ? ` style="max-width:${d.echelle*100}%;max-height:${d.echelle*100}%"` : ''} src="${prefixe}${d.src}" width="${d.w}" height="${d.h}" alt="${label}" loading="${Math.abs(k - n) <= 1 ? 'eager' : 'lazy'}" decoding="async">`;
-      return `<div class="vue" data-n="${k}">${contenu}</div>`;
+        : d.images
+          ? `<div class="planche-composee ${d.groupe}">${d.images.map(im => `<figure>${image(im, im.legende)}<figcaption>${echappe(im.legende)}</figcaption></figure>`).join('')}</div>`
+          : image(d, d.legende || (p.titre + ', plate ' + (k+1)));
+      return `<div class="vue${d.images ? ' vue-composee' : ''}" data-n="${k}">${contenu}</div>`;
     }).join('');
     diapo.querySelectorAll('iframe').forEach(frame => frame.addEventListener('load', synchroniserAnimation));
     titre.textContent = p.titre;
@@ -142,7 +145,7 @@
     index = n;
     synchroniserAnimation();
     const vue = diapo.querySelector(`.vue[data-n="${n}"]`);
-    if (vue){ const suiv = diapo.querySelector(`.vue[data-n="${(n+1) % N}"] img`); if (suiv) suiv.loading = 'eager'; }
+    if (vue){ diapo.querySelectorAll(`.vue[data-n="${(n+1) % N}"] img`).forEach(im => im.loading = 'eager'); }
     diapo.scrollTo({ left: n * diapo.clientWidth, behavior: matchMedia('(prefers-reduced-motion:reduce)').matches ? 'auto' : 'smooth' });
     const leg = courant.diapos[n].legende || '';
     if (legende){ legende.textContent = leg; legende.title = leg; }
