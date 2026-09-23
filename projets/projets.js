@@ -101,6 +101,23 @@ window.PROJETS = [
     photographie: 'drawings: Côme Le Bozec'
   },
   {
+    slug: 'family-house-lancieux',
+    titre: 'Family House in Lancieux',
+    description: 'Environmental studies for a family house in Lancieux.',
+    couverture: { src: 'projets/images/lancieux/lancieux-annual-solar.webp', w: 2800, h: 1610, photo: true },
+    diapos: [
+      { src: 'projets/images/lancieux/lancieux-sun-paths.webp', w: 2540, h: 2540, photo: true },
+      { src: 'projets/images/lancieux/lancieux-section-summer.webp', w: 1680, h: 885, photo: true },
+      { src: 'projets/images/lancieux/lancieux-section-equinox.webp', w: 1680, h: 885, photo: true },
+      { src: 'projets/images/lancieux/lancieux-section-winter.webp', w: 1680, h: 885, photo: true },
+      { src: 'projets/images/lancieux/lancieux-annual-solar.webp', w: 2800, h: 1610, photo: true },
+      { src: 'projets/images/lancieux/lancieux-wind-southwest.webp', w: 2370, h: 2370, photo: true },
+      { src: 'projets/images/lancieux/lancieux-wind-south.webp', w: 2370, h: 2370, photo: true },
+      { src: 'projets/images/lancieux/lancieux-daylight.webp', w: 2800, h: 931, photo: true }
+    ],
+    fiche: { lieu: 'Lancieux, France', programme: 'family house' }
+  },
+  {
     slug: 'work-in-progress',
     titre: 'Work in progress',
     enCours: true,
