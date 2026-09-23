@@ -42,6 +42,45 @@ window.PROJETS = [
     fiche: { lieu: 'Berchem-Sainte-Agathe, Brussels', annee: '2025-2026', programme: 'six collective housing units and their shared spaces — greenhouse, laundry, shared kitchen, productive garden', surface: '1,100 m²', statut: 'studio project, LOCI UCLouvain', equipe: 'site analysis and massing study in a two-person team with Hamza El Arja — building, documents and drawings: Côme Le Bozec' },
     photographie: 'drawings: Côme Le Bozec'
   },
+  {
+    slug: 'family-house-lancieux',
+    titre: 'Family House in Lancieux',
+    description: 'Environmental and timber-structure studies for a family house in Lancieux.',
+    texte: [
+      'Seasonal sunlight, incident solar energy, local wind and daylight are examined alongside the timber frame and selected structural analyses.',
+      'The solar sections compare solar noon in summer, at the equinox and in winter. Wind is sampled 1.50 m above local ground; daylight factor is sampled 0.80 m above the ground floor under an overcast sky.',
+      'The structural studies come from an exploratory Karamba3D model with assumed C24 timber and rigid connections (S0). G denotes dead load and S denotes snow. The animation amplifies the static displacement field under G + S from 0 to 30 times; the maximum sampled displacement is 30.8 mm. Its colours show displacement, resultant bending moment or roof loads.'
+    ],
+    couverture: { src: 'projets/images/lancieux/lancieux-presentation.png', w: 1536, h: 1024, photo: true },
+    diapos: [
+      { src: 'projets/images/lancieux/lancieux-presentation.png', w: 1536, h: 1024, photo: true, legende: 'garden view' },
+      { src: 'projets/images/lancieux/lancieux-sun-paths.webp', w: 2540, h: 2540, photo: true, echelle: 2/3, legende: 'sun paths' },
+      { groupe: 'solaire', legende: 'seasonal sunlight \u00b7 solar noon', images: [
+        { src: 'projets/images/lancieux/lancieux-section-summer.webp', w: 1680, h: 885, photo: true, legende: 'summer solstice \u00b7 21\u00a0June \u00b7 64.8\u00b0' },
+        { src: 'projets/images/lancieux/lancieux-section-equinox.webp', w: 1680, h: 885, photo: true, legende: 'spring equinox \u00b7 21\u00a0March \u00b7 41.8\u00b0' },
+        { src: 'projets/images/lancieux/lancieux-section-winter.webp', w: 1680, h: 885, photo: true, legende: 'winter solstice \u00b7 21\u00a0December \u00b7 18.0\u00b0' }
+      ] },
+      { src: 'projets/images/lancieux/lancieux-annual-solar.webp', w: 2800, h: 1610, photo: true, echelle: 2/3, legende: 'annual solar exposure', bareme: {
+        titre: 'Annual solar irradiation', unite: 'kWh/m\u00b2', graduations: ['0', '400', '800', '1,200', '1,600'],
+        couleurs: ['rgb(27% 2% 50%) 0%', 'rgb(47% 2% 55%) 20%', 'rgb(90% 3% 23%) 40%', 'rgb(100% 25% 1.5%) 60%', 'rgb(100% 65% 1%) 80%', 'rgb(100% 100% 3.5%) 100%']
+      } },
+      { groupe: 'vent', legende: 'wind', bareme: {
+        titre: 'Wind speed', unite: 'm/s', graduations: ['0', '1', '2', '3', '4', '5'],
+        couleurs: ['#4825ad 0%', '#443ed7 20%', '#448aeb 40%', '#30c5c9 56%', '#93dca0 72%', '#f5ed7c 87%', '#ff8146 100%']
+      }, images: [
+        { src: 'projets/images/lancieux/lancieux-wind-southwest.webp', w: 2370, h: 2370, photo: true, legende: 'southwest' },
+        { src: 'projets/images/lancieux/lancieux-wind-south.webp', w: 2370, h: 2370, photo: true, legende: 'south' }
+      ] },
+      { src: 'projets/images/lancieux/lancieux-daylight.webp', w: 2800, h: 931, photo: true, echelle: 4/9, legende: 'daylight factor', bareme: {
+        titre: 'Daylight factor', unite: '%', graduations: ['0', '2', '4', '6', '8', '10+'],
+        couleurs: ['#fffde9 0%', '#fff6b2 15%', '#ffe675 35%', '#ffd23a 55%', '#ffae2e 75%', '#fa6924 100%']
+      } },
+      { src: 'projets/images/lancieux/lancieux-timber-structure.svg', w: 2130, h: 935, photo: true, echelle: 2/3, legende: 'timber frame' },
+      { src: 'projets/images/lancieux/lancieux-timber-animation.html?v=2', animation: true, legende: 'timber frame \u00b7 G + snow' }
+    ],
+    fiche: { lieu: 'Lancieux, France', annee: '2026', programme: 'family house', surface: 'approx. 140 m²', statut: 'academic project — unbuilt' },
+    carte: { src: 'projets/images/lancieux/lancieux-location.webp', grand: 'projets/images/lancieux/lancieux-location.svg', alt: 'Location map of Lancieux, with project parcels AO 467, 466, 456, 425 and 305 in black', parcelles: 'AO 467 · 466 · 456 · 425 · 305' }
+  },
     {
     slug: 'three-seasons',
     titre: 'Three Seasons',
@@ -99,45 +138,6 @@ window.PROJETS = [
     ],
     fiche: { lieu: 'Rue au Tiroir', annee: '2024-2025', programme: 'terraced house — living and dining rooms, four bedrooms and two bathrooms, a second living room and a terrace on the roof', statut: 'studio project, LOCI UCLouvain' },
     photographie: 'drawings: Côme Le Bozec'
-  },
-  {
-    slug: 'family-house-lancieux',
-    titre: 'Family House in Lancieux',
-    description: 'Environmental and timber-structure studies for a family house in Lancieux.',
-    texte: [
-      'Seasonal sunlight, incident solar energy, local wind and daylight are examined alongside the timber frame and selected structural analyses.',
-      'The solar sections compare solar noon in summer, at the equinox and in winter. Wind is sampled 1.50 m above local ground; daylight factor is sampled 0.80 m above the ground floor under an overcast sky.',
-      'The structural studies come from an exploratory Karamba3D model with assumed C24 timber and rigid connections (S0). G denotes dead load and S denotes snow. The animation amplifies the static displacement field under G + S from 0 to 30 times; the maximum sampled displacement is 30.8 mm. Its colours show displacement, resultant bending moment or roof loads.'
-    ],
-    couverture: { src: 'projets/images/lancieux/lancieux-presentation.png', w: 1536, h: 1024, photo: true },
-    diapos: [
-      { src: 'projets/images/lancieux/lancieux-presentation.png', w: 1536, h: 1024, photo: true, legende: 'garden view' },
-      { src: 'projets/images/lancieux/lancieux-sun-paths.webp', w: 2540, h: 2540, photo: true, echelle: 2/3, legende: 'sun paths' },
-      { groupe: 'solaire', legende: 'seasonal sunlight \u00b7 solar noon', images: [
-        { src: 'projets/images/lancieux/lancieux-section-summer.webp', w: 1680, h: 885, photo: true, legende: 'summer solstice \u00b7 21\u00a0June \u00b7 64.8\u00b0' },
-        { src: 'projets/images/lancieux/lancieux-section-equinox.webp', w: 1680, h: 885, photo: true, legende: 'spring equinox \u00b7 21\u00a0March \u00b7 41.8\u00b0' },
-        { src: 'projets/images/lancieux/lancieux-section-winter.webp', w: 1680, h: 885, photo: true, legende: 'winter solstice \u00b7 21\u00a0December \u00b7 18.0\u00b0' }
-      ] },
-      { src: 'projets/images/lancieux/lancieux-annual-solar.webp', w: 2800, h: 1610, photo: true, echelle: 2/3, legende: 'annual solar exposure', bareme: {
-        titre: 'Annual solar irradiation', unite: 'kWh/m\u00b2', graduations: ['0', '400', '800', '1,200', '1,600'],
-        couleurs: ['rgb(27% 2% 50%) 0%', 'rgb(47% 2% 55%) 20%', 'rgb(90% 3% 23%) 40%', 'rgb(100% 25% 1.5%) 60%', 'rgb(100% 65% 1%) 80%', 'rgb(100% 100% 3.5%) 100%']
-      } },
-      { groupe: 'vent', legende: 'wind', bareme: {
-        titre: 'Wind speed', unite: 'm/s', graduations: ['0', '1', '2', '3', '4', '5'],
-        couleurs: ['#4825ad 0%', '#443ed7 20%', '#448aeb 40%', '#30c5c9 56%', '#93dca0 72%', '#f5ed7c 87%', '#ff8146 100%']
-      }, images: [
-        { src: 'projets/images/lancieux/lancieux-wind-southwest.webp', w: 2370, h: 2370, photo: true, legende: 'southwest' },
-        { src: 'projets/images/lancieux/lancieux-wind-south.webp', w: 2370, h: 2370, photo: true, legende: 'south' }
-      ] },
-      { src: 'projets/images/lancieux/lancieux-daylight.webp', w: 2800, h: 931, photo: true, echelle: 4/9, legende: 'daylight factor', bareme: {
-        titre: 'Daylight factor', unite: '%', graduations: ['0', '2', '4', '6', '8', '10+'],
-        couleurs: ['#fffde9 0%', '#fff6b2 15%', '#ffe675 35%', '#ffd23a 55%', '#ffae2e 75%', '#fa6924 100%']
-      } },
-      { src: 'projets/images/lancieux/lancieux-timber-structure.svg', w: 2130, h: 935, photo: true, echelle: 2/3, legende: 'timber frame' },
-      { src: 'projets/images/lancieux/lancieux-timber-animation.html?v=2', animation: true, legende: 'timber frame \u00b7 G + snow' }
-    ],
-    fiche: { lieu: 'Lancieux, France', annee: '2026', programme: 'family house', surface: 'approx. 140 m²', statut: 'academic project — unbuilt' },
-    carte: { src: 'projets/images/lancieux/lancieux-location.webp', grand: 'projets/images/lancieux/lancieux-location.svg', alt: 'Location map of Lancieux, with project parcels AO 467, 466, 456, 425 and 305 in black', parcelles: 'AO 467 · 466 · 456 · 425 · 305' }
   },
   {
     slug: 'work-in-progress',
