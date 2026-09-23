@@ -21,7 +21,7 @@
     /* Le diaporama n'avait pas de largeur derrière le seuil d'entrée. */
     if (document.getElementById('lightbox') && ouverte && courant){
       mesurerBarre();
-      diapo.scrollTo({ left:index * diapo.clientWidth, behavior:'instant' });
+      positionner(false);
       synchroniserAnimation();
     }
   }
@@ -103,6 +103,7 @@
         panneau = lb.querySelector('.lb-panneau'), meta = lb.querySelector('.lb-meta'), desc = lb.querySelector('.lb-description'),
         photo = lb.querySelector('.lb-photographie'), annonce = lb.querySelector('.lb-annonce');
   let courant = null, index = 0, ouverte = false, infoOuverte = false, sansPush = false, positionDefilement = 0, declencheur = null, redim = false;
+  let defilement = 0, finGeste = 0, fermeture = 0, apparition = 0;
 
   /* la légende peut tenir sur plusieurs lignes : on mesure la barre et la planche descend dessous */
   const barre = lb.querySelector('.lb-barre');
@@ -128,7 +129,9 @@
     }).join('');
     diapo.querySelectorAll('iframe').forEach(frame => frame.addEventListener('load', synchroniserAnimation));
     titre.textContent = p.titre;
-    meta.innerHTML = CHAMPS.filter(([k]) => p.fiche && p.fiche[k]).map(([k, l]) => `<div class="lb-champ"><dt>${l}</dt><dd>${p.fiche[k]}</dd></div>`).join('');
+    const fiche = { nom:p.titre, ...p.fiche };
+    meta.innerHTML = CHAMPS.filter(([k]) => fiche[k]).map(([k, l]) => `<div class="lb-champ"><dt>${echappe(l)}</dt><dd>${echappe(fiche[k])}</dd></div>`).join('');
+    if (p.carte) meta.insertAdjacentHTML('beforeend', `<div class="lb-champ lb-carte"><dt>Location map</dt><dd><a href="${prefixe}${echappe(p.carte.grand)}" target="_blank" rel="noopener" aria-label="Open location map"><img src="${prefixe}${echappe(p.carte.src)}" width="1400" height="1400" alt="${echappe(p.carte.alt)}" decoding="async"></a><span class="lb-carte-parcelles">${echappe(p.carte.parcelles)}</span><small>Cadastre: DGFiP / Etalab · Context: <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap contributors</a></small></dd></div>`);
     desc.innerHTML = (p.texte && p.texte.length ? p.texte : [p.description]).map(t => `<p>${t}</p>`).join('');
     photo.textContent = p.photographie || '';
     marquerChargees();
@@ -144,7 +147,27 @@
       frame.inert = !active;
     });
   }
-  function aller(n, pousser){
+  function interrompreDefilement(){
+    cancelAnimationFrame(defilement); defilement = 0;
+    clearTimeout(finGeste); finGeste = 0;
+  }
+  /* Un seul moteur de déplacement : pas de scroll-snap ni de smooth-scroll natif concurrents. */
+  function positionner(animer){
+    interrompreDefilement();
+    if (!ouverte || !courant || !diapo.clientWidth) return;
+    const cible = index * diapo.clientWidth;
+    if (!animer || matchMedia('(prefers-reduced-motion:reduce)').matches){ diapo.scrollLeft = cible; return; }
+    const depart = Math.max(0, Math.min(diapo.scrollLeft, diapo.scrollWidth - diapo.clientWidth));
+    const debut = performance.now();
+    const avancer = t => {
+      const p = Math.min(1, (t - debut) / 260), courbe = 1 - Math.pow(1 - p, 3);
+      diapo.scrollLeft = depart + (cible - depart) * courbe;
+      if (p < 1) defilement = requestAnimationFrame(avancer);
+      else { defilement = 0; diapo.scrollLeft = cible; }
+    };
+    defilement = requestAnimationFrame(avancer);
+  }
+  function aller(n, pousser, animer = true){
     if (!courant) return;
     const N = courant.diapos.length;
     n = ((n % N) + N) % N;                                  /* bouclage : jamais de cul-de-sac */
@@ -152,21 +175,24 @@
     synchroniserAnimation();
     const vue = diapo.querySelector(`.vue[data-n="${n}"]`);
     if (vue){ diapo.querySelectorAll(`.vue[data-n="${(n+1) % N}"] img`).forEach(im => im.loading = 'eager'); }
-    diapo.scrollTo({ left: n * diapo.clientWidth, behavior: matchMedia('(prefers-reduced-motion:reduce)').matches ? 'auto' : 'smooth' });
     const leg = courant.diapos[n].legende || '';
     if (legende){ legende.textContent = leg; legende.title = leg; }
     mesurerBarre();
+    positionner(animer);
     if (annonce) annonce.textContent = `${courant.titre}, plate ${n+1} of ${N}${leg ? ' — ' + leg : ''}`;
     majHash(pousser);
   }
   function majHash(pousser){
     const url = location.pathname + location.search + '#' + courant.slug + '&plate-' + (index + 1);
     if (sansPush){ sansPush = false; history.replaceState({ lb: courant.slug, n: index }, '', url); return; }
+    if (location.hash === '#' + courant.slug + '&plate-' + (index + 1) && history.state?.n === index) return;
     if (pousser) history.pushState({ lb: courant.slug, n: index }, '', url);
     else history.replaceState({ lb: courant.slug, n: index }, '', url);
   }
   function ouvrir(slug, n, depuisHistorique){
     const p = P.find(x => x.slug === slug); if (!p || p.enCours || !p.diapos.length) return;
+    clearTimeout(fermeture); clearTimeout(apparition); interrompreDefilement();
+    n = ((n % p.diapos.length) + p.diapos.length) % p.diapos.length;
     const deja = ouverte && courant === p;
     courant = p;
     if (!deja){
@@ -176,33 +202,32 @@
       html.classList.add('lightbox-ouverte');
       lb.classList.add('active');
       lb.setAttribute('aria-hidden', 'false');
-      setTimeout(() => lb.classList.add('visible'), 20);     /* après un rendu avec display:block, pour que le fondu joue */
+      apparition = setTimeout(() => lb.classList.add('visible'), 20);
       ouverte = true;
       fermerInfo();
     }
     if (depuisHistorique) sansPush = true;
     /* premier positionnement sans animation */
-    index = n;
-    diapo.scrollTo({ left: n * diapo.clientWidth, behavior:'auto' });
-    aller(n, !depuisHistorique && !deja);
+    aller(n, !depuisHistorique && !deja, false);
     lb.querySelector('.lb-fermer button').focus({ preventScroll:true });
   }
   function fermer(){
     if (!ouverte) return;
     ouverte = false;
+    interrompreDefilement(); clearTimeout(apparition);
     synchroniserAnimation();
     fermerInfo();
     lb.classList.remove('visible');
     html.classList.remove('lightbox-ouverte');
     scrollTo({ top: positionDefilement, behavior:'auto' });
-    setTimeout(() => { lb.classList.remove('active'); lb.setAttribute('aria-hidden', 'true'); diapo.innerHTML = ''; }, 350);
+    fermeture = setTimeout(() => { lb.classList.remove('active'); lb.setAttribute('aria-hidden', 'true'); diapo.innerHTML = ''; }, 350);
     /* comme la référence : la fermeture pousse une URL propre ; le bouton retour rouvre la dernière planche */
     if (history.state && history.state.lb) history.pushState(null, '', location.pathname + location.search);
     if (declencheur && declencheur.focus) declencheur.focus({ preventScroll:true });
     courant = null;
   }
-  function ouvrirInfo(){ infoOuverte = true; lb.classList.add('info-ouverte'); panneau.setAttribute('aria-hidden', 'false'); synchroniserAnimation(); }
-  function fermerInfo(){ infoOuverte = false; lb.classList.remove('info-ouverte'); panneau.setAttribute('aria-hidden', 'true'); synchroniserAnimation(); }
+  function ouvrirInfo(){ positionner(false); infoOuverte = true; lb.classList.add('info-ouverte'); panneau.setAttribute('aria-hidden', 'false'); panneau.inert = false; infoBtn.querySelector('button').setAttribute('aria-expanded', 'true'); synchroniserAnimation(); }
+  function fermerInfo(){ infoOuverte = false; lb.classList.remove('info-ouverte'); panneau.setAttribute('aria-hidden', 'true'); panneau.inert = true; infoBtn.querySelector('button').setAttribute('aria-expanded', 'false'); synchroniserAnimation(); }
 
   addEventListener('message', e => {
     if (!ouverte || !courant.diapos[index].animation) return;
@@ -221,16 +246,32 @@
   addEventListener('keydown', e => {
     if (!ouverte) return;
     if (e.key === 'Escape'){ e.preventDefault(); if (infoOuverte) fermerInfo(); else fermer(); }
-    else if (e.key === 'ArrowRight'){ e.preventDefault(); aller(index + 1, true); }
-    else if (e.key === 'ArrowLeft'){ e.preventDefault(); aller(index - 1, true); }
+    else if (!infoOuverte && e.key === 'ArrowRight'){ e.preventDefault(); aller(index + 1, true); }
+    else if (!infoOuverte && e.key === 'ArrowLeft'){ e.preventDefault(); aller(index - 1, true); }
   });
-  /* glissement au doigt : on suit la diapo aimantée */
+  /* Le glissement natif est validé après le geste, sans modifier l'index pendant l'animation. */
+  diapo.addEventListener('pointerdown', interrompreDefilement, { passive:true });
   diapo.addEventListener('scroll', () => {
-    if (!ouverte || redim) return;
-    const n = Math.round(diapo.scrollLeft / diapo.clientWidth);
-    if (n !== index && courant){ index = n; synchroniserAnimation(); const leg = courant.diapos[n].legende || ''; if (legende){ legende.textContent = leg; legende.title = leg; mesurerBarre(); } if (annonce) annonce.textContent = `${courant.titre}, plate ${n+1} of ${courant.diapos.length}${leg ? ' — ' + leg : ''}`; majHash(true); }
+    if (!ouverte || !courant || redim || defilement || infoOuverte || !diapo.clientWidth) return;
+    clearTimeout(finGeste);
+    finGeste = setTimeout(() => {
+      finGeste = 0;
+      if (!ouverte || !courant || defilement || redim || !diapo.clientWidth) return;
+      const n = Math.max(0, Math.min(courant.diapos.length - 1, Math.round(diapo.scrollLeft / diapo.clientWidth)));
+      if (n !== index || Math.abs(diapo.scrollLeft - n * diapo.clientWidth) > 1) aller(n, n !== index);
+    }, 140);
   }, { passive:true });
-  addEventListener('resize', () => { if (!ouverte) return; redim = true; requestAnimationFrame(() => { diapo.scrollTo({ left: index * diapo.clientWidth, behavior:'auto' }); requestAnimationFrame(() => { redim = false; }); }); });
+  addEventListener('resize', () => { if (!ouverte) return; redim = true; interrompreDefilement(); requestAnimationFrame(() => { positionner(false); requestAnimationFrame(() => { redim = false; }); }); });
+  /* Trackpad horizontal : un changement par geste, y compris au-dessus des boutons latéraux. */
+  let roue = 0, roueBloquee = false, finRoue = 0;
+  lb.addEventListener('wheel', e => {
+    if (!ouverte || infoOuverte || e.ctrlKey || Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+    e.preventDefault();
+    clearTimeout(finRoue); finRoue = setTimeout(() => { roue = 0; roueBloquee = false; }, 220);
+    if (roueBloquee) return;
+    roue += e.deltaX * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? diapo.clientWidth : 1);
+    if (Math.abs(roue) > 40){ roueBloquee = true; aller(index + Math.sign(roue), true); }
+  }, { passive:false });
 
   /* ---- historique : #slug&plate-N ; retour = planche précédente, puis fermeture ----
      ALIAS : les adresses françaises d'avant la traduction (#habiter-produire-partager, &diapo-N)

@@ -136,7 +136,8 @@ window.PROJETS = [
       { src: 'projets/images/lancieux/lancieux-timber-structure.svg', w: 2130, h: 935, photo: true, echelle: 2/3, legende: 'timber frame' },
       { src: 'projets/images/lancieux/lancieux-timber-animation.html?v=2', animation: true, legende: 'timber frame \u00b7 G + snow' }
     ],
-    fiche: { lieu: 'Lancieux, France', programme: 'family house' }
+    fiche: { lieu: 'Lancieux, France', annee: '2026', programme: 'family house', surface: 'approx. 140 m²', statut: 'academic project — unbuilt' },
+    carte: { src: 'projets/images/lancieux/lancieux-location.webp', grand: 'projets/images/lancieux/lancieux-location.svg', alt: 'Location map of Lancieux, with project parcels AO 467, 466, 456, 425 and 305 in black', parcelles: 'AO 467 · 466 · 456 · 425 · 305' }
   },
   {
     slug: 'work-in-progress',
@@ -151,4 +152,4 @@ window.PROJETS = [
 ];
 
 /* Libellés des champs de la fiche, dans l'ordre d'affichage */
-window.PROJETS_CHAMPS = [['lieu', 'Location'], ['annee', 'Year'], ['programme', 'Programme'], ['surface', 'Area'], ['statut', 'Status'], ['equipe', 'Team']];
+window.PROJETS_CHAMPS = [['nom', 'Project'], ['lieu', 'Location'], ['annee', 'Year'], ['programme', 'Programme'], ['surface', 'Area'], ['statut', 'Status'], ['equipe', 'Team']];
