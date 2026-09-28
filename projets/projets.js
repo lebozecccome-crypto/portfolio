@@ -45,7 +45,7 @@ window.PROJETS = [
   {
     slug: 'family-house-lancieux',
     titre: 'Family House in Lancieux',
-    description: 'Environmental and timber-structure studies for a family house in Lancieux.',
+    description: 'A family house in Lancieux, presented through plans, sections and axonometric drawings, with environmental and timber-structure studies.',
     texte: [
       'Seasonal sunlight, incident solar energy, local wind and daylight are examined alongside the timber frame and selected structural analyses.',
       'The solar sections compare solar noon in summer, at the equinox and in winter. Wind is sampled 1.50 m above local ground; daylight factor is sampled 0.80 m above the ground floor under an overcast sky.',
@@ -54,6 +54,11 @@ window.PROJETS = [
     couverture: { src: 'projets/images/lancieux/lancieux-presentation.png', w: 1536, h: 1024, photo: true },
     diapos: [
       { src: 'projets/images/lancieux/lancieux-presentation.png', w: 1536, h: 1024, photo: true, legende: 'garden view' },
+      { src: 'projets/images/lancieux/lancieux-axonometric.jpg', w: 2828, h: 2000, legende: 'axonometric view' },
+      { src: 'projets/images/lancieux/lancieux-ground-floor.png', w: 2828, h: 2000, legende: 'ground-floor plan' },
+      { src: 'projets/images/lancieux/lancieux-cross-section.png', w: 2828, h: 2000, legende: 'cross-section' },
+      { src: 'projets/images/lancieux/lancieux-longitudinal-view.png', w: 2828, h: 2000, legende: 'longitudinal view' },
+      { src: 'projets/images/lancieux/lancieux-exploded-axonometric.jpg', w: 2828, h: 2000, legende: 'exploded axonometric' },
       { src: 'projets/images/lancieux/lancieux-sun-paths.webp', w: 2540, h: 2540, photo: true, echelle: 2/3, legende: 'sun paths' },
       { groupe: 'solaire', legende: 'seasonal sunlight \u00b7 solar noon', images: [
         { src: 'projets/images/lancieux/lancieux-section-summer.webp', w: 1680, h: 885, photo: true, legende: 'summer solstice \u00b7 21\u00a0June \u00b7 64.8\u00b0' },
