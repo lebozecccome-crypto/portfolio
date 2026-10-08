@@ -83,8 +83,7 @@ window.PROJETS = [
       { src: 'projets/images/lancieux/lancieux-timber-structure.svg', w: 2130, h: 935, photo: true, echelle: 2/3, legende: 'timber frame' },
       { src: 'projets/images/lancieux/lancieux-timber-animation.html?v=2', animation: true, legende: 'timber frame \u00b7 G + snow' }
     ],
-    fiche: { lieu: 'Lancieux, France', annee: '2026', programme: 'family house', surface: 'approx. 140 m²', statut: 'academic project — unbuilt' },
-    carte: { src: 'projets/images/lancieux/lancieux-location.webp', grand: 'projets/images/lancieux/lancieux-location.svg', alt: 'Location map of Lancieux, with project parcels AO 467, 466, 456, 425 and 305 in black', parcelles: 'AO 467 · 466 · 456 · 425 · 305' }
+    fiche: { lieu: 'Lancieux, France', annee: '2026', programme: 'family house', surface: 'approx. 140 m²', statut: 'academic project — unbuilt' }
   },
     {
     slug: 'three-seasons',
