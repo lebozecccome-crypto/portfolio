@@ -47,9 +47,9 @@ window.PROJETS = [
     titre: 'Family House in Lancieux',
     description: 'Creating a 3D model of this family house in Lancieux with Rhino gave me hands-on experience in environmental and structural analysis using Ladybug, Honeybee and Karamba3D.',
     texte: [
-      'Seasonal sunlight, incident solar energy, local wind and daylight are examined alongside the timber frame and selected structural analyses.',
-      'The solar sections compare solar noon in summer, at the equinox and in winter. Wind is sampled 1.50 m above local ground; daylight factor is sampled 0.80 m above the ground floor under an overcast sky.',
-      'The structural studies come from an exploratory Karamba3D model with assumed C24 timber and rigid connections (S0). G denotes dead load and S denotes snow. The animation amplifies the static displacement field under G + S from 0 to 30 times; the maximum sampled displacement is 30.8 mm. Its colours show displacement, resultant bending moment or roof loads.'
+      'I recreated Dos Aguas House, designed by VDV ARQ, as a 3D model in Rhino using the architects’ original plans and axonometric drawings. This modelling exercise allowed me to put environmental and structural analysis tools into practice through Ladybug, Honeybee and Karamba3D.',
+      'The resulting studies explore seasonal sunlight, incident solar energy, local wind and daylight, alongside the house’s timber frame. Solar sections compare solar noon in summer, at the equinox and in winter. Wind is sampled 1.50 m above local ground, while daylight factor is assessed 0.80 m above ground-floor level under an overcast sky.',
+      'The structural studies use an exploratory Karamba3D model with assumed C24 timber and rigid connections (S0). G denotes dead load and S denotes snow. The animation amplifies the static displacement field under G + S from 0 to 30 times, with a maximum sampled displacement of 30.8 mm. Colours represent displacement, resultant bending moment or roof loads.'
     ],
     couverture: { src: 'projets/images/lancieux/lancieux-presentation.png', w: 1536, h: 1024, photo: true },
     diapos: [
