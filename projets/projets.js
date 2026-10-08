@@ -45,7 +45,7 @@ window.PROJETS = [
   {
     slug: 'family-house-lancieux',
     titre: 'Family House in Lancieux',
-    description: 'A family house in Lancieux, presented through plans, sections and axonometric drawings, with environmental and timber-structure studies.',
+    description: 'Creating a 3D model of this family house in Lancieux with Rhino gave me hands-on experience in environmental and structural analysis using Ladybug, Honeybee and Karamba3D.',
     texte: [
       'Seasonal sunlight, incident solar energy, local wind and daylight are examined alongside the timber frame and selected structural analyses.',
       'The solar sections compare solar noon in summer, at the equinox and in winter. Wind is sampled 1.50 m above local ground; daylight factor is sampled 0.80 m above the ground floor under an overcast sky.',
