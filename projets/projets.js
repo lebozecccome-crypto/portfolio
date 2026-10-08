@@ -145,7 +145,7 @@ window.PROJETS = [
   },
   {
     slug: 'work-in-progress',
-    titre: 'Work in progress',
+    titre: 'House of Poetry YAC competition',
     enCours: true,
     description: 'the next project is in preparation.',
     couverture: { src: 'projets/images/fictif/photo-01_1280x720.jpg', w: 1280, h: 720, photo: true },
